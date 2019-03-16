@@ -1,0 +1,7 @@
+-   id: yapf
+    name: yapf
+    entry: yapf
+    language: python
+    'types': [python]
+    args: ["-i"]
+    additional_dependencies: []
