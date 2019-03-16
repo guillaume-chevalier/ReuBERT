@@ -79,7 +79,7 @@ cd ..
 # mv uncased_L-24_H-1024_A-16/* .
 # cd ..
 
-python $SQUAD_DIR/evaluate-v2.0.py $SQUAD_DIR/dev-v2.0.json ./squad/predictions.json --na-prob-file ./squad/null_odds.json
+python $SQUAD_DIR/evaluate-v2.0.py $SQUAD_DIR/dev-v2.0.json $SQUAD_DIR/predictions.json --na-prob-file $SQUAD_DIR/null_odds.json
 
 
 # TODO: serve predictions after training: 
