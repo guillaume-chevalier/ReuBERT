@@ -8,6 +8,7 @@
 
 git clone https://github.com/google-research/bert.git
 cd bert
+rm -rf .git  # not to mess with nested respos if commiting things.
 
 # Variables
 export BERT_BASE_DIR="gs://thales-bert/bert_base_dir"
