@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # TRAIN BERT
 # Note: you must download BERT and SQuAD in the appropriate folders in GCP bucket. 
 
@@ -57,6 +59,12 @@ python run_squad.py \
   --tpu_name=$TPU_NAME \
   --version_2_with_negative=True \
   --null_score_diff_threshold=$THRESH
+
+
+
+# The code below after the exit is dead code. 
+# TODO: cleanup this shell script...
+exit
 
 
 
