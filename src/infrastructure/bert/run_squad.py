@@ -1187,7 +1187,7 @@ def main(_):
                           FLAGS.do_lower_case, output_prediction_file,
                           output_nbest_file, output_null_log_odds_file)
 
-s
+
 if __name__ == "__main__":
     # Our settings on top of default.
     flags = Flags()
