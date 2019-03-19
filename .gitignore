@@ -147,7 +147,6 @@ celerybeat-schedule.*
 .env
 .venv
 env/
-thales/
 ENV/
 env.bak/
 venv.bak/
