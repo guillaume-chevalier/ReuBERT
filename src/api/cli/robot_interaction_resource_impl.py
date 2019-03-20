@@ -16,13 +16,16 @@ class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
               FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION, end="")
         do_continue = True
 
+        next_phase_number = 0
         while (do_continue):
             user_input_str = input()
 
-            self._wait()  # TODO: wait "until" the answer from the UserRobotInteractionService arrives, then show answer
+            if next_phase_number == 1:
+                self._wait()  # TODO: wait "until" the answer from the UserRobotInteractionService arrives, then show answer
 
-            do_continue, robot_response_str = UserRobotInteractionService.receiveUserText(
+            do_continue, next_phase_number, robot_response_str = UserRobotInteractionService.receiveUserText(
                 user_input_str)
+
             print(robot_response_str)
 
     def _wait(self):
