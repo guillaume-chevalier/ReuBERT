@@ -1,0 +1,5 @@
+*
+!*.sh
+!*.gitignore
+!*dev-v2.0.json
+!*-only-normans.json
