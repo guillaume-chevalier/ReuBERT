@@ -1,0 +1,178 @@
+{
+    "data": [
+        {
+            "paragraphs": [
+                {
+                    "context": "The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in France. They were descended from Norse (\"Norman\" comes from \"Norseman\") raiders and pirates from Denmark, Iceland and Norway who, under their leader Rollo, agreed to swear fealty to King Charles III of West Francia. Through generations of assimilation and mixing with the native Frankish and Roman-Gaulish populations, their descendants would gradually merge with the Carolingian-based cultures of West Francia. The distinct cultural and ethnic identity of the Normans emerged initially in the first half of the 10th century, and it continued to evolve over the succeeding centuries.",
+                    "qas": [
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 159,
+                                    "text": "France"
+                                },
+                                {
+                                    "answer_start": 159,
+                                    "text": "France"
+                                },
+                                {
+                                    "answer_start": 159,
+                                    "text": "France"
+                                },
+                                {
+                                    "answer_start": 159,
+                                    "text": "France"
+                                }
+                            ],
+                            "id": "56ddde6b9a695914005b9628",
+                            "is_impossible": false,
+                            "question": "In what country is Normandy located?"
+                        },
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 94,
+                                    "text": "10th and 11th centuries"
+                                },
+                                {
+                                    "answer_start": 87,
+                                    "text": "in the 10th and 11th centuries"
+                                },
+                                {
+                                    "answer_start": 94,
+                                    "text": "10th and 11th centuries"
+                                },
+                                {
+                                    "answer_start": 94,
+                                    "text": "10th and 11th centuries"
+                                }
+                            ],
+                            "id": "56ddde6b9a695914005b9629",
+                            "is_impossible": false,
+                            "question": "When were the Normans in Normandy?"
+                        },
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 256,
+                                    "text": "Denmark, Iceland and Norway"
+                                },
+                                {
+                                    "answer_start": 256,
+                                    "text": "Denmark, Iceland and Norway"
+                                },
+                                {
+                                    "answer_start": 256,
+                                    "text": "Denmark, Iceland and Norway"
+                                },
+                                {
+                                    "answer_start": 256,
+                                    "text": "Denmark, Iceland and Norway"
+                                }
+                            ],
+                            "id": "56ddde6b9a695914005b962a",
+                            "is_impossible": false,
+                            "question": "From which countries did the Norse originate?"
+                        },
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 308,
+                                    "text": "Rollo"
+                                },
+                                {
+                                    "answer_start": 308,
+                                    "text": "Rollo"
+                                },
+                                {
+                                    "answer_start": 308,
+                                    "text": "Rollo"
+                                },
+                                {
+                                    "answer_start": 308,
+                                    "text": "Rollo"
+                                }
+                            ],
+                            "id": "56ddde6b9a695914005b962b",
+                            "is_impossible": false,
+                            "question": "Who was the Norse leader?"
+                        },
+                        {
+                            "answers": [
+                                {
+                                    "answer_start": 671,
+                                    "text": "10th century"
+                                },
+                                {
+                                    "answer_start": 649,
+                                    "text": "the first half of the 10th century"
+                                },
+                                {
+                                    "answer_start": 671,
+                                    "text": "10th"
+                                },
+                                {
+                                    "answer_start": 671,
+                                    "text": "10th"
+                                }
+                            ],
+                            "id": "56ddde6b9a695914005b962c",
+                            "is_impossible": false,
+                            "question": "What century did the Normans first gain their separate identity?"
+                        },
+                        {
+                            "answers": [],
+                            "id": "5ad39d53604f3c001a3fe8d1",
+                            "is_impossible": true,
+                            "plausible_answers": [
+                                {
+                                    "answer_start": 4,
+                                    "text": "Normans"
+                                }
+                            ],
+                            "question": "Who gave their name to Normandy in the 1000's and 1100's"
+                        },
+                        {
+                            "answers": [],
+                            "id": "5ad39d53604f3c001a3fe8d2",
+                            "is_impossible": true,
+                            "plausible_answers": [
+                                {
+                                    "answer_start": 137,
+                                    "text": "Normandy"
+                                }
+                            ],
+                            "question": "What is France a region of?"
+                        },
+                        {
+                            "answers": [],
+                            "id": "5ad39d53604f3c001a3fe8d3",
+                            "is_impossible": true,
+                            "plausible_answers": [
+                                {
+                                    "answer_start": 308,
+                                    "text": "Rollo"
+                                }
+                            ],
+                            "question": "Who did King Charles III swear fealty to?"
+                        },
+                        {
+                            "answers": [],
+                            "id": "5ad39d53604f3c001a3fe8d4",
+                            "is_impossible": true,
+                            "plausible_answers": [
+                                {
+                                    "answer_start": 671,
+                                    "text": "10th century"
+                                }
+                            ],
+                            "question": "When did the Frankish identity emerge?"
+                        }
+                    ]
+                }
+            ],
+            "title": "Normans"
+        }
+    ],
+    "version": "v2.0"
+}
