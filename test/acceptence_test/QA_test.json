@@ -1,0 +1,68 @@
+{
+  "test_1": {
+    "user_inputs" : ["The fishhawk, or osprey, is not as large as the eagle, but he has a hooked bill and sharp claws like the eagle.",
+    "His is a dark brown in color with black and white spots, and he is from twenty to twenty-two inches long. His breast is mostly white. His tail and wings are long. ",
+    "The fishhawk is often found sitting upon a tree over a pond, lake, or river. He is also found by the seaside.",
+    "He watches the fish as they swim in the water beneath him, and then he darts down suddenly and catches one of them.",
+    "When he catches a fish in his sharp, rough claws, he carries it off to eat, and, as he flies away with it for his dinner, an eagle sometimes meets him. ",
+    "The eagle flies at him fiercely with his sharp bill and claws and compels the hawk to drop the fish. ",
+    "Then the eagle catches the fish as it falls and carries it off.",
+    "The poor fish hawk, with a loud cry, timidly flies away. He must go again to the water and catch another fish for his dinner.",
+    "So you see that the eagle is a robber. He robs fishhawks, whose only mode of getting a living is by catching fish."],
+    "QA" : [
+      {"question" : "Where do fishhawks can be found? ", "answers" :  ["tree", "lake", "river"]},
+      {"question" : "Who catches the fallen fish? ", "answers" :  ["eagle"]},
+      {"question" : "Who timidly flies away ? ", "answers" :  ["fishhawk"]},
+      {"question" : "Where is the fish? ", "answers" :  ["water", "river", "lake"]}
+    ]
+  },
+  "test_2" : {
+  "user_inputs": ["A boy named John was once taking care of some sheep not far from a forest.",
+    "Nearby was a village, and he was told to call for help if there was any danger.",
+    "One day, in order to have some fun, he cried out with all his might, \"The wolf is coming! The wolf is coming!\"",
+  "The men came running with clubs and axes to save the boy from the wolf.",
+  "As they saw nothing, they went home again and left John laughing in his sleeve.",
+  "Because he had had so much fun, John cried out again the next day, \"The wolf! The wolf!\"",
+  " The men came again, but not as many as the first time.",
+  "Again they saw no trace of the wolf, so they shook their heads and went back.",
+  "On the third day, the wolf came in earnest.", " John cried in dismay, \"Help! Help! The wolf! The wolf!\" But not a single man came to help him.",
+  "The wolf broke into the flock and killed a great many sheep.",
+  " Among them was a beautiful lamb that belonged to John.",
+  " Then he felt very sorry that he had deceived his friends and neighbors, and he grieved over the loss of his pet lamb.",
+  "The truth itself is not believed, from one who often has deceived."],
+  "QA" : [
+    {"question" : "What is the boys name ?” ", "answers" :  ["John"]},
+    {"question" : "Why did the man came running ?", "answers" :  ["save", "save the boy"]},
+    {"question" : "What did the wolf kill ?", "answers" :  ["lamb", "sheep"]},
+    {"question" : "what did the boy felt sorry for ?", "answers" :  ["decieving friends", "decieving"]}
+    ]
+},
+  "test_3" : {
+    "user_inputs" : ["Once upon a time there was a little red hen. She lived in a little white house, and she had a little green garden. ",
+    "Every day she worked in the house and garden. ", "Near her home lived a family of foxes. One day Mamma Fox said to Papa Fox, “I want a fat hen to eat.” ",
+    "There was nothing in the pantry for the baby foxes, so Papa Fox started out to find something for them all.",
+    "He ran down the road until he came to the woods. “Surely I will find something here,” he said, but he found nothing to eat in the woods. ",
+    " As he came near the little green garden he said,",
+    "“Oh, I smell fresh cake. Oh, I smell a little red hen.”", "Sure enough, there was the Little Red Hen eating her cake",
+    "Papa Fox snuck up quiety behind her and grabbed her and put her into the bag on his back; then he ran quickly off down the hill toward his home. ",
+    "The Little Red Hen was so frightened that she could only whisper, “Oh, dear. Oh, dear. Oh, dear.”",
+    "Just then she had to sneeze, and when she put her claw into her pocket for her handkerchief, she felt her little scissors. ",
+    "Quick as a flash she took them out and cut a little hole in the bag.",
+    "Peeping out she saw a great hill just ahead, all covered with stones. ",
+    "As Papa Fox stopped to rest on his way up the hill, with his back turned toward her, she cut a big hole in the bag, jumped out and quickly put a big stone in the bag in her place.",
+    "As Papa Fox kept on up the hill, he thought the bag was pretty heavy, but he said, “Never mind, she is a fat little red hen.”",
+    "Mamma Fox met him at the front door with all the baby foxes.",
+    "“The water is boiling,” said she. “What have you in your bag?” asked the Baby Foxes. ",
+    "“A fat, little, red hen,” said Papa Fox.",
+    "As he held the bag over the pot, he said to Mamma Fox, “When I drop her in, you clap on the lid.”",
+    "So he opened the bag. Splash! went the boiling water. ",
+    " It spilled all over Papa Fox and Mamma Fox and the Baby Foxes.",
+    "Never again did they try to catch the Little Red Hen."],
+    "QA" : [
+      {"question" : "What was the little red hen’s house like? ", "answers" : ["little", "white", "little white house"]},
+      {"question" : "How the little red hen felt when she was put in the bag?", "answers" : ["frightened"]},
+      {"question" : "What did the little red hen had in her pockets? ", "answers" : ["little scissors"]},
+      {"question" : "What did Papa Fox say when he held the bag over the pot?", "answers" : ["When I drop her in, you clap on the lid"]}
+    ]
+  }
+}
