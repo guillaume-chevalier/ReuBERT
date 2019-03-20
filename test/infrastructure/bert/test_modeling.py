@@ -21,9 +21,10 @@ import json
 import random
 import re
 
-import modeling
 import six
 import tensorflow as tf
+
+from src.infrastructure.bert import modeling
 
 
 class BertModelTest(tf.test.TestCase):

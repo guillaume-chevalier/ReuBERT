@@ -21,6 +21,7 @@ from __future__ import print_function
 import collections
 import re
 import unicodedata
+
 import six
 import tensorflow as tf
 
