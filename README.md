@@ -6,8 +6,8 @@
 
 You must first setup a **Python 3.6** virtualenv.
 1. Install virtual environments: `pip install virtualenv`.
-2. Create the "env" virtual environment in the root of the project: `virtualenv thales -p python3`.
-3. You may now activate it as needed, and configure the new virtualenv in your IDE: `source thales/bin/activate`.
+2. Create the "env" virtual environment in the root of the project: `virtualenv env -p python3`.
+3. You may now activate it as needed, and configure the new virtualenv in your IDE: `source env/bin/activate`.
 4. Install requirements: `pip install -r requirements.txt.`
 
 ### 2. Fine-tuning BERT on the SQuAD dataset in the cloud on a TPU
