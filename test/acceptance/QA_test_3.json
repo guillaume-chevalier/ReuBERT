@@ -1,0 +1,44 @@
+{
+  "user_inputs": [
+    "Abraham Thomas Lincoln (February 12, 1809 – April 15, 1865) was an American statesman, ",
+    "politician, and lawyer who served as the 16th president of the United States from 1861 until his assassination in April 1865.",
+    " Lincoln led the nation through the American Civil War, its bloodiest war and its greatest moral, constitutional, and political crisis.",
+    "He preserved the Union, abolished slavery, strengthened the federal government, and modernized the U.S. economy.",
+    "Born in Kentucky, Lincoln grew up on the frontier in a poor family.",
+    "Self-educated, he became a lawyer, Whig Party leader, state legislator and Congressman.",
+    "He left government to resume his law practice, but angered by the success of Democrats in opening the prairie lands to slavery,",
+    "reentered politics in 1854.",
+    " He became a leader in the new Republican Party and gained national attention in 1858 for debating",
+    "and losing to national Democratic leader Stephen A. Douglas in a Senate campaign.",
+    "He then ran for President in 1860, sweeping the North and winning.",
+    "Southern pro-slavery elements took his win as proof ",
+    "that the North was rejecting the Constitutional rights of Southern states to practice slavery.",
+    "They began the process of seceding from the union."
+  ],
+  "QA": [
+    {
+      "question": "Where was Abraham Lincoln born ? ",
+      "answers": [
+        "Kentucky"
+      ]
+    },
+    {
+      "question": "When was Abraham Lincoln assassinated ?",
+      "answers": [
+        "April 1865"
+      ]
+    },
+    {
+      "question": "What did Abraham Lincoln achieve to preserve ? ",
+      "answers": [
+        "Union"
+      ]
+    },
+    {
+      "question": "To whom did Abraham Lincoln loose a debate ? ",
+      "answers": [
+        "national Democratic leader Stephen A. Douglas"
+      ]
+    }
+  ]
+}

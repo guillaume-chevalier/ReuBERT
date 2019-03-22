@@ -27,3 +27,13 @@ Once install, verify your installation by running tests within the virtualenv us
 ### 5. Enjoy
 
 You can now run the main, such as by doing `python main.py`, to use the Question-Answering chatbot.
+
+## Licenses
+
+- [BERT](https://github.com/google-research/bert): Apache 2.0
+- [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/): CC-BY-SA 4.0
+#acceptance tests :
+
+- [William_Shakespeare](https://en.wikipedia.org/wiki/William_Shakespeare): CC BY-SA 3.0 Unported License
+- [Abraham Lincoln](https://en.wikipedia.org/wiki/Abraham_Lincoln): CC BY-SA 3.0 Unported License
+- [Barack Obama](https://en.wikipedia.org/wiki/Barack_Obama): CC BY-SA 3.0 Unported License
