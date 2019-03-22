@@ -12,8 +12,10 @@ class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
     def execute(self):
         # TODO: Note: a few edits are needed for this code to manage the user going idle when asking him something.
 
-        print(CLIRobotInteractionResourceImpl.
-              FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION, end="")
+        print(
+            CLIRobotInteractionResourceImpl.
+            FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION,
+            end="")
         do_continue = True
 
         next_phase_number = 0
@@ -21,7 +23,8 @@ class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
             user_input_str = input()
 
             if next_phase_number == 1:
-                self._wait()  # TODO: wait "until" the answer from the UserRobotInteractionService arrives, then show answer
+                self._wait(
+                )  # TODO: wait "until" the answer from the UserRobotInteractionService arrives, then show answer
 
             do_continue, next_phase_number, robot_response_str = UserRobotInteractionService.receiveUserText(
                 user_input_str)
@@ -49,8 +52,8 @@ class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
             time.sleep(0.07)
             sys.stdout.write(
                 "\r" +
-                "".join([chars[(i + j) % len(chars)] for j in range(half_cols)]) +
-                message +
-                "".join([chars[(i - j) % len(chars)] for j in range(half_cols)])
-            )
+                "".join([chars[(i + j) % len(chars)]
+                         for j in range(half_cols)]) + message +
+                "".join([chars[(i - j) % len(chars)]
+                         for j in range(half_cols)]))
             sys.stdout.flush()
