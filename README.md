@@ -6,8 +6,8 @@
 
 You must first setup a **Python 3.6** virtualenv.
 1. Install virtual environments: `pip install virtualenv`.
-2. Create the "env" virtual environment in the root of the project: `virtualenv thales -p python3`.
-3. You may now activate it as needed, and configure the new virtualenv in your IDE: `source thales/bin/activate`.
+2. Create the "env" virtual environment in the root of the project: `virtualenv env -p python3`.
+3. You may now activate it as needed, and configure the new virtualenv in your IDE: `source env/bin/activate`.
 4. Install requirements: `pip install -r requirements.txt.`
 
 ### 2. Fine-tuning BERT on the SQuAD dataset in the cloud on a TPU
@@ -18,7 +18,7 @@ You may skip this step if a member of your team already did this step, as it is 
 
 ### 3. Download the fine-tuned BERT's weights for local CPU usage of the model
 
-See the steps 1, 2 and 3 in the cloud directory's [README.md](cloud_scripts/README.md). Basically, you need to download the trained BERT model and place it at some place under the `./thales-bert-gcp-bucket` directory here.
+See the steps 3, 4 and 5 in the cloud directory's [README.md](cloud_scripts/README.md). Basically, you need to download the trained BERT model and place it at some place under the `./thales-bert-gcp-bucket` directory here.
 
 ### 4. Run tests
 
