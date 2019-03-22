@@ -11,6 +11,8 @@ You must first setup a **Python 3.6** virtualenv.
 1. Install requirements: `pip install -r requirements.txt.`
 
 ### Set up pre-commit hooks
+
+1. Ensure that the virtual environment's name is "env". 
 1. Modify your local git configuration to point the correct emplacement of the project hooks
     > Run the following command in the terminal at the project root: 
             
