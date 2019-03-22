@@ -38,13 +38,16 @@ def test_squad_gives_good_results_given_some_test_data():
     expected_predictions, bert_model, input_data = prepare_test()
     pprint(input_data)
 
+    #todo : make a decorator to return a beautiful output (epurer les json) keep only all_predictions, scores_diff_json
+    # keep one column of scores in the same order of all_prediction
+    #todo : make sure the decorator inherit from qa_model from domain
     all_predictions, all_nbest_json, scores_diff_json = bert_model.transform(input_data)
 
     pprint(all_predictions)
     pprint(all_nbest_json)
-    pprint(scores_diff_json)
+    pprint(scores_diff_json)  # null_odds.json
     # Assert false to view the printed outputs:
-    # assert False
+    assert False
     assert all_predictions == expected_predictions
 
 

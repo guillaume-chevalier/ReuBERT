@@ -19,6 +19,7 @@ def get_reubert_flags():
     flags.output_dir = os.path.join(DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR, "output_dir/")
     flags.version_2_with_negative = True
     flags.null_score_diff_threshold = -3  # TODO: adjust this to try to get a better score. Must be between -1 and -5.
+    #todo set max length input
     return flags
 
 
