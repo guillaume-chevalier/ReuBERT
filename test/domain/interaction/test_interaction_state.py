@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain.interaction_state import InteractionState
+from src.domain.interaction.interaction_state import InteractionState
 
 
 def test_can_create_interaction_state():
