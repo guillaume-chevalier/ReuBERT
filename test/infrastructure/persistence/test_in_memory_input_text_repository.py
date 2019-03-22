@@ -1,3 +1,4 @@
+import pytest
 import unittest
 
 from src.infrastructure.persistence.interaction.in_memory_input_text_repository import InMemoryInputTextRepository
@@ -28,3 +29,7 @@ class TestInMemoryInputTextRepository(unittest.TestCase):
 
         expected_questions = [some_question]
         self.assertEqual(expected_questions, actual_questions)
+
+
+if __name__ == "__main__":
+    pytest.main(__file__)
