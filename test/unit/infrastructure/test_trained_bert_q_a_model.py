@@ -43,11 +43,11 @@ def test_squad_gives_good_results_given_some_test_data():
     #todo : make sure the decorator inherit from qa_model from domain
     all_predictions, all_nbest_json, scores_diff_json = bert_model.transform(input_data)
 
-    pprint(all_predictions)
-    pprint(all_nbest_json)
-    pprint(scores_diff_json)  # null_odds.json
-    # Assert false to view the printed outputs:
-    assert False
+    # pprint(all_predictions)
+    # pprint(all_nbest_json)
+    # pprint(scores_diff_json)  # null_odds.json
+    # # Assert false to view the printed outputs:
+    # assert False
     assert all_predictions == expected_predictions
 
 
