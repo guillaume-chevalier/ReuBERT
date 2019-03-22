@@ -1,20 +1,20 @@
-import abc
+from abc import ABC, abstractmethod
 
 
-class InputTextRepository(abc.ABC):
+class InputTextRepository(ABC):
 
-    @abc.abstractmethod
+    @abstractmethod
     def add_context_statement(self, context_information):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def add_question(self, question):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def get_all_context_statements(self):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def get_all_questions(self):
         pass
