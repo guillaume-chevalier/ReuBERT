@@ -18,7 +18,7 @@ You may skip this step if a member of your team already did this step, as it is 
 
 ### 3. Download the fine-tuned BERT's weights for local CPU usage of the model
 
-See the steps 1, 2 and 3 in the cloud directory's [README.md](cloud_scripts/README.md). Basically, you need to download the trained BERT model and place it at some place under the `./thales-bert-gcp-bucket` directory here.
+See the steps 3, 4 and 5 in the cloud directory's [README.md](cloud_scripts/README.md). Basically, you need to download the trained BERT model and place it at some place under the `./thales-bert-gcp-bucket` directory here.
 
 ### 4. Run tests
 
