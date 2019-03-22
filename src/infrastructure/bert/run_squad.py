@@ -50,7 +50,6 @@ class Flags:
         self.predict_batch_size = 8
         self.predict_file = None
         self.save_checkpoints_steps = 1000
-        self.verbose_logging = False
         self.version_2_with_negative = False
         self.vocab_file = None
 
@@ -125,7 +124,7 @@ class InputFeatures(object):
         self.is_impossible = is_impossible
 
 
-def read_squad_examples(input_data, is_training):
+def read_squad_examples(flags, input_data, is_training):
     """Read a SQuAD json file into a list of SquadExample."""
 
     def is_whitespace(c):
@@ -705,7 +704,7 @@ def write_predictions(flags, all_examples, all_features, all_results, n_best_siz
                 tok_text = " ".join(tok_text.split())
                 orig_text = " ".join(orig_tokens)
 
-                final_text = get_final_text(tok_text, orig_text, do_lower_case)
+                final_text = get_final_text(flags, tok_text, orig_text, do_lower_case)
                 if final_text in seen_predictions:
                     continue
 
@@ -773,7 +772,7 @@ def write_predictions(flags, all_examples, all_features, all_results, n_best_siz
     return all_predictions, all_nbest_json, scores_diff_json
 
 
-def get_final_text(pred_text, orig_text, do_lower_case):
+def get_final_text(flags, pred_text, orig_text, do_lower_case):
     """Project the tokenized prediction back to the original text."""
 
     # When we created the data, we kept track of the alignment between original
@@ -822,9 +821,6 @@ def get_final_text(pred_text, orig_text, do_lower_case):
 
     start_position = tok_text.find(pred_text)
     if start_position == -1:
-        if flags.verbose_logging:
-            tf.logging.info(
-                "Unable to find text: '%s' in '%s'" % (pred_text, orig_text))
         return orig_text
     end_position = start_position + len(pred_text) - 1
 
@@ -832,9 +828,6 @@ def get_final_text(pred_text, orig_text, do_lower_case):
     (tok_ns_text, tok_ns_to_s_map) = _strip_spaces(tok_text)
 
     if len(orig_ns_text) != len(tok_ns_text):
-        if flags.verbose_logging:
-            tf.logging.info("Length not equal after stripping spaces: '%s' vs '%s'",
-                            orig_ns_text, tok_ns_text)
         return orig_text
 
     # We then project the characters in `pred_text` back to `orig_text` using
@@ -850,8 +843,6 @@ def get_final_text(pred_text, orig_text, do_lower_case):
             orig_start_position = orig_ns_to_s_map[ns_start_position]
 
     if orig_start_position is None:
-        if flags.verbose_logging:
-            tf.logging.info("Couldn't map start position")
         return orig_text
 
     orig_end_position = None
@@ -861,8 +852,6 @@ def get_final_text(pred_text, orig_text, do_lower_case):
             orig_end_position = orig_ns_to_s_map[ns_end_position]
 
     if orig_end_position is None:
-        if flags.verbose_logging:
-            tf.logging.info("Couldn't map end position")
         return orig_text
 
     output_text = orig_text[orig_start_position:(orig_end_position + 1)]
@@ -961,7 +950,7 @@ def validate_flags_or_throw(flags, bert_config):
 
 
 def do_predict(flags, estimator, tokenizer, input_data):
-    eval_examples = read_squad_examples(
+    eval_examples = read_squad_examples(flags,
         input_data=input_data, is_training=False)
     eval_writer = FeatureWriter(
         filename=os.path.join(flags.output_dir, "eval.tf_record"),
