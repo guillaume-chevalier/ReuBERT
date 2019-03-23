@@ -1,7 +1,14 @@
 import json
 import os
-
 import pytest
+
+from src.infrastructure.bert_model_wrapper import BertModelWrapper
+from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
+
+flags = get_reubert_flags()
+bert_model = TrainedBERTQuestionAnsweringModel(flags)
+
+bert_wrapper = BertModelWrapper(bert_model)
 
 # Todo : put different levels of questions : easy , meduim, hard, impossible
 def load_json_file_test(json_name):
@@ -13,9 +20,6 @@ QATEST_FILE_1 = load_json_file_test('QA_test_1.json')
 QATEST_FILE_2 = load_json_file_test('QA_test_2.json')
 QATEST_FILE_3 = load_json_file_test('QA_test_3.json')
 
-
-# load model
-# Model = None
 
 @pytest.mark.parametrize("QA_test", [QATEST_FILE_1, QATEST_FILE_2, QATEST_FILE_3])
 def test_model_answer_test_1(QA_test):

@@ -30,7 +30,7 @@ def prepare_test():
     return expected_predictions, bert_model, input_data
 
 
-def test_squad_gives_good_results_given_some_test_data():
+def test__given__some_test_data__when__running_squad__then__get_good_results():
     # Disable test if in CI, because it needs a downloaded model:
     if os.environ.get("CI") is not None:
         return
