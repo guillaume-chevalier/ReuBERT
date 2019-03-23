@@ -12,17 +12,17 @@ from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweri
 def prepare_test():
     flags = get_reubert_flags()
     print(DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR)
-    predict_file = os.path.join(DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR,
-                                "squad_dir/dev-v2.0-beautified-only-normans.json")
+    predict_file = os.path.join(
+        DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR,
+        "squad_dir/dev-v2.0-beautified-only-normans.json")
     print(predict_file)
     input_data = read_predict_file_json(predict_file)
     expected_predictions = collections.OrderedDict(
         [('56ddde6b9a695914005b9628', 'France'),
          ('56ddde6b9a695914005b9629', '10th and 11th centuries'),
-         ('56ddde6b9a695914005b962a', ''),
-         ('56ddde6b9a695914005b962b', 'Rollo'),
-         ('56ddde6b9a695914005b962c', '10th'),
-         ('5ad39d53604f3c001a3fe8d1', ''),
+         ('56ddde6b9a695914005b962a', ''), ('56ddde6b9a695914005b962b',
+                                            'Rollo'),
+         ('56ddde6b9a695914005b962c', '10th'), ('5ad39d53604f3c001a3fe8d1', ''),
          ('5ad39d53604f3c001a3fe8d2', ''),
          ('5ad39d53604f3c001a3fe8d3', 'Normans'),
          ('5ad39d53604f3c001a3fe8d4', '')])
@@ -38,15 +38,13 @@ def test_squad_gives_good_results_given_some_test_data():
     expected_predictions, bert_model, input_data = prepare_test()
     pprint(input_data)
 
-    #todo : make a decorator to return a beautiful output (epurer les json) keep only all_predictions, scores_diff_json
-    # keep one column of scores in the same order of all_prediction
-    #todo : make sure the decorator inherit from qa_model from domain
-    all_predictions, all_nbest_json, scores_diff_json = bert_model.transform(input_data)
+    all_predictions, all_nbest_json, scores_diff_json = bert_model.transform(
+        input_data)
 
-    # pprint(all_predictions)
-    # pprint(all_nbest_json)
-    # pprint(scores_diff_json)  # null_odds.json
-    # # Assert false to view the printed outputs:
+    pprint(all_predictions)
+    pprint(all_nbest_json)
+    pprint(scores_diff_json)
+    # Assert false to view the printed outputs:
     # assert False
     assert all_predictions == expected_predictions
 

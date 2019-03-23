@@ -167,18 +167,20 @@ class BertModel(object):
             input_mask = tf.ones(shape=[batch_size, seq_length], dtype=tf.int32)
 
         if token_type_ids is None:
-            token_type_ids = tf.zeros(shape=[batch_size, seq_length], dtype=tf.int32)
+            token_type_ids = tf.zeros(
+                shape=[batch_size, seq_length], dtype=tf.int32)
 
         with tf.variable_scope(scope, default_name="bert"):
             with tf.variable_scope("embeddings"):
                 # Perform embedding lookup on the word ids.
-                (self.embedding_output, self.embedding_table) = embedding_lookup(
-                    input_ids=input_ids,
-                    vocab_size=config.vocab_size,
-                    embedding_size=config.hidden_size,
-                    initializer_range=config.initializer_range,
-                    word_embedding_name="word_embeddings",
-                    use_one_hot_embeddings=use_one_hot_embeddings)
+                (self.embedding_output,
+                 self.embedding_table) = embedding_lookup(
+                     input_ids=input_ids,
+                     vocab_size=config.vocab_size,
+                     embedding_size=config.hidden_size,
+                     initializer_range=config.initializer_range,
+                     word_embedding_name="word_embeddings",
+                     use_one_hot_embeddings=use_one_hot_embeddings)
 
                 # Add positional embeddings and token type embeddings, then layer
                 # normalize and perform dropout.
@@ -212,7 +214,8 @@ class BertModel(object):
                     intermediate_size=config.intermediate_size,
                     intermediate_act_fn=get_activation(config.hidden_act),
                     hidden_dropout_prob=config.hidden_dropout_prob,
-                    attention_probs_dropout_prob=config.attention_probs_dropout_prob,
+                    attention_probs_dropout_prob=config.
+                    attention_probs_dropout_prob,
                     initializer_range=config.initializer_range,
                     do_return_all_layers=True)
 
@@ -225,12 +228,14 @@ class BertModel(object):
             with tf.variable_scope("pooler"):
                 # We "pool" the model by simply taking the hidden state corresponding
                 # to the first token. We assume that this has been pre-trained
-                first_token_tensor = tf.squeeze(self.sequence_output[:, 0:1, :], axis=1)
+                first_token_tensor = tf.squeeze(
+                    self.sequence_output[:, 0:1, :], axis=1)
                 self.pooled_output = tf.layers.dense(
                     first_token_tensor,
                     config.hidden_size,
                     activation=tf.tanh,
-                    kernel_initializer=create_initializer(config.initializer_range))
+                    kernel_initializer=create_initializer(
+                        config.initializer_range))
 
     def get_pooled_output(self):
         return self.pooled_output
@@ -363,7 +368,10 @@ def dropout(input_tensor, dropout_prob):
 def layer_norm(input_tensor, name=None):
     """Run layer normalization on the last dimension of the tensor."""
     return tf.contrib.layers.layer_norm(
-        inputs=input_tensor, begin_norm_axis=-1, begin_params_axis=-1, scope=name)
+        inputs=input_tensor,
+        begin_norm_axis=-1,
+        begin_params_axis=-1,
+        scope=name)
 
 
 def layer_norm_and_dropout(input_tensor, dropout_prob, name=None):
@@ -481,7 +489,8 @@ def embedding_postprocessor(input_tensor,
         # This vocab will be small so we always do one-hot here, since it is always
         # faster for a small vocabulary.
         flat_token_type_ids = tf.reshape(token_type_ids, [-1])
-        one_hot_ids = tf.one_hot(flat_token_type_ids, depth=token_type_vocab_size)
+        one_hot_ids = tf.one_hot(
+            flat_token_type_ids, depth=token_type_vocab_size)
         token_type_embeddings = tf.matmul(one_hot_ids, token_type_table)
         token_type_embeddings = tf.reshape(token_type_embeddings,
                                            [batch_size, seq_length, width])
@@ -647,7 +656,8 @@ def attention_layer(from_tensor,
         from_seq_length = from_shape[1]
         to_seq_length = to_shape[1]
     elif len(from_shape) == 2:
-        if (batch_size is None or from_seq_length is None or to_seq_length is None):
+        if (batch_size is None or from_seq_length is None or
+                to_seq_length is None):
             raise ValueError(
                 "When passing in rank 2 tensors to attention_layer, the values "
                 "for `batch_size`, `from_seq_length`, and `to_seq_length` "
@@ -814,8 +824,9 @@ def transformer_model(input_tensor,
     # The Transformer performs sum residuals on all layers so the input needs
     # to be the same as the hidden size.
     if input_width != hidden_size:
-        raise ValueError("The width of the input tensor (%d) != hidden size (%d)" %
-                         (input_width, hidden_size))
+        raise ValueError(
+            "The width of the input tensor (%d) != hidden size (%d)" %
+            (input_width, hidden_size))
 
     # We keep the representation as a 2D tensor to avoid re-shaping it back and
     # forth from a 3D tensor to a 2D tensor. Re-shapes are normally free on
@@ -837,7 +848,8 @@ def transformer_model(input_tensor,
                         attention_mask=attention_mask,
                         num_attention_heads=num_attention_heads,
                         size_per_head=attention_head_size,
-                        attention_probs_dropout_prob=attention_probs_dropout_prob,
+                        attention_probs_dropout_prob=
+                        attention_probs_dropout_prob,
                         initializer_range=initializer_range,
                         do_return_2d_tensor=True,
                         batch_size=batch_size,
@@ -859,9 +871,12 @@ def transformer_model(input_tensor,
                     attention_output = tf.layers.dense(
                         attention_output,
                         hidden_size,
-                        kernel_initializer=create_initializer(initializer_range))
-                    attention_output = dropout(attention_output, hidden_dropout_prob)
-                    attention_output = layer_norm(attention_output + layer_input)
+                        kernel_initializer=create_initializer(
+                            initializer_range))
+                    attention_output = dropout(attention_output,
+                                               hidden_dropout_prob)
+                    attention_output = layer_norm(attention_output +
+                                                  layer_input)
 
             # The activation is only applied to the "intermediate" hidden layer.
             with tf.variable_scope("intermediate"):
@@ -983,5 +998,6 @@ def assert_rank(tensor, expected_rank, name=None):
         scope_name = tf.get_variable_scope().name
         raise ValueError(
             "For the tensor `%s` in scope `%s`, the actual rank "
-            "`%d` (shape = %s) is not equal to the expected rank `%s`" %
-            (name, scope_name, actual_rank, str(tensor.shape), str(expected_rank)))
+            "`%d` (shape = %s) is not equal to the expected rank `%s`"
+            % (name, scope_name, actual_rank, str(tensor.shape),
+               str(expected_rank)))
