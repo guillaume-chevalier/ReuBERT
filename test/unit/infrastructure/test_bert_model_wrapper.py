@@ -1,3 +1,5 @@
+import pytest
+
 from src.infrastructure.bert_model_wrapper import BertModelWrapper
 from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
 
@@ -35,3 +37,6 @@ def test_bert_model_wrapper_gives_good_results_given_some_test_data():
     result_output = bert_wrapper.transform(INPUT)
 
     assert result_output == EXPECTED_OUTPUT
+
+if __name__ == "__main__":
+    pytest.main(__file__)
