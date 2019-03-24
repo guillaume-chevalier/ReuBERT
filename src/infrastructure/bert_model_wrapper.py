@@ -2,7 +2,7 @@ class BertModelWrapper:
     def __init__(self, bert_model):
         self.bert_model = bert_model
 
-    def _from_normal_input_to_bert_input(self, normal_input):
+    def _from_normal_input_to_bert_input_dict(self, normal_input):
         joined_user_inputs = "".join(normal_input["user_input"])
         return [{
             "paragraphs": [
