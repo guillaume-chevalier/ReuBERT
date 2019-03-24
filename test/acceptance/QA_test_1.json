@@ -13,33 +13,95 @@
     "his sexuality, his religious beliefs, and whether the works attributed to him were written by others.",
     "Such theories are often criticised for failing to adequately note that few records survive of most commoners of the period."
   ],
-  "QA": [
+  "QA": {
+    "easy": [
+      {
+        "question": "Where do William Shakespeare was born ? ",
+        "answers": [
+          " Stratford-upon-Avon",
+          "Warwickshire",
+          "Stratford-upon-Avon, Warwickshire"
+        ]
+      },
+      {
+        "question": "When did William Shakespeare retire ?",
+        "answers": [
+          "1613",
+          "49"
+        ]
+      },
+      {
+        "question": "What is the name of Shakespeare's playing company ?",
+        "answers": [
+          "Lord Chamberlain's Men",
+          "King's Men",
+          "the Lord Chamberlain's Men"
+        ]
+      },
+      {
+        "question": "Who is Shakespeare's wife",
+        "answers": [
+          "Anne Hathaway"
+        ]
+      }
+    ],
+    "hard": [
+      {
+        "question": "How Shakespeare was called ? ",
+        "answers": [
+          "England's national poet",
+          "the \"Bard of Avon\"",
+          "Stratford-upon-Avon, Warwickshire"
+        ]
+      },
+      {
+        "question": "How many plays did Shakespeare write ?",
+        "answers": [
+          "plays"
+        ]
+      },
+      {
+        "question": "Who were Shakespeare childrens ?",
+        "answers": [
+          "Susanna",
+          "twins Hamnet and Judith",
+          "Susanna and twins Hamnet and Judith"
+        ]
+      },
+      {
+        "question": "When did Shakespeare had  childrens ?",
+        "answers": [
+          "1585 and 1592",
+          "1585",
+          "1592"
+        ]
+      }
+    ],
+    "impossible": [
     {
-      "question": "Where do William Shakespeare was born ? ",
+      "question": "Who is the current president of the USA ?",
       "answers": [
-        " Stratford-upon-Avon",
-        "Warwickshire"
+        ""
       ]
     },
     {
-      "question": "When did William Shakespeare retire ?",
+      "question": "How is the climate in Canada ?",
       "answers": [
-        "1613",
-        "49"
+        ""
       ]
     },
     {
-      "question": "What is the name of Shakespeare's playing company ?",
+      "question": "What color is milk ?",
       "answers": [
-        "Lord Chamberlain's Men",
-        "King's Men"
+        ""
       ]
     },
     {
-      "question": "Who is Shakespeare's wife",
+      "question": "Who is Iron Man ?",
       "answers": [
-        "Anne Hathaway"
+        ""
       ]
     }
   ]
+  }
 }

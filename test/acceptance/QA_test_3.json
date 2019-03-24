@@ -15,7 +15,60 @@
     "that the North was rejecting the Constitutional rights of Southern states to practice slavery.",
     "They began the process of seceding from the union."
   ],
-  "QA": [
+  "QA": {
+    "easy": [
+      {
+        "question": "Where was Abraham Lincoln born ? ",
+        "answers": [
+          "Kentucky"
+        ]
+      },
+      {
+        "question": "When was Abraham Lincoln assassinated ?",
+        "answers": [
+          "April 1865"
+        ]
+      },
+      {
+        "question": "What did Abraham Lincoln achieve to preserve ? ",
+        "answers": [
+          "Union"
+        ]
+      },
+      {
+        "question": "To whom did Abraham Lincoln loose a debate ? ",
+        "answers": [
+          "national Democratic leader Stephen A. Douglas"
+        ]
+      }
+    ],
+    "hard": [
+      {
+        "question": "Where was Abraham Lincoln born ? ",
+        "answers": [
+          "Kentucky"
+        ]
+      },
+      {
+        "question": "When was Abraham Lincoln assassinated ?",
+        "answers": [
+          "April 1865"
+        ]
+      },
+      {
+        "question": "What did Abraham Lincoln achieve to preserve ? ",
+        "answers": [
+          "Union"
+        ]
+      },
+      {
+        "question": "To whom did Abraham Lincoln loose a debate ? ",
+        "answers": [
+          "national Democratic leader Stephen A. Douglas"
+        ]
+      }
+    ],
+    "impossible": [
     {
       "question": "Where was Abraham Lincoln born ? ",
       "answers": [
@@ -41,4 +94,5 @@
       ]
     }
   ]
+  }
 }

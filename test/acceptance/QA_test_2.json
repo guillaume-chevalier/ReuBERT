@@ -13,7 +13,39 @@
     "He was elected over Republican John McCain and was inaugurated on January 20, 2009.",
     "Nine months later, he was named the 2009 Nobel Peace Prize laureate."
   ],
-  "QA": [
+  "QA": {
+    "easy": [
+      {
+        "question": "Where Obama was born ?",
+        "answers": [
+          "Honolulu",
+          "Hawaii",
+          "Honolulu, Hawaii"
+        ]
+      },
+      {
+        "question": "What school did Obama go to ?",
+        "answers": [
+          "Harvard Law School"
+        ]
+      },
+      {
+        "question": "What Party did Obama come from ?",
+        "answers": [
+          "Democratic Party",
+          "Democratic"
+        ]
+      },
+      {
+        "question": "Obama was elected over who ?",
+        "answers": [
+          "Republican John McCain",
+          "Republican",
+          "John McCain"
+        ]
+      }
+    ],
+    "hard": [
     {
       "question": "Where Obama was born ?",
       "answers": [
@@ -31,7 +63,39 @@
     {
       "question": "What Party did Obama come from ?",
       "answers": [
-        "Democratic Party"
+        "Democratic Party",
+        "Democratic"
+      ]
+    },
+      {
+        "question": "Obama was elected over who ?",
+        "answers": [
+          "Republican John McCain",
+          "Republican",
+          "John McCain"
+        ]
+      }
+    ],
+    "impossible": [
+      {
+        "question": "Where Obama was born ?",
+        "answers": [
+          "Honolulu",
+          "Hawaii",
+          "Honolulu, Hawaii"
+        ]
+      },
+      {
+        "question": "What school did Obama go to ?",
+        "answers": [
+          "Harvard Law School"
+        ]
+      },
+      {
+        "question": "What Party did Obama come from ?",
+        "answers": [
+          "Democratic Party",
+          "Democratic"
       ]
     },
     {
@@ -43,4 +107,5 @@
       ]
     }
   ]
+  }
 }
