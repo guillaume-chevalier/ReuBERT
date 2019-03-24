@@ -1,6 +1,8 @@
 import pytest
 import os
 
+print("TEST")
+print(os.getcwd())
 from src.domain.interaction_state import InteractionState
 
 print("TEST")
