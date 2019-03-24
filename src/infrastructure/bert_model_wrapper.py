@@ -10,32 +10,15 @@ class BertModelWrapper:
                     "context": joined_user_inputs,
                     "qas": [
                         {
-                            "answers": [
-                                {
-                                    "answer_start": 159,
-                                    "text": "France"
-                                },
-                                {
-                                    "answer_start": 159,
-                                    "text": "France"
-                                },
-                                {
-                                    "answer_start": 159,
-                                    "text": "France"
-                                },
-                                {
-                                    "answer_start": 159,
-                                    "text": "France"
-                                }
-                            ],
-                            "id": "56ddde6b9a695914005b9628",
+                            "answers": [],
+                            "id": "",
                             "is_impossible": False,
                             "question": normal_input["question"]
                         }
                     ]
                 }
             ],
-            "title": "Normans"
+            "title": ""
         }]
 
     def _from_bert_output_to_normal_output(self, all_nbest_json):
