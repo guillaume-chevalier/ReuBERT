@@ -1,6 +1,7 @@
 import os
 
 import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from src.domain.pipeline_steps.question_answering_model import QuestionAnsweringModelInterface
 from src.infrastructure.bert import modeling, tokenization
@@ -31,8 +32,6 @@ class TrainedBERTQuestionAnsweringModel(QuestionAnsweringModelInterface):
 
     def __init__(self, flags):
         self.flags = flags
-        tf.logging.set_verbosity(tf.logging.INFO)
-
         bert_config = modeling.BertConfig.from_json_file(flags.bert_config_file)
 
         validate_flags_or_throw(flags, bert_config)
