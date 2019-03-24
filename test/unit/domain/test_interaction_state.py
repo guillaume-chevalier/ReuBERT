@@ -1,6 +1,8 @@
 import pytest
-
+import os
 from src.domain.interaction_state import InteractionState
+
+print(os.getcwd())
 
 
 def test_can_create_interaction_state():
