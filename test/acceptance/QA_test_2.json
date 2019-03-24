@@ -47,63 +47,55 @@
     ],
     "hard": [
     {
-      "question": "Where Obama was born ?",
+      "question": "Who did Obama represent from 1997 to 2004 ?",
       "answers": [
-        "Honolulu",
-        "Hawaii",
-        "Honolulu, Hawaii"
+        "13th district",
+        "13th district for three terms in the Illinois Senate"
       ]
     },
     {
-      "question": "What school did Obama go to ?",
+      "question": "What title did he had in the Harvard Law Review?",
       "answers": [
-        "Harvard Law School"
+        "the first black president"
       ]
     },
     {
-      "question": "What Party did Obama come from ?",
+      "question": "What nomination did Obama have in 2008 ?",
       "answers": [
-        "Democratic Party",
-        "Democratic"
+        "president"
       ]
     },
       {
-        "question": "Obama was elected over who ?",
+        "question": "What position did Obama hold after graduation ?",
         "answers": [
-          "Republican John McCain",
-          "Republican",
-          "John McCain"
+          "civil rights attorney",
+          "academic"
         ]
       }
     ],
     "impossible": [
       {
-        "question": "Where Obama was born ?",
+        "question": "Who is the current president of the USA ?",
         "answers": [
-          "Honolulu",
-          "Hawaii",
-          "Honolulu, Hawaii"
+          ""
         ]
       },
       {
-        "question": "What school did Obama go to ?",
+        "question": "How is the climate in Canada ?",
         "answers": [
-          "Harvard Law School"
+          ""
         ]
       },
       {
-        "question": "What Party did Obama come from ?",
+        "question": "What color is milk ?",
         "answers": [
-          "Democratic Party",
-          "Democratic"
+          ""
       ]
     },
     {
-      "question": "Obama was elected over who ?",
+      "question": "Who is Iron Man ?",
       "answers": [
-        "Republican John McCain",
-        "Republican",
-        "John McCain"
+        ""
       ]
     }
   ]

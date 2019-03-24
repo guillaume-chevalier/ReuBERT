@@ -24,8 +24,8 @@ QATEST_FILE_2 = load_json_file_test('QA_test_2.json')
 QATEST_FILE_3 = load_json_file_test('QA_test_3.json')
 
 
-@pytest.mark.parametrize("QA_test", [QATEST_FILE_1])
-@pytest.mark.parametrize("difficulty", ["easy"])
+@pytest.mark.parametrize("QA_test", [QATEST_FILE_1, QATEST_FILE_2, QATEST_FILE_3])
+@pytest.mark.parametrize("difficulty", ["easy", "hard", "impossible"])
 def test__given__user_input__when__asking_questions_to_bert_model_wrapper__then__get_good_results(QA_test, difficulty):
     user_input = QA_test['user_inputs']
 
@@ -58,7 +58,7 @@ def verify_answers(bert_responses, expected_responses):
 
     for bert_res in bert_responses:
         for expected_res in expected_responses:
-            if stringdist.levenshtein_norm(bert_res[1], expected_res) < acceptable_levenshtein_threshold:
+            if stringdist.levenshtein(bert_res[1], expected_res) / 33 < acceptable_levenshtein_threshold:
                 right_answer = bert_res
 
     assert right_answer is not None

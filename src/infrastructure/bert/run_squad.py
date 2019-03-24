@@ -182,10 +182,6 @@ def read_squad_examples(flags, input_data, is_training):
                             doc_tokens[start_position:(end_position + 1)])
                         cleaned_answer_text = " ".join(
                             tokenization.whitespace_tokenize(orig_answer_text))
-                        if actual_text.find(cleaned_answer_text) == -1:
-                            tf.logging.warning("Could not find answer: '%s' vs. '%s'",
-                                               actual_text, cleaned_answer_text)
-                            continue
                     else:
                         start_position = -1
                         end_position = -1
@@ -325,31 +321,31 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
                 start_position = 0
                 end_position = 0
 
-            if example_index < 20:
-                tf.logging.info("*** Example ***")
-                tf.logging.info("unique_id: %s" % (unique_id))
-                tf.logging.info("example_index: %s" % (example_index))
-                tf.logging.info("doc_span_index: %s" % (doc_span_index))
-                tf.logging.info("tokens: %s" % " ".join(
-                    [tokenization.printable_text(x) for x in tokens]))
-                tf.logging.info("token_to_orig_map: %s" % " ".join(
-                    ["%d:%d" % (x, y) for (x, y) in six.iteritems(token_to_orig_map)]))
-                tf.logging.info("token_is_max_context: %s" % " ".join([
-                    "%d:%s" % (x, y) for (x, y) in six.iteritems(token_is_max_context)
-                ]))
-                tf.logging.info("input_ids: %s" % " ".join([str(x) for x in input_ids]))
-                tf.logging.info(
-                    "input_mask: %s" % " ".join([str(x) for x in input_mask]))
-                tf.logging.info(
-                    "segment_ids: %s" % " ".join([str(x) for x in segment_ids]))
-                if is_training and example.is_impossible:
-                    tf.logging.info("impossible example")
-                if is_training and not example.is_impossible:
-                    answer_text = " ".join(tokens[start_position:(end_position + 1)])
-                    tf.logging.info("start_position: %d" % (start_position))
-                    tf.logging.info("end_position: %d" % (end_position))
-                    tf.logging.info(
-                        "answer: %s" % (tokenization.printable_text(answer_text)))
+            # if example_index < 20:
+            #     tf.logging.info("*** Example ***")
+            #     tf.logging.info("unique_id: %s" % (unique_id))
+            #     tf.logging.info("example_index: %s" % (example_index))
+            #     tf.logging.info("doc_span_index: %s" % (doc_span_index))
+            #     tf.logging.info("tokens: %s" % " ".join(
+            #         [tokenization.printable_text(x) for x in tokens]))
+            #     tf.logging.info("token_to_orig_map: %s" % " ".join(
+            #         ["%d:%d" % (x, y) for (x, y) in six.iteritems(token_to_orig_map)]))
+            #     tf.logging.info("token_is_max_context: %s" % " ".join([
+            #         "%d:%s" % (x, y) for (x, y) in six.iteritems(token_is_max_context)
+            #     ]))
+            #     tf.logging.info("input_ids: %s" % " ".join([str(x) for x in input_ids]))
+            #     tf.logging.info(
+            #         "input_mask: %s" % " ".join([str(x) for x in input_mask]))
+            #     tf.logging.info(
+            #         "segment_ids: %s" % " ".join([str(x) for x in segment_ids]))
+            #     if is_training and example.is_impossible:
+            #         tf.logging.info("impossible example")
+            #     if is_training and not example.is_impossible:
+            #         answer_text = " ".join(tokens[start_position:(end_position + 1)])
+            #         tf.logging.info("start_position: %d" % (start_position))
+            #         tf.logging.info("end_position: %d" % (end_position))
+            #         tf.logging.info(
+            #             "answer: %s" % (tokenization.printable_text(answer_text)))
 
             feature = InputFeatures(
                 unique_id=unique_id,
@@ -491,9 +487,9 @@ def model_fn_builder(bert_config, init_checkpoint, use_one_hot_embeddings):
     def model_fn(features, labels, mode, params):  # pylint: disable=unused-argument
         """The `model_fn` for TPUEstimator."""
 
-        tf.logging.info("*** Features ***")
-        for name in sorted(features.keys()):
-            tf.logging.info("  name = %s, shape = %s" % (name, features[name].shape))
+        # tf.logging.info("*** Features ***")
+        # for name in sorted(features.keys()):
+        #     tf.logging.info("  name = %s, shape = %s" % (name, features[name].shape))
 
         unique_ids = features["unique_ids"]
         input_ids = features["input_ids"]
@@ -521,13 +517,13 @@ def model_fn_builder(bert_config, init_checkpoint, use_one_hot_embeddings):
 
             tf.train.init_from_checkpoint(init_checkpoint, assignment_map)
 
-        tf.logging.info("**** Trainable Variables ****")
+        # tf.logging.info("**** Trainable Variables ****")
         for var in tvars:
             init_string = ""
             if var.name in initialized_variable_names:
                 init_string = ", *INIT_FROM_CKPT*"
-            tf.logging.info("  name = %s, shape = %s%s", var.name, var.shape,
-                            init_string)
+            # tf.logging.info("  name = %s, shape = %s%s", var.name, var.shape,
+            #                 init_string)
 
         assert mode == tf.estimator.ModeKeys.PREDICT, "Only PREDICT modes is supported: %s" % (mode)
         predictions = {
@@ -970,10 +966,10 @@ def do_predict(flags, estimator, tokenizer, input_data):
         is_training=False,
         output_fn=append_feature)
     eval_writer.close()
-    tf.logging.info("***** Running predictions *****")
-    tf.logging.info("  Num orig examples = %d", len(eval_examples))
-    tf.logging.info("  Num split examples = %d", len(eval_features))
-    tf.logging.info("  Batch size = %d", flags.predict_batch_size)
+    # tf.logging.info("***** Running predictions *****")
+    # tf.logging.info("  Num orig examples = %d", len(eval_examples))
+    # tf.logging.info("  Num split examples = %d", len(eval_features))
+    # tf.logging.info("  Batch size = %d", flags.predict_batch_size)
     predict_input_fn = input_fn_builder(
         input_file=eval_writer.filename,
         seq_length=flags.max_seq_length,
@@ -984,8 +980,8 @@ def do_predict(flags, estimator, tokenizer, input_data):
     all_results = []
     for result in estimator.predict(
             predict_input_fn, yield_single_examples=True):
-        if len(all_results) % 1000 == 0:
-            tf.logging.info("Processing example: %d" % (len(all_results)))
+        # if len(all_results) % 1000 == 0:
+        #     tf.logging.info("Processing example: %d" % (len(all_results)))
         unique_id = int(result["unique_ids"])
         start_logits = [float(x) for x in result["start_logits"].flat]
         end_logits = [float(x) for x in result["end_logits"].flat]

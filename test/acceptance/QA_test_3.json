@@ -44,53 +44,56 @@
     ],
     "hard": [
       {
-        "question": "Where was Abraham Lincoln born ? ",
+        "question": "Who is Abraham Lincoln ?",
         "answers": [
-          "Kentucky"
+          "an American statesman",
+          "American president"
         ]
       },
       {
-        "question": "When was Abraham Lincoln assassinated ?",
+        "question": "Which Party did Abraham Lincoln led ?",
         "answers": [
-          "April 1865"
+          "Republican Party",
+          "Whig Party"
         ]
       },
       {
-        "question": "What did Abraham Lincoln achieve to preserve ? ",
+        "question": "Abraham Lincoln was angered by what ?",
         "answers": [
-          "Union"
+          "opening the prairie lands to slavery",
+          "the success of Democrats in opening the prairie lands to slavery"
         ]
       },
       {
-        "question": "To whom did Abraham Lincoln loose a debate ? ",
+        "question": "When did Abraham Lincoln became a leader in the new Republican Party ?",
         "answers": [
-          "national Democratic leader Stephen A. Douglas"
+          "1858"
         ]
       }
     ],
     "impossible": [
     {
-      "question": "Where was Abraham Lincoln born ? ",
+      "question": "Who is the current president of the USA ?",
       "answers": [
-        "Kentucky"
+        ""
       ]
     },
     {
-      "question": "When was Abraham Lincoln assassinated ?",
+      "question": "How is the climate in Canada ?",
       "answers": [
-        "April 1865"
+        ""
       ]
     },
     {
-      "question": "What did Abraham Lincoln achieve to preserve ? ",
+      "question": "What color is milk ?",
       "answers": [
-        "Union"
+        ""
       ]
     },
     {
-      "question": "To whom did Abraham Lincoln loose a debate ? ",
+      "question": "Who is Iron Man ?",
       "answers": [
-        "national Democratic leader Stephen A. Douglas"
+        ""
       ]
     }
   ]
