@@ -27,18 +27,21 @@ EXPECTED_OUTPUT = [(0.9996078633149131, 'France'), (0.0002669500164904331, 'Fran
                                                   'Normandy, a region in France. They were descended from Norse ("Norman" comes from "Norseman") raiders and pirates from Denmark'),
                    (5.800012584850742e-10, '')]
 
-flags = get_reubert_flags()
-bert_model = TrainedBERTQuestionAnsweringModel(flags)
 
-bert_wrapper = BertModelWrapper(bert_model)
+class TestModelWrapper():
+    def setUp(self):
+        self.flags = get_reubert_flags()
+        self.bert_model = TrainedBERTQuestionAnsweringModel(self.flags)
+
+        self.bert_wrapper = BertModelWrapper(self.bert_model)
 
 
-def test__given__some_test_data__when__bert_model_wrapper__then__get_good_results():
-    if os.environ.get("CI") is not None:
-        return
-    result_output = bert_wrapper.transform(INPUT)
+    def test__given__some_test_data__when__bert_model_wrapper__then__get_good_results(self):
+        if os.environ.get("CI") is not None:
+            return
+        result_output = self.bert_wrapper.transform(INPUT)
 
-    assert result_output == EXPECTED_OUTPUT
+        assert result_output == EXPECTED_OUTPUT
 
 if __name__ == "__main__":
     pytest.main(__file__)
