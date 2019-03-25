@@ -1,11 +1,11 @@
-from src.infrastructure.bert_model_wrapper import BertModelWrapper
-from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
-
 import json
 import os
 
 import pytest
 import stringdist
+
+from src.infrastructure.bert_model_wrapper import BertModelWrapper
+from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
 
 
 # Todo : put different levels of questions : easy , medium, hard, impossible
@@ -28,33 +28,21 @@ class TestAcceptance():
 
         cls.bert_wrapper = BertModelWrapper(cls.bert_model)
 
-
     @pytest.mark.parametrize("QA_test", [QATEST_FILE_1, QATEST_FILE_2, QATEST_FILE_3])
     @pytest.mark.parametrize("difficulty", ["easy", "hard", "impossible"])
-    def test__given__user_input__when__asking_questions_to_bert_model_wrapper__then__get_good_results(cls, QA_test, difficulty):
+    @pytest.mark.parametrize("question_number", [0, 1, 2, 3])
+    def test__given__user_input__when__asking_questions_to_bert_model_wrapper__then__get_good_results(cls,
+                                                                                                      QA_test,
+                                                                                                      difficulty,
+                                                                                                      question_number):
         user_input = QA_test['user_inputs']
 
-        question_1 = QA_test['QA'][difficulty][0]['question']
-        expected_answers_1 = QA_test['QA'][difficulty][0]['answers']
+        question = QA_test['QA'][difficulty][question_number]['question']
+        expected_answers = QA_test['QA'][difficulty][question_number]['answers']
 
-        question_2 = QA_test['QA'][difficulty][1]['question']
-        expected_answers_2 = QA_test['QA'][difficulty][1]['answers']
+        response = TestAcceptance.bert_wrapper.transform((user_input, question))
 
-        question_3 = QA_test['QA'][difficulty][2]['question']
-        expected_answers_3 = QA_test['QA'][difficulty][2]['answers']
-
-        question_4 = QA_test['QA'][difficulty][3]['question']
-        expected_answers_4 = QA_test['QA'][difficulty][3]['answers']
-
-        response_1 = TestAcceptance.bert_wrapper.transform((user_input, question_1))
-        response_2 = TestAcceptance.bert_wrapper.transform((user_input, question_2))
-        response_3 = TestAcceptance.bert_wrapper.transform((user_input, question_3))
-        response_4 = TestAcceptance.bert_wrapper.transform((user_input, question_4))
-
-        verify_answers(response_1, expected_answers_1)
-        verify_answers(response_2, expected_answers_2)
-        verify_answers(response_3, expected_answers_3)
-        verify_answers(response_4, expected_answers_4)
+        verify_answers(response, expected_answers)
 
 
 def verify_answers(bert_responses, expected_responses):
