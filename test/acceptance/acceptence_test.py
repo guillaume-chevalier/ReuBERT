@@ -19,17 +19,19 @@ QATEST_FILE_2 = load_json_file_test('QA_test_2.json')
 QATEST_FILE_3 = load_json_file_test('QA_test_3.json')
 
 
-class TestAcceptence():
-    def setup(self):
-        self.flags = get_reubert_flags()
-        self.bert_model = TrainedBERTQuestionAnsweringModel(self.flags)
+class TestAcceptance():
 
-        self.bert_wrapper = BertModelWrapper(self.bert_model)
+    @classmethod
+    def setup_class(cls):
+        cls.flags = get_reubert_flags()
+        cls.bert_model = TrainedBERTQuestionAnsweringModel(cls.flags)
+
+        cls.bert_wrapper = BertModelWrapper(cls.bert_model)
 
 
     @pytest.mark.parametrize("QA_test", [QATEST_FILE_1, QATEST_FILE_2, QATEST_FILE_3])
     @pytest.mark.parametrize("difficulty", ["easy", "hard", "impossible"])
-    def test__given__user_input__when__asking_questions_to_bert_model_wrapper__then__get_good_results(self, QA_test, difficulty):
+    def test__given__user_input__when__asking_questions_to_bert_model_wrapper__then__get_good_results(cls, QA_test, difficulty):
         user_input = QA_test['user_inputs']
 
         question_1 = QA_test['QA'][difficulty][0]['question']
@@ -44,10 +46,10 @@ class TestAcceptence():
         question_4 = QA_test['QA'][difficulty][3]['question']
         expected_answers_4 = QA_test['QA'][difficulty][3]['answers']
 
-        response_1 = self.bert_wrapper.transform(self.bert_wrapper.question_schema(user_input, question_1))
-        response_2 = self.bert_wrapper.transform(self.bert_wrapper.question_schema(user_input, question_2))
-        response_3 = self.bert_wrapper.transform(self.bert_wrapper.question_schema(user_input, question_3))
-        response_4 = self.bert_wrapper.transform(self.bert_wrapper.question_schema(user_input, question_4))
+        response_1 = TestAcceptance.bert_wrapper.transform(TestAcceptance.bert_wrapper.question_schema(user_input, question_1))
+        response_2 = TestAcceptance.bert_wrapper.transform(TestAcceptance.bert_wrapper.question_schema(user_input, question_2))
+        response_3 = TestAcceptance.bert_wrapper.transform(TestAcceptance.bert_wrapper.question_schema(user_input, question_3))
+        response_4 = TestAcceptance.bert_wrapper.transform(TestAcceptance.bert_wrapper.question_schema(user_input, question_4))
 
         verify_answers(response_1, expected_answers_1)
         verify_answers(response_2, expected_answers_2)
