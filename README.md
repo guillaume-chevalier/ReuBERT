@@ -41,6 +41,7 @@ You can now run the main, such as by doing `python main.py`, to use the Question
 
 - [BERT](https://github.com/google-research/bert): Apache 2.0
 - [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/): CC-BY-SA 4.0
+
 ### Acceptance tests :
 
 - [William_Shakespeare](https://en.wikipedia.org/wiki/William_Shakespeare): CC BY-SA 3.0 Unported License
