@@ -46,10 +46,10 @@ class TestAcceptance():
         question_4 = QA_test['QA'][difficulty][3]['question']
         expected_answers_4 = QA_test['QA'][difficulty][3]['answers']
 
-        response_1 = TestAcceptance.bert_wrapper.transform(TestAcceptance.bert_wrapper.question_schema(user_input, question_1))
-        response_2 = TestAcceptance.bert_wrapper.transform(TestAcceptance.bert_wrapper.question_schema(user_input, question_2))
-        response_3 = TestAcceptance.bert_wrapper.transform(TestAcceptance.bert_wrapper.question_schema(user_input, question_3))
-        response_4 = TestAcceptance.bert_wrapper.transform(TestAcceptance.bert_wrapper.question_schema(user_input, question_4))
+        response_1 = TestAcceptance.bert_wrapper.transform((user_input, question_1))
+        response_2 = TestAcceptance.bert_wrapper.transform((user_input, question_2))
+        response_3 = TestAcceptance.bert_wrapper.transform((user_input, question_3))
+        response_4 = TestAcceptance.bert_wrapper.transform((user_input, question_4))
 
         verify_answers(response_1, expected_answers_1)
         verify_answers(response_2, expected_answers_2)
