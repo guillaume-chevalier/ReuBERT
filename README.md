@@ -11,14 +11,13 @@ You must first setup a **Python 3.6** virtualenv.
 1. Install requirements: `pip install -r requirements.txt.`
 
 ### Set up pre-commit hooks
+
 1. Ensure that the virtual environment's name is "env". 
 1. Modify your local git configuration to point the correct emplacement of the project hooks
     > Run the following command in the terminal at the project root: 
             
     `git config core.hookspath .githooks`
 1. Everytime you create a new commit, you shall see the output of yapf execution which reformats all source files properly. 
-
-
 
 ### Fine-tuning BERT on the SQuAD dataset in the cloud on a TPU
 
