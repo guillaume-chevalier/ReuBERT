@@ -31,7 +31,6 @@ from src.infrastructure.bert import tokenization
 
 
 class Flags:
-
     def __init__(self):
         # Default.
         self.bert_config_file = None
@@ -51,7 +50,6 @@ class Flags:
         self.predict_batch_size = 8
         self.predict_file = None
         self.save_checkpoints_steps = 1000
-        self.verbose_logging = False
         self.version_2_with_negative = False
         self.vocab_file = None
 
@@ -84,8 +82,8 @@ class SquadExample(object):
     def __repr__(self):
         s = ""
         s += "qas_id: %s" % (tokenization.printable_text(self.qas_id))
-        s += ", question_text: %s" % (tokenization.printable_text(
-            self.question_text))
+        s += ", question_text: %s" % (
+            tokenization.printable_text(self.question_text))
         s += ", doc_tokens: [%s]" % (" ".join(self.doc_tokens))
         if self.start_position:
             s += ", start_position: %d" % (self.start_position)
@@ -126,7 +124,7 @@ class InputFeatures(object):
         self.is_impossible = is_impossible
 
 
-def read_squad_examples(input_data, is_training):
+def read_squad_examples(flags, input_data, is_training):
     """Read a SQuAD json file into a list of SquadExample."""
 
     def is_whitespace(c):
@@ -165,16 +163,15 @@ def read_squad_examples(input_data, is_training):
                         is_impossible = qa["is_impossible"]
                     if (len(qa["answers"]) != 1) and (not is_impossible):
                         raise ValueError(
-                            "For training, each question should have exactly 1 answer."
-                        )
+                            "For training, each question should have exactly 1 answer.")
                     if not is_impossible:
                         answer = qa["answers"][0]
                         orig_answer_text = answer["text"]
                         answer_offset = answer["answer_start"]
                         answer_length = len(orig_answer_text)
                         start_position = char_to_word_offset[answer_offset]
-                        end_position = char_to_word_offset[answer_offset +
-                                                           answer_length - 1]
+                        end_position = char_to_word_offset[answer_offset + answer_length -
+                                                           1]
                         # Only add answers where the text can be exactly recovered from the
                         # document. If this CAN'T happen it's likely due to weird Unicode
                         # stuff so we will just skip the example.
@@ -185,11 +182,6 @@ def read_squad_examples(input_data, is_training):
                             doc_tokens[start_position:(end_position + 1)])
                         cleaned_answer_text = " ".join(
                             tokenization.whitespace_tokenize(orig_answer_text))
-                        if actual_text.find(cleaned_answer_text) == -1:
-                            tf.logging.warning(
-                                "Could not find answer: '%s' vs. '%s'",
-                                actual_text, cleaned_answer_text)
-                            continue
                     else:
                         start_position = -1
                         end_position = -1
@@ -239,8 +231,7 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
         if is_training and not example.is_impossible:
             tok_start_position = orig_to_tok_index[example.start_position]
             if example.end_position < len(example.doc_tokens) - 1:
-                tok_end_position = orig_to_tok_index[example.end_position +
-                                                     1] - 1
+                tok_end_position = orig_to_tok_index[example.end_position + 1] - 1
             else:
                 tok_end_position = len(all_doc_tokens) - 1
             (tok_start_position, tok_end_position) = _improve_answer_span(
@@ -281,11 +272,10 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
 
             for i in range(doc_span.length):
                 split_token_index = doc_span.start + i
-                token_to_orig_map[len(
-                    tokens)] = tok_to_orig_index[split_token_index]
+                token_to_orig_map[len(tokens)] = tok_to_orig_index[split_token_index]
 
-                is_max_context = _check_is_max_context(
-                    doc_spans, doc_span_index, split_token_index)
+                is_max_context = _check_is_max_context(doc_spans, doc_span_index,
+                                                       split_token_index)
                 token_is_max_context[len(tokens)] = is_max_context
                 tokens.append(all_doc_tokens[split_token_index])
                 segment_ids.append(1)
@@ -331,36 +321,31 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
                 start_position = 0
                 end_position = 0
 
-            if example_index < 20:
-                tf.logging.info("*** Example ***")
-                tf.logging.info("unique_id: %s" % (unique_id))
-                tf.logging.info("example_index: %s" % (example_index))
-                tf.logging.info("doc_span_index: %s" % (doc_span_index))
-                tf.logging.info("tokens: %s" % " ".join(
-                    [tokenization.printable_text(x) for x in tokens]))
-                tf.logging.info("token_to_orig_map: %s" % " ".join([
-                    "%d:%d" % (x, y)
-                    for (x, y) in six.iteritems(token_to_orig_map)
-                ]))
-                tf.logging.info("token_is_max_context: %s" % " ".join([
-                    "%d:%s" % (x, y)
-                    for (x, y) in six.iteritems(token_is_max_context)
-                ]))
-                tf.logging.info(
-                    "input_ids: %s" % " ".join([str(x) for x in input_ids]))
-                tf.logging.info(
-                    "input_mask: %s" % " ".join([str(x) for x in input_mask]))
-                tf.logging.info(
-                    "segment_ids: %s" % " ".join([str(x) for x in segment_ids]))
-                if is_training and example.is_impossible:
-                    tf.logging.info("impossible example")
-                if is_training and not example.is_impossible:
-                    answer_text = " ".join(
-                        tokens[start_position:(end_position + 1)])
-                    tf.logging.info("start_position: %d" % (start_position))
-                    tf.logging.info("end_position: %d" % (end_position))
-                    tf.logging.info("answer: %s" %
-                                    (tokenization.printable_text(answer_text)))
+            # if example_index < 20:
+            #     tf.logging.info("*** Example ***")
+            #     tf.logging.info("unique_id: %s" % (unique_id))
+            #     tf.logging.info("example_index: %s" % (example_index))
+            #     tf.logging.info("doc_span_index: %s" % (doc_span_index))
+            #     tf.logging.info("tokens: %s" % " ".join(
+            #         [tokenization.printable_text(x) for x in tokens]))
+            #     tf.logging.info("token_to_orig_map: %s" % " ".join(
+            #         ["%d:%d" % (x, y) for (x, y) in six.iteritems(token_to_orig_map)]))
+            #     tf.logging.info("token_is_max_context: %s" % " ".join([
+            #         "%d:%s" % (x, y) for (x, y) in six.iteritems(token_is_max_context)
+            #     ]))
+            #     tf.logging.info("input_ids: %s" % " ".join([str(x) for x in input_ids]))
+            #     tf.logging.info(
+            #         "input_mask: %s" % " ".join([str(x) for x in input_mask]))
+            #     tf.logging.info(
+            #         "segment_ids: %s" % " ".join([str(x) for x in segment_ids]))
+            #     if is_training and example.is_impossible:
+            #         tf.logging.info("impossible example")
+            #     if is_training and not example.is_impossible:
+            #         answer_text = " ".join(tokens[start_position:(end_position + 1)])
+            #         tf.logging.info("start_position: %d" % (start_position))
+            #         tf.logging.info("end_position: %d" % (end_position))
+            #         tf.logging.info(
+            #             "answer: %s" % (tokenization.printable_text(answer_text)))
 
             feature = InputFeatures(
                 unique_id=unique_id,
@@ -448,8 +433,7 @@ def _check_is_max_context(doc_spans, cur_span_index, position):
             continue
         num_left_context = position - doc_span.start
         num_right_context = end - position
-        score = min(num_left_context,
-                    num_right_context) + 0.01 * doc_span.length
+        score = min(num_left_context, num_right_context) + 0.01 * doc_span.length
         if best_score is None or score > best_score:
             best_score = score
             best_span_index = span_index
@@ -503,10 +487,9 @@ def model_fn_builder(bert_config, init_checkpoint, use_one_hot_embeddings):
     def model_fn(features, labels, mode, params):  # pylint: disable=unused-argument
         """The `model_fn` for TPUEstimator."""
 
-        tf.logging.info("*** Features ***")
-        for name in sorted(features.keys()):
-            tf.logging.info(
-                "  name = %s, shape = %s" % (name, features[name].shape))
+        # tf.logging.info("*** Features ***")
+        # for name in sorted(features.keys()):
+        #     tf.logging.info("  name = %s, shape = %s" % (name, features[name].shape))
 
         unique_ids = features["unique_ids"]
         input_ids = features["input_ids"]
@@ -530,21 +513,19 @@ def model_fn_builder(bert_config, init_checkpoint, use_one_hot_embeddings):
         scaffold_fn = None
         if init_checkpoint:
             (assignment_map, initialized_variable_names
-            ) = modeling.get_assignment_map_from_checkpoint(
-                tvars, init_checkpoint)
+             ) = modeling.get_assignment_map_from_checkpoint(tvars, init_checkpoint)
 
             tf.train.init_from_checkpoint(init_checkpoint, assignment_map)
 
-        tf.logging.info("**** Trainable Variables ****")
+        # tf.logging.info("**** Trainable Variables ****")
         for var in tvars:
             init_string = ""
             if var.name in initialized_variable_names:
                 init_string = ", *INIT_FROM_CKPT*"
-            tf.logging.info("  name = %s, shape = %s%s", var.name, var.shape,
-                            init_string)
+            # tf.logging.info("  name = %s, shape = %s%s", var.name, var.shape,
+            #                 init_string)
 
-        assert mode == tf.estimator.ModeKeys.PREDICT, "Only PREDICT modes is supported: %s" % (
-            mode)
+        assert mode == tf.estimator.ModeKeys.PREDICT, "Only PREDICT modes is supported: %s" % (mode)
         predictions = {
             "unique_ids": unique_ids,
             "start_logits": start_logits,
@@ -612,8 +593,8 @@ RawResult = collections.namedtuple("RawResult",
                                    ["unique_id", "start_logits", "end_logits"])
 
 
-def write_predictions(flags, all_examples, all_features, all_results,
-                      n_best_size, max_answer_length, do_lower_case):
+def write_predictions(flags, all_examples, all_features, all_results, n_best_size,
+                      max_answer_length, do_lower_case):
     """Write final predictions to the json file and log-odds of null if needed."""
 
     example_index_to_features = collections.defaultdict(list)
@@ -625,10 +606,8 @@ def write_predictions(flags, all_examples, all_features, all_results,
         unique_id_to_result[result.unique_id] = result
 
     _PrelimPrediction = collections.namedtuple(  # pylint: disable=invalid-name
-        "PrelimPrediction", [
-            "feature_index", "start_index", "end_index", "start_logit",
-            "end_logit"
-        ])
+        "PrelimPrediction",
+        ["feature_index", "start_index", "end_index", "start_logit", "end_logit"])
 
     all_predictions = collections.OrderedDict()
     all_nbest_json = collections.OrderedDict()
@@ -649,8 +628,7 @@ def write_predictions(flags, all_examples, all_features, all_results,
             end_indexes = _get_best_indexes(result.end_logits, n_best_size)
             # if we could have irrelevant answers, get the min score of irrelevant
             if flags.version_2_with_negative:
-                feature_null_score = result.start_logits[0] + result.end_logits[
-                    0]
+                feature_null_score = result.start_logits[0] + result.end_logits[0]
                 if feature_null_score < score_null:
                     score_null = feature_null_score
                     min_null_feature_index = feature_index
@@ -707,12 +685,10 @@ def write_predictions(flags, all_examples, all_features, all_results,
                 break
             feature = features[pred.feature_index]
             if pred.start_index > 0:  # this is a non-null prediction
-                tok_tokens = feature.tokens[pred.start_index:(
-                    pred.end_index + 1)]
+                tok_tokens = feature.tokens[pred.start_index:(pred.end_index + 1)]
                 orig_doc_start = feature.token_to_orig_map[pred.start_index]
                 orig_doc_end = feature.token_to_orig_map[pred.end_index]
-                orig_tokens = example.doc_tokens[orig_doc_start:(
-                    orig_doc_end + 1)]
+                orig_tokens = example.doc_tokens[orig_doc_start:(orig_doc_end + 1)]
                 tok_text = " ".join(tok_tokens)
 
                 # De-tokenize WordPieces that have been split off.
@@ -724,7 +700,7 @@ def write_predictions(flags, all_examples, all_features, all_results,
                 tok_text = " ".join(tok_text.split())
                 orig_text = " ".join(orig_tokens)
 
-                final_text = get_final_text(tok_text, orig_text, do_lower_case)
+                final_text = get_final_text(flags, tok_text, orig_text, do_lower_case)
                 if final_text in seen_predictions:
                     continue
 
@@ -744,8 +720,7 @@ def write_predictions(flags, all_examples, all_features, all_results,
             if "" not in seen_predictions:
                 nbest.append(
                     _NbestPrediction(
-                        text="",
-                        start_logit=null_start_logit,
+                        text="", start_logit=null_start_logit,
                         end_logit=null_end_logit))
         # In very rare edge cases we could have no valid predictions. So we
         # just create a nonce prediction in this case to avoid failure.
@@ -793,7 +768,7 @@ def write_predictions(flags, all_examples, all_features, all_results,
     return all_predictions, all_nbest_json, scores_diff_json
 
 
-def get_final_text(pred_text, orig_text, do_lower_case):
+def get_final_text(flags, pred_text, orig_text, do_lower_case):
     """Project the tokenized prediction back to the original text."""
 
     # When we created the data, we kept track of the alignment between original
@@ -842,9 +817,6 @@ def get_final_text(pred_text, orig_text, do_lower_case):
 
     start_position = tok_text.find(pred_text)
     if start_position == -1:
-        if flags.verbose_logging:
-            tf.logging.info(
-                "Unable to find text: '%s' in '%s'" % (pred_text, orig_text))
         return orig_text
     end_position = start_position + len(pred_text) - 1
 
@@ -852,10 +824,6 @@ def get_final_text(pred_text, orig_text, do_lower_case):
     (tok_ns_text, tok_ns_to_s_map) = _strip_spaces(tok_text)
 
     if len(orig_ns_text) != len(tok_ns_text):
-        if flags.verbose_logging:
-            tf.logging.info(
-                "Length not equal after stripping spaces: '%s' vs '%s'",
-                orig_ns_text, tok_ns_text)
         return orig_text
 
     # We then project the characters in `pred_text` back to `orig_text` using
@@ -871,8 +839,6 @@ def get_final_text(pred_text, orig_text, do_lower_case):
             orig_start_position = orig_ns_to_s_map[ns_start_position]
 
     if orig_start_position is None:
-        if flags.verbose_logging:
-            tf.logging.info("Couldn't map start position")
         return orig_text
 
     orig_end_position = None
@@ -882,8 +848,6 @@ def get_final_text(pred_text, orig_text, do_lower_case):
             orig_end_position = orig_ns_to_s_map[ns_end_position]
 
     if orig_end_position is None:
-        if flags.verbose_logging:
-            tf.logging.info("Couldn't map end position")
         return orig_text
 
     output_text = orig_text[orig_start_position:(orig_end_position + 1)]
@@ -892,8 +856,7 @@ def get_final_text(pred_text, orig_text, do_lower_case):
 
 def _get_best_indexes(logits, n_best_size):
     """Get the n-best logits from a list."""
-    index_and_score = sorted(
-        enumerate(logits), key=lambda x: x[1], reverse=True)
+    index_and_score = sorted(enumerate(logits), key=lambda x: x[1], reverse=True)
 
     best_indexes = []
     for i in range(len(index_and_score)):
@@ -951,17 +914,14 @@ class FeatureWriter(object):
         features["segment_ids"] = create_int_feature(feature.segment_ids)
 
         if self.is_training:
-            features["start_positions"] = create_int_feature(
-                [feature.start_position])
-            features["end_positions"] = create_int_feature(
-                [feature.end_position])
+            features["start_positions"] = create_int_feature([feature.start_position])
+            features["end_positions"] = create_int_feature([feature.end_position])
             impossible = 0
             if feature.is_impossible:
                 impossible = 1
             features["is_impossible"] = create_int_feature([impossible])
 
-        tf_example = tf.train.Example(
-            features=tf.train.Features(feature=features))
+        tf_example = tf.train.Example(features=tf.train.Features(feature=features))
         self._writer.write(tf_example.SerializeToString())
 
     def close(self):
@@ -986,7 +946,7 @@ def validate_flags_or_throw(flags, bert_config):
 
 
 def do_predict(flags, estimator, tokenizer, input_data):
-    eval_examples = read_squad_examples(
+    eval_examples = read_squad_examples(flags,
         input_data=input_data, is_training=False)
     eval_writer = FeatureWriter(
         filename=os.path.join(flags.output_dir, "eval.tf_record"),
@@ -1006,10 +966,10 @@ def do_predict(flags, estimator, tokenizer, input_data):
         is_training=False,
         output_fn=append_feature)
     eval_writer.close()
-    tf.logging.info("***** Running predictions *****")
-    tf.logging.info("  Num orig examples = %d", len(eval_examples))
-    tf.logging.info("  Num split examples = %d", len(eval_features))
-    tf.logging.info("  Batch size = %d", flags.predict_batch_size)
+    # tf.logging.info("***** Running predictions *****")
+    # tf.logging.info("  Num orig examples = %d", len(eval_examples))
+    # tf.logging.info("  Num split examples = %d", len(eval_features))
+    # tf.logging.info("  Batch size = %d", flags.predict_batch_size)
     predict_input_fn = input_fn_builder(
         input_file=eval_writer.filename,
         seq_length=flags.max_seq_length,
@@ -1020,8 +980,8 @@ def do_predict(flags, estimator, tokenizer, input_data):
     all_results = []
     for result in estimator.predict(
             predict_input_fn, yield_single_examples=True):
-        if len(all_results) % 1000 == 0:
-            tf.logging.info("Processing example: %d" % (len(all_results)))
+        # if len(all_results) % 1000 == 0:
+        #     tf.logging.info("Processing example: %d" % (len(all_results)))
         unique_id = int(result["unique_ids"])
         start_logits = [float(x) for x in result["start_logits"].flat]
         end_logits = [float(x) for x in result["end_logits"].flat]

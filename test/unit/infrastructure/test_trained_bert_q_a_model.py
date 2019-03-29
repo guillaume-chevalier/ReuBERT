@@ -11,11 +11,11 @@ from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweri
 
 def prepare_test():
     flags = get_reubert_flags()
-    print(DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR)
+    # print(DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR)
     predict_file = os.path.join(
         DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR,
         "squad_dir/dev-v2.0-beautified-only-normans.json")
-    print(predict_file)
+    # print(predict_file)
     input_data = read_predict_file_json(predict_file)
     expected_predictions = collections.OrderedDict(
         [('56ddde6b9a695914005b9628', 'France'),
@@ -30,20 +30,20 @@ def prepare_test():
     return expected_predictions, bert_model, input_data
 
 
-def test_squad_gives_good_results_given_some_test_data():
+def test__given__some_test_data__when__running_squad__then__get_good_results():
     # Disable test if in CI, because it needs a downloaded model:
     if os.environ.get("CI") is not None:
         return
 
     expected_predictions, bert_model, input_data = prepare_test()
-    pprint(input_data)
+    # pprint(input_data)
 
     all_predictions, all_nbest_json, scores_diff_json = bert_model.transform(
         input_data)
 
-    pprint(all_predictions)
-    pprint(all_nbest_json)
-    pprint(scores_diff_json)
+    # pprint(all_predictions)
+    # pprint(all_nbest_json)
+    # pprint(scores_diff_json)
     # Assert false to view the printed outputs:
     # assert False
     assert all_predictions == expected_predictions

@@ -1,6 +1,7 @@
 import os
 
 import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from src.domain.pipeline_steps.question_answering_model import QuestionAnsweringModelInterface
 from src.infrastructure.bert import modeling, tokenization
@@ -23,6 +24,7 @@ def get_reubert_flags():
                                     "output_dir/")
     flags.version_2_with_negative = True
     flags.null_score_diff_threshold = -3  # TODO: adjust this to try to get a better score. Must be between -1 and -5.
+    #todo set max length input
     return flags
 
 
@@ -30,8 +32,6 @@ class TrainedBERTQuestionAnsweringModel(QuestionAnsweringModelInterface):
 
     def __init__(self, flags):
         self.flags = flags
-        tf.logging.set_verbosity(tf.logging.INFO)
-
         bert_config = modeling.BertConfig.from_json_file(flags.bert_config_file)
 
         validate_flags_or_throw(flags, bert_config)
