@@ -13,19 +13,18 @@ def prepare_test():
     flags = get_reubert_flags()
     # print(DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR)
     predict_file = os.path.join(
-        DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR,
-        "squad_dir/dev-v2.0-beautified-only-normans.json")
+        DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR, "squad_dir/dev-v2.0-beautified-only-normans.json"
+    )
     # print(predict_file)
     input_data = read_predict_file_json(predict_file)
     expected_predictions = collections.OrderedDict(
-        [('56ddde6b9a695914005b9628', 'France'),
-         ('56ddde6b9a695914005b9629', '10th and 11th centuries'),
-         ('56ddde6b9a695914005b962a', ''), ('56ddde6b9a695914005b962b',
-                                            'Rollo'),
-         ('56ddde6b9a695914005b962c', '10th'), ('5ad39d53604f3c001a3fe8d1', ''),
-         ('5ad39d53604f3c001a3fe8d2', ''),
-         ('5ad39d53604f3c001a3fe8d3', 'Normans'),
-         ('5ad39d53604f3c001a3fe8d4', '')])
+        [
+            ('56ddde6b9a695914005b9628', 'France'), ('56ddde6b9a695914005b9629', '10th and 11th centuries'),
+            ('56ddde6b9a695914005b962a', ''), ('56ddde6b9a695914005b962b', 'Rollo'),
+            ('56ddde6b9a695914005b962c', '10th'), ('5ad39d53604f3c001a3fe8d1', ''), ('5ad39d53604f3c001a3fe8d2', ''),
+            ('5ad39d53604f3c001a3fe8d3', 'Normans'), ('5ad39d53604f3c001a3fe8d4', '')
+        ]
+    )
     bert_model = TrainedBERTQuestionAnsweringModel(flags)
     return expected_predictions, bert_model, input_data
 
@@ -38,8 +37,7 @@ def test__given__some_test_data__when__running_squad__then__get_good_results():
     expected_predictions, bert_model, input_data = prepare_test()
     # pprint(input_data)
 
-    all_predictions, all_nbest_json, scores_diff_json = bert_model.transform(
-        input_data)
+    all_predictions, all_nbest_json, scores_diff_json = bert_model.transform(input_data)
 
     # pprint(all_predictions)
     # pprint(all_nbest_json)
