@@ -1,3 +1,4 @@
+import unittest
 import pytest
 import os
 
@@ -40,7 +41,7 @@ EXPECTED_OUTPUT = [
 ]
 
 
-class TestModelWrapper():
+class TestModelWrapper(unittest.TestCase):
 
     def setUp(self):
         self.flags = get_reubert_flags()
