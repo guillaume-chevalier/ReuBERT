@@ -11,5 +11,3 @@ class InteractionState(ABC):
     @abstractmethod
     def process_input_text(self, input_text_repository):
         pass
-
-
