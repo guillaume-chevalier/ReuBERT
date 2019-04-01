@@ -14,9 +14,8 @@ class ReceivingQuestionInteractionState(InteractionState):
     # TODO: pass a domain service (like InputTextProcessor) instead of the actual repository
     # TODO: change the message to the actual response
     def process_input_text(self, input_text, input_text_repository):
-        #retrieve statement context from phase 1
-        #Pass those is the base estimator
-        #response = pipeline.transform((phase1, question))
+        context_statements = input_text_repository.get_all_context_statements()
+        #response = pipeline.transform((context_statements, question))
         #input_text_repository.add_question(input_text)   give response and question in tuple
         #send response
         return self.QUESTION_HAS_BEEN_WELL_RECEIVED_MESSAGE
