@@ -4,44 +4,51 @@ import os
 
 from src.infrastructure.bert_model_wrapper import BertModelWrapper
 from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
+from src.infrastructure.user_input_question_pair import UserInputQuestionPair
 
-INPUT = BertModelWrapper.question_schema(
-    "The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in France. They were descended from Norse (\"Norman\" comes from \"Norseman\") raiders and pirates from Denmark, Iceland and Norway who, under their leader Rollo, agreed to swear fealty to King Charles III of West Francia. Through generations of assimilation and mixing with the native Frankish and Roman-Gaulish populations, their descendants would gradually merge with the Carolingian-based cultures of West Francia. The distinct cultural and ethnic identity of the Normans emerged initially in the first half of the 10th century, and it continued to evolve over the succeeding centuries.",
+INPUT = UserInputQuestionPair(
+    "The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th "
+    "centuries gave their name to Normandy, a region in France. They were descended from Norse (\"Norman\" comes from "
+    "\"Norseman\") raiders and pirates from Denmark, Iceland and Norway who, under their leader Rollo, "
+    "agreed to swear fealty to King Charles III of West Francia. Through generations of assimilation and mixing with "
+    "the native Frankish and Roman-Gaulish populations, their descendants would gradually merge with the "
+    "Carolingian-based cultures of West Francia. The distinct cultural and ethnic identity of the Normans emerged "
+    "initially in the first half of the 10th century, and it continued to evolve over the succeeding centuries.",
     "In what country is Normandy located?"
 )
 
 EXPECTED_OUTPUT = [
-    (0.9996078633149131, 'France'), (0.0002669500164904331, 'France.'),
+    (0.9996078645059949, 'France'), (0.0002669493485279948, 'France.'),
     (
-        4.7795487513854006e-05,
+        4.7795265362342654e-05,
         'France. They were descended from Norse ("Norman" comes from "Norseman") raiders and pirates from Denmark'
     ),
     (
-        3.078599995070936e-05,
+        3.0785827498947834e-05,
         'France. They were descended from Norse ("Norman" comes from "Norseman") raiders and pirates from Denmark, Iceland and Norway'
-    ), (1.4057741624172056e-05, 'in France'), (1.3250779871793082e-05, 'Normandy, a region in France'),
+    ), (1.4057721531176204e-05, 'in France'), (1.3250716703090425e-05, 'Normandy, a region in France'),
     (
-        8.067325316660916e-06,
+        8.06727339463416e-06,
         'French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in France'
-    ), (8.060411733515779e-06, 'a region in France'), (1.7120461609404018e-06, 'region in France'),
+    ), (8.060427117150136e-06, 'a region in France'), (1.7120437138804593e-06, 'region in France'),
     (
-        1.4417018472034922e-06,
+        1.4416956618215133e-06,
         'France. They were descended from Norse ("Norman" comes from "Norseman") raiders and pirates from Denmark, Iceland'
-    ), (3.754186512645245e-09, 'in France.'), (3.5386835529242774e-09, 'Normandy, a region in France.'),
-    (2.1525711472958317e-09, 'a region in France.'), (1.507338106096412e-09, 'Denmark'),
-    (9.709056915997677e-10, 'Denmark, Iceland and Norway'),
+    ), (3.754171748528642e-09, 'in France.'), (3.5386578247532317e-09, 'Normandy, a region in France.'),
+    (2.152569866828721e-09, 'a region in France.'), (1.507324631299853e-09, 'Denmark'),
+    (9.708960863030124e-10, 'Denmark, Iceland and Norway'),
     (
-        6.99394252712477e-10,
+        6.993905850866089e-10,
         'Denmark, Iceland and Norway who, under their leader Rollo, agreed to swear fealty to King Charles III of West Francia.'
     ),
     (
-        6.721601929410085e-10,
+        6.721561072396455e-10,
         'in France. They were descended from Norse ("Norman" comes from "Norseman") raiders and pirates from Denmark'
-    ), (6.657609191378117e-10, '.'),
+    ), (6.657576659787132e-10, '.'),
     (
-        6.335759322769482e-10,
+        6.335699663371694e-10,
         'Normandy, a region in France. They were descended from Norse ("Norman" comes from "Norseman") raiders and pirates from Denmark'
-    ), (5.800012584850742e-10, '')
+    ), (5.799991157924552e-10, '')
 ]
 
 

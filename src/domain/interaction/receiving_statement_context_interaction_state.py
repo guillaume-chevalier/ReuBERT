@@ -12,6 +12,6 @@ class ReceivingStatementContextInteractionState(InteractionState):
         return self
 
     # TODO: pass a domain service (like InputTextProcessor) instead of the actual repository
-    def process_input_text(self, input_text, input_text_repository):
+    def process_input_text(self, input_text, input_text_repository, bert_model_wrapper):
         input_text_repository.add_context_statement(input_text)
         return self.ASKING_FOR_MORE_INFORMATION_CONTEXT_MESSAGE

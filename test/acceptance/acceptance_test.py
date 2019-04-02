@@ -9,6 +9,9 @@ from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweri
 
 
 # Todo : put different levels of questions : easy , medium, hard, impossible
+from src.infrastructure.user_input_question_pair import UserInputQuestionPair
+
+
 def load_json_file_test(json_name):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), json_name), encoding="utf8") as json_data:
         return json.load(json_data)
@@ -39,7 +42,7 @@ class TestAcceptance():
         question = QA_test['QA'][difficulty][question_number]['question']
         expected_answers = QA_test['QA'][difficulty][question_number]['answers']
 
-        response = TestAcceptance.bert_wrapper.transform((user_input, question))
+        response = TestAcceptance.bert_wrapper.transform(UserInputQuestionPair(user_input, question))
 
         verify_answers(response, expected_answers)
 
