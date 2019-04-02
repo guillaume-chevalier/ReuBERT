@@ -1,5 +1,5 @@
 from src.domain.pipeline_steps.question_answering_model_interface import QuestionAnsweringModelInterface
-from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
+from src.infrastructure.pipeline_steps.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
 
 
 class BertModelWrapper(QuestionAnsweringModelInterface):

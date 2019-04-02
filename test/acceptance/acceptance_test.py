@@ -4,8 +4,7 @@ import os
 import pytest
 import stringdist
 
-from src.infrastructure.bert_model_wrapper import BertModelWrapper
-from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
+from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 
 # Todo : put different levels of questions : easy , medium, hard, impossible

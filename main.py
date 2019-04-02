@@ -1,8 +1,8 @@
 from src.api.cli.robot_interaction_resource_impl import CLIRobotInteractionResourceImpl
 from src.application.interaction.interaction_service import InteractionService
 from src.domain.pipeline import Pipeline
-from src.infrastructure.bert_model_wrapper import BertModelWrapper
-from src.infrastructure.persistence.bert_natural_answer_postprocessor import BertNaturalAnswerPostprocessor
+from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
+from src.infrastructure.pipeline_steps.bert_natural_answer_postprocessor import BertNaturalAnswerPostprocessor
 from src.infrastructure.persistence.interaction.in_memory_input_text_repository import InMemoryInputTextRepository
 from src.infrastructure.persistence.interaction.in_memory_interaction_state import InMemoryInteractionState
 
