@@ -49,7 +49,7 @@ class BertModelWrapper(QuestionAnsweringModelInterface):
         # TODO Taha: see the class `BertNaturalAnswerPostprocessor` for an example of this for loop.
         transformed_output = self.process_one(X)
         # TODO Taha: return triplets of TextQuestionAnswerTriplet, as seen in `BertNaturalAnswerPostprocessor`.
-        return transformed_output # The return type must be a list.
+        return transformed_output  # The return type must be a list.
 
     def process_one(self, X: UserInputAndQuestionTuple) -> TextQuestionAnswerTriplet:
         user_input, question = X
