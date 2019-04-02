@@ -1,5 +1,7 @@
 import os
 
+from sklearn.base import TransformerMixin, BaseEstimator
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 import tensorflow as tf
@@ -26,7 +28,7 @@ def get_reubert_flags():
     return flags
 
 
-class TrainedBERTQuestionAnsweringModel(QuestionAnsweringModelInterface):
+class TrainedBERTQuestionAnsweringModel(BaseEstimator, TransformerMixin):
 
     def __init__(self, flags):
         self.flags = flags

@@ -1,10 +1,12 @@
+from typing import List
+
 from src.domain.pipeline_steps.natural_answer_postprocessor_interface import NaturalAnswerPostprocessorInterface
 from src.domain.pipeline_steps.question_answering_model_interface import TextQuestionAnswerTriplet
 
 
 class BertNaturalAnswerPostprocessor(NaturalAnswerPostprocessorInterface):
 
-    def fit(self, X: TextQuestionAnswerTriplet, y=None):
+    def fit(self, X: List[TextQuestionAnswerTriplet], y=None):
         # TODO: Taha.
 
         for original_text, user_question, bert_answers in X:
@@ -13,7 +15,7 @@ class BertNaturalAnswerPostprocessor(NaturalAnswerPostprocessorInterface):
 
         return self
 
-    def transform(self, X: TextQuestionAnswerTriplet, y=None):
+    def transform(self, X: List[TextQuestionAnswerTriplet], y=None) -> List[str]:
         # TODO: Taha.
 
         all_final_answers = []

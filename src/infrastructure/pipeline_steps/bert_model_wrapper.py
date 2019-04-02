@@ -1,14 +1,9 @@
-from typing import List, Dict, Tuple
+from typing import List, Dict
 
 from src.domain.pipeline_steps.question_answering_model_interface import QuestionAnsweringModelInterface, \
-    TextQuestionAnswerTriplet
+    TextQuestionAnswerTriplet, UserInputAndQuestionTuple
 from src.infrastructure.pipeline_steps.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, \
     get_reubert_flags
-
-UserInputAndQuestionTuple = Tuple[List[str], str]
-
-# TODO Taha: maybe that the above `UserInputAndQuestionTuple` type is just like this instead, I'm not sure of what you did:
-# TODO Taha:     UserInputAndQuestionTuple = Tuple[str, str]
 
 
 class BertModelWrapper(QuestionAnsweringModelInterface):
@@ -43,6 +38,9 @@ class BertModelWrapper(QuestionAnsweringModelInterface):
     @staticmethod
     def question_schema(user_input, question) -> Dict[str, str]:
         return {"user_input": user_input, "question": question}
+
+    def fit(self, X: List[UserInputAndQuestionTuple]) -> 'BertModelWrapper':
+        return self
 
     def transform(self, X: List[UserInputAndQuestionTuple]) -> List[TextQuestionAnswerTriplet]:
         # TODO Taha: do `for user_input, question in X:` instead. Pipelines are meant to process arrays of things.
