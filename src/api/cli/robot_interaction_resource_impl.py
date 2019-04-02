@@ -1,4 +1,3 @@
-import abc
 import os
 import sys
 import time
@@ -23,7 +22,7 @@ class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
                 self._wait(
                 )  # TODO: wait "until" the answer from the UserRobotInteractionService arrives, then show answer
 
-            do_continue, next_phase_number, robot_response_str = UserRobotInteractionService.receiveUserText(
+            do_continue, next_phase_number, robot_response_str = self.interaction_service.process_input_text(
                 user_input_str
             )
 

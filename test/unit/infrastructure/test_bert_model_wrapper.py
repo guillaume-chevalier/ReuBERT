@@ -48,10 +48,7 @@ EXPECTED_OUTPUT = [
 class TestModelWrapper(unittest.TestCase):
 
     def setUp(self):
-        self.flags = get_reubert_flags()
-        self.bert_model = TrainedBERTQuestionAnsweringModel(self.flags)
-
-        self.bert_wrapper = BertModelWrapper(self.bert_model)
+        self.bert_wrapper = BertModelWrapper()
 
     def test__given__some_test_data__when__bert_model_wrapper__then__get_good_results(self):
         if os.environ.get("CI") is not None:

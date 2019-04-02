@@ -1,7 +1,12 @@
-class BertModelWrapper:
+from src.domain.pipeline_steps.question_answering_model_interface import QuestionAnsweringModelInterface
+from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
 
-    def __init__(self, bert_model):
-        self.bert_model = bert_model
+
+class BertModelWrapper(QuestionAnsweringModelInterface):
+
+    def __init__(self):
+        flags = get_reubert_flags()
+        self.bert_model = TrainedBERTQuestionAnsweringModel(flags)
 
     def _from_normal_input_to_bert_input_dict(self, normal_input):
         joined_user_inputs = "".join(normal_input["user_input"])

@@ -1,7 +1,12 @@
 from abc import ABC, abstractmethod
 
+from src.domain.pipeline import Pipeline
+
 
 class InteractionState(ABC):
+
+    def __init__(self, pipeline: Pipeline):
+        self.pipeline = pipeline
 
     @abstractmethod
     def fetch_next_state(self, input_text):
