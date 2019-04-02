@@ -18,13 +18,11 @@ def get_project_root():
 PROJECT_ROOT = get_project_root()
 os.chdir(PROJECT_ROOT)
 
-DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR = os.path.join(PROJECT_ROOT,
-                                                     "thales-bert-gcp-bucket")
+DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR = os.path.join(PROJECT_ROOT, "thales-bert-gcp-bucket")
 if not os.path.exists(DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR):
     os.mkdir(DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR)
 
 if __name__ == "__main__":
     """Run this file to see what the variable's values are."""
     print("PROJECT_ROOT:", PROJECT_ROOT)
-    print("DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR:",
-          DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR)
+    print("DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR:", DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR)

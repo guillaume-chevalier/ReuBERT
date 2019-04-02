@@ -14,9 +14,7 @@ class InMemoryInputTextRepository(InputTextRepository):
         self.questions.append(question)
 
     def get_all_context_statements(self):
-        return [
-            context_statement for context_statement in self.context_statements
-        ]
+        return [context_statement for context_statement in self.context_statements]
 
     def get_all_questions(self):
         return [question for question in self.questions]
