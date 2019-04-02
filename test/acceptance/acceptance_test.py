@@ -7,7 +7,6 @@ import stringdist
 from src.infrastructure.bert_model_wrapper import BertModelWrapper
 from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
 
-
 # Todo : put different levels of questions : easy , medium, hard, impossible
 from src.infrastructure.user_input_question_pair import UserInputQuestionPair
 
