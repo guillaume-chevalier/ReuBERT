@@ -6,6 +6,7 @@ from src.domain.pipeline import Pipeline
 class InteractionState(ABC):
 
     def __init__(self, pipeline: Pipeline):
+        # TODO Julie: it may not need the pipeline, it's probably the state context that need it instead.
         self.pipeline = pipeline
 
     @abstractmethod
