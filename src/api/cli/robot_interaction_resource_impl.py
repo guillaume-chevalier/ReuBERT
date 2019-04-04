@@ -24,26 +24,39 @@ class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
 
         next_phase_number = 1
         # next_phase_number = 0  # TODO: start at 0 as it should..
+
         while do_continue:
             time.sleep(0.5)
-            if next_phase_number == 0:
-                print(CLIRobotInteractionResourceImpl.PHASE_1_INPUT_AREA_BEGIN, end="")
-            elif next_phase_number == 1:
-                print(CLIRobotInteractionResourceImpl.PHASE_2_INPUT_AREA_BEGIN, end="")
-            user_input_str = input()
 
-            if next_phase_number == 1:
-                wa = WaitingAnimationThread()
-                wa.start()
+            user_input_str = self._obtain_user_input(next_phase_number)
+            next_phase_number, do_continue = self._print_bert_answer(next_phase_number, user_input_str)
 
-            time.sleep(2)  # TODO: uncomment line below and remove sleep and start at next_phase_number = 0, not 1.
-            robot_response_str = "Answer here."
-            # do_continue, next_phase_number, robot_response_str = self.interaction_service.process_input_text(
-            #     user_input_str
-            # )
+    def _obtain_user_input(self, next_phase_number):
+        if next_phase_number == 0:
+            print(CLIRobotInteractionResourceImpl.PHASE_1_INPUT_AREA_BEGIN, end="")
+        elif next_phase_number == 1:
+            print(CLIRobotInteractionResourceImpl.PHASE_2_INPUT_AREA_BEGIN, end="")
 
-            if next_phase_number == 1:
-                wa.join()
-                print(CLIRobotInteractionResourceImpl.PHASE_2_BERT_RESPONSE.format(robot_response_str))
-            else:
-                print(CLIRobotInteractionResourceImpl.PHASE_1_BERT_RESPONSE.format(robot_response_str))
+        user_input_str = input()
+        return user_input_str
+
+    def _print_bert_answer(self, next_phase_number, user_input: str):
+        if next_phase_number == 1:
+            waiting_animation_thread = WaitingAnimationThread()
+            waiting_animation_thread.start()
+
+        # TODO: uncomment the line below and then remove debugging lines and start at self.next_phase_number = 0, not 1.
+        time.sleep(2)
+        robot_response_str = "Answer here."
+        do_continue = True
+
+        # do_continue, next_phase_number, robot_response_str = self.interaction_service.process_input_text(
+        #     user_input
+        # )
+
+        if next_phase_number == 1:
+            waiting_animation_thread.join()
+            print(CLIRobotInteractionResourceImpl.PHASE_2_BERT_RESPONSE.format(robot_response_str))
+        else:
+            print(CLIRobotInteractionResourceImpl.PHASE_1_BERT_RESPONSE.format(robot_response_str))
+        return next_phase_number, do_continue
