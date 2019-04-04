@@ -1,19 +1,6 @@
-from src.api.cli.robot_interaction_resource_impl import CLIRobotInteractionResourceImpl
-from src.application.interaction.interaction_service import InteractionService
-from src.domain.pipeline import Pipeline
-from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
-from src.infrastructure.pipeline_steps.bert_natural_answer_postprocessor import BertNaturalAnswerPostprocessor
-from src.infrastructure.persistence.interaction.in_memory_input_text_repository import InMemoryInputTextRepository
-from src.infrastructure.persistence.interaction.in_memory_interaction_state import InMemoryInteractionState
+from src.applicative_context import CLIReuBERTApplicativeContext
 
 if __name__ == "__main__":
-    # 1. Initialize Domain Service(s).
-    pipeline = Pipeline(BertModelWrapper(), BertNaturalAnswerPostprocessor())
-    input_text_repository = InMemoryInputTextRepository()
-    interaction_state = InMemoryInteractionState(pipeline)
-
-    # 2. Initialize Application Service(s).
-    interaction_service = InteractionService(input_text_repository, interaction_state)
-
-    # 3. Execute CLI main applicative loop.
-    CLIRobotInteractionResourceImpl(interaction_service).execute()
+    applicative_context = CLIReuBERTApplicativeContext()
+    applicative_context.initialize()
+    applicative_context.execute()
