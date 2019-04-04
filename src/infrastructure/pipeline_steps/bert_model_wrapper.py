@@ -1,12 +1,12 @@
 from typing import List, Dict
 
-from src.domain.pipeline_steps.question_answering_model_interface import QuestionAnsweringModelInterface, \
+from src.domain.pipeline_steps.question_answering_model import QuestionAnsweringModel, \
     TextQuestionAnswerTriplet, UserInputAndQuestionTuple
 from src.infrastructure.pipeline_steps.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, \
     get_reubert_flags
 
 
-class BertModelWrapper(QuestionAnsweringModelInterface):
+class BertModelWrapper(QuestionAnsweringModel):
 
     def __init__(self):
         self.bert_model = TrainedBERTQuestionAnsweringModel(get_reubert_flags())
@@ -45,11 +45,11 @@ class BertModelWrapper(QuestionAnsweringModelInterface):
     def transform(self, X: List[UserInputAndQuestionTuple]) -> List[TextQuestionAnswerTriplet]:
         # TODO Taha: do `for user_input, question in X:` instead. Pipelines are meant to process arrays of things.
         # TODO Taha: see the class `BertNaturalAnswerPostprocessor` for an example of this for loop.
-        transformed_output = self.process_one(X)
+        transformed_output = self.transform_one(X)
         # TODO Taha: return triplets of TextQuestionAnswerTriplet, as seen in `BertNaturalAnswerPostprocessor`.
         return transformed_output  # The return type must be a list.
 
-    def process_one(self, X: UserInputAndQuestionTuple) -> TextQuestionAnswerTriplet:
+    def transform_one(self, X: UserInputAndQuestionTuple) -> TextQuestionAnswerTriplet:
         user_input, question = X
         normal_input = BertModelWrapper.question_schema(user_input, question)
         transformed_input = self._from_normal_input_to_bert_input_dict(normal_input)

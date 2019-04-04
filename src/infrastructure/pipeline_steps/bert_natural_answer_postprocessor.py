@@ -1,10 +1,10 @@
 from typing import List
 
-from src.domain.pipeline_steps.natural_answer_postprocessor_interface import NaturalAnswerPostprocessorInterface
-from src.domain.pipeline_steps.question_answering_model_interface import TextQuestionAnswerTriplet
+from src.domain.pipeline_steps.natural_answer_postprocessor import NaturalAnswerPostprocessor
+from src.domain.pipeline_steps.question_answering_model import TextQuestionAnswerTriplet
 
 
-class BertNaturalAnswerPostprocessor(NaturalAnswerPostprocessorInterface):
+class BertNaturalAnswerPostprocessor(NaturalAnswerPostprocessor):
 
     def fit(self, X: List[TextQuestionAnswerTriplet], y=None):
         # TODO: Taha.
@@ -21,10 +21,10 @@ class BertNaturalAnswerPostprocessor(NaturalAnswerPostprocessorInterface):
         all_final_answers = []
         for original_text, user_question, bert_answers in X:
             # TODO: import typing and define new custom type, and ensure that the BERTModelWrapper returns this type in it's transform method..
-            final_answer = self.postprocess_one_question(original_text, user_question, bert_answers)
+            final_answer = self.transform_one(original_text, user_question, bert_answers)
             all_final_answers.append(final_answer)
 
         return all_final_answers
 
-    def postprocess_one_question(self, original_text, user_question, bert_answers):
+    def transform_one(self, original_text, user_question, bert_answers):
         return "This is my answer: {}.".format(bert_answers)

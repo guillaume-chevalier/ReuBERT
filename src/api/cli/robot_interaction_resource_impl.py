@@ -1,19 +1,19 @@
 import time
 
 from src.api.cli.waiting_animation_thread import WaitingAnimationThread
-from src.api.robot_interaction_resource_interface import RobotInteractionResourceInterface
+from src.api.robot_interaction_resource import RobotInteractionResource
 
 
-class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
+class CLIRobotInteractionResourceImpl(RobotInteractionResource):
     FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION = \
         "ReuBERT[greeting]:~$ Welcome! What would you like to talk about?"
-    PHASE_1_INPUT_AREA_BEGIN = \
+    RECEIVING_QUESTION_INPUT_AREA_BEGIN = \
         "You[enter information]:~$ "
-    PHASE_2_INPUT_AREA_BEGIN = \
-        "You[enter question]:~$ "
-    PHASE_1_BERT_RESPONSE = \
+    RECEIVING_QUESTION_BERT_RESPONSE = \
         "ReuBERT[gather information]:~$ {}"
-    PHASE_2_BERT_RESPONSE = \
+    RECEIVING_STATEMENT_INPUT_AREA_BEGIN = \
+        "You[enter question]:~$ "
+    RECEIVING_STATEMENT_BERT_RESPONSE = \
         "ReuBERT[answer question]:~$ {}"
 
     def execute(self):
@@ -33,9 +33,9 @@ class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
 
     def _obtain_user_input(self, next_phase_number):
         if next_phase_number == 0:
-            print(CLIRobotInteractionResourceImpl.PHASE_1_INPUT_AREA_BEGIN, end="")
+            print(CLIRobotInteractionResourceImpl.RECEIVING_QUESTION_INPUT_AREA_BEGIN, end="")
         elif next_phase_number == 1:
-            print(CLIRobotInteractionResourceImpl.PHASE_2_INPUT_AREA_BEGIN, end="")
+            print(CLIRobotInteractionResourceImpl.RECEIVING_STATEMENT_INPUT_AREA_BEGIN, end="")
 
         user_input_str = input()
         return user_input_str
@@ -56,7 +56,7 @@ class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
 
         if next_phase_number == 1:
             waiting_animation_thread.join()
-            print(CLIRobotInteractionResourceImpl.PHASE_2_BERT_RESPONSE.format(robot_response_str))
+            print(CLIRobotInteractionResourceImpl.RECEIVING_STATEMENT_BERT_RESPONSE.format(robot_response_str))
         else:
-            print(CLIRobotInteractionResourceImpl.PHASE_1_BERT_RESPONSE.format(robot_response_str))
+            print(CLIRobotInteractionResourceImpl.RECEIVING_QUESTION_BERT_RESPONSE.format(robot_response_str))
         return next_phase_number, do_continue

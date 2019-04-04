@@ -7,7 +7,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 tf.logging.set_verbosity(tf.logging.ERROR)
 
-from src.domain.pipeline_steps.question_answering_model_interface import QuestionAnsweringModelInterface
 from src.infrastructure.bert import modeling, tokenization
 from src.infrastructure.bert.run_squad import validate_flags_or_throw, model_fn_builder, do_predict, \
     write_predictions, Flags

@@ -11,10 +11,10 @@ UserInputAndQuestionTuple = Tuple[List[str], str]
 # TODO Taha:     UserInputAndQuestionTuple = Tuple[str, str]
 
 
-class QuestionAnsweringModelInterface(BaseEstimator, TransformerMixin, ABC):
+class QuestionAnsweringModel(BaseEstimator, TransformerMixin, ABC):
 
     @abstractmethod
-    def fit(self, X: List[UserInputAndQuestionTuple]) -> 'QuestionAnsweringModelInterface':
+    def fit(self, X: List[UserInputAndQuestionTuple]) -> 'QuestionAnsweringModel':
         pass
 
     @abstractmethod
