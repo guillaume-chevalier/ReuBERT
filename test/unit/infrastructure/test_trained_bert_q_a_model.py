@@ -1,12 +1,11 @@
 import collections
 import os
-from pprint import pprint
 
 import pytest
 
 from src import DOWNLOADED_THALES_BERT_GCP_BUCKET_DIR
 from src.infrastructure.bert.run_squad import read_predict_file_json
-from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
+from src.infrastructure.pipeline_steps.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
 
 
 def prepare_test():

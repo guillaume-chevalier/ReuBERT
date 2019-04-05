@@ -1,55 +1,62 @@
-import abc
-import os
-import sys
 import time
 
-from src.api.robot_interaction_resource_interface import RobotInteractionResourceInterface
+from src.api.cli.waiting_animation_thread import WaitingAnimationThread
+from src.api.robot_interaction_resource import RobotInteractionResource
 
 
-class CLIRobotInteractionResourceImpl(RobotInteractionResourceInterface):
-    FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION = "Welcome! What would you like to talk about?\n > "
+class CLIRobotInteractionResourceImpl(RobotInteractionResource):
+    FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION = \
+        "ReuBERT[greeting]:~$ Welcome! What would you like to talk about?"
+    RECEIVING_QUESTION_INPUT_AREA_BEGIN = \
+        "You[enter information]:~$ "
+    RECEIVING_QUESTION_BERT_RESPONSE = \
+        "ReuBERT[gather information]:~$ {}"
+    RECEIVING_STATEMENT_INPUT_AREA_BEGIN = \
+        "You[enter question]:~$ "
+    RECEIVING_STATEMENT_BERT_RESPONSE = \
+        "ReuBERT[answer question]:~$ {}"
 
     def execute(self):
         # TODO: Note: a few edits are needed for this code to manage the user going idle when asking him something.
 
-        print(CLIRobotInteractionResourceImpl.FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION, end="")
+        print(CLIRobotInteractionResourceImpl.FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION)
         do_continue = True
 
-        next_phase_number = 0
-        while (do_continue):
-            user_input_str = input()
+        next_phase_number = 1
+        # next_phase_number = 0  # TODO: start at 0 as it should..
 
-            if next_phase_number == 1:
-                self._wait(
-                )  # TODO: wait "until" the answer from the UserRobotInteractionService arrives, then show answer
+        while do_continue:
+            time.sleep(0.5)
 
-            do_continue, next_phase_number, robot_response_str = UserRobotInteractionService.receiveUserText(
-                user_input_str
-            )
+            user_input_str = self._obtain_user_input(next_phase_number)
+            next_phase_number, do_continue = self._print_bert_answer(next_phase_number, user_input_str)
 
-            print(robot_response_str)
+    def _obtain_user_input(self, next_phase_number):
+        if next_phase_number == 0:
+            print(CLIRobotInteractionResourceImpl.RECEIVING_QUESTION_INPUT_AREA_BEGIN, end="")
+        elif next_phase_number == 1:
+            print(CLIRobotInteractionResourceImpl.RECEIVING_STATEMENT_INPUT_AREA_BEGIN, end="")
 
-    def _wait(self):
-        # This method is inspired from: https://gist.github.com/guillaume-chevalier/62afc6b46df18c5e77fb2e51016ba4f3
+        user_input_str = input()
+        return user_input_str
 
-        _, cols = os.popen('stty size', 'r').read().split()
-        cols = int(cols)
+    def _print_bert_answer(self, next_phase_number, user_input: str):
+        if next_phase_number == 1:
+            waiting_animation_thread = WaitingAnimationThread()
+            waiting_animation_thread.start()
 
-        # You can choose or create a different animation pattern:
-        # chars = "_.~\"|"
-        # chars = "\"`-._,-'"
-        # chars = """|/-.-\\|/-'-\\"""
-        # chars = """|/-\\|/-\\"""
-        chars = "_,.-'¯    "
+        # TODO: uncomment the line below and then remove debugging lines and start at self.next_phase_number = 0, not 1.
+        time.sleep(2)
+        robot_response_str = "Answer here."
+        do_continue = True
 
-        message = "| ReuBERT is reading and understanding text to answer your question. |"
-        cols -= len(message)
-        half_cols = int(cols / 2)
+        # do_continue, next_phase_number, robot_response_str = self.interaction_service.process_input_text(
+        #     user_input
+        # )
 
-        for i in range(1000):
-            time.sleep(0.07)
-            sys.stdout.write(
-                "\r" + "".join([chars[(i + j) % len(chars)] for j in range(half_cols)]) + message +
-                "".join([chars[(i - j) % len(chars)] for j in range(half_cols)])
-            )
-            sys.stdout.flush()
+        if next_phase_number == 1:
+            waiting_animation_thread.join()
+            print(CLIRobotInteractionResourceImpl.RECEIVING_STATEMENT_BERT_RESPONSE.format(robot_response_str))
+        else:
+            print(CLIRobotInteractionResourceImpl.RECEIVING_QUESTION_BERT_RESPONSE.format(robot_response_str))
+        return next_phase_number, do_continue

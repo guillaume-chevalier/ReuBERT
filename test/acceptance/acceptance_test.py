@@ -4,8 +4,7 @@ import os
 import pytest
 import stringdist
 
-from src.infrastructure.bert_model_wrapper import BertModelWrapper
-from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
+from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 
 # Todo : put different levels of questions : easy , medium, hard, impossible
@@ -23,10 +22,7 @@ class TestAcceptance():
 
     @classmethod
     def setup_class(cls):
-        cls.flags = get_reubert_flags()
-        cls.bert_model = TrainedBERTQuestionAnsweringModel(cls.flags)
-
-        cls.bert_wrapper = BertModelWrapper(cls.bert_model)
+        cls.bert_wrapper = BertModelWrapper()
 
     @pytest.mark.parametrize("QA_test", [QATEST_FILE_1, QATEST_FILE_2, QATEST_FILE_3])
     @pytest.mark.parametrize("difficulty", ["easy", "hard", "impossible"])

@@ -2,8 +2,7 @@ import unittest
 import pytest
 import os
 
-from src.infrastructure.bert_model_wrapper import BertModelWrapper
-from src.infrastructure.trained_bert_q_a_model import TrainedBERTQuestionAnsweringModel, get_reubert_flags
+from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 INPUT = BertModelWrapper.question_schema(
     "The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in France. They were descended from Norse (\"Norman\" comes from \"Norseman\") raiders and pirates from Denmark, Iceland and Norway who, under their leader Rollo, agreed to swear fealty to King Charles III of West Francia. Through generations of assimilation and mixing with the native Frankish and Roman-Gaulish populations, their descendants would gradually merge with the Carolingian-based cultures of West Francia. The distinct cultural and ethnic identity of the Normans emerged initially in the first half of the 10th century, and it continued to evolve over the succeeding centuries.",
@@ -48,10 +47,7 @@ EXPECTED_OUTPUT = [
 class TestModelWrapper(unittest.TestCase):
 
     def setUp(self):
-        self.flags = get_reubert_flags()
-        self.bert_model = TrainedBERTQuestionAnsweringModel(self.flags)
-
-        self.bert_wrapper = BertModelWrapper(self.bert_model)
+        self.bert_wrapper = BertModelWrapper()
 
     def test__given__some_test_data__when__bert_model_wrapper__then__get_good_results(self):
         if os.environ.get("CI") is not None:
