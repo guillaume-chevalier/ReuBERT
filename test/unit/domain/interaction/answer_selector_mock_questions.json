@@ -1,0 +1,279 @@
+{
+  "text": [
+    "My house is in the 12 of Wall Street, New York. I traveled a lot of countries. Last year, I went ",
+    "to Egypt and say the Pyramids. I attended a festival in August. My birthday was the 31 May. I had a teacher ",
+    "whose name is Mr. HartzMann. I used to admire people with great success stories like the fatest man alive Usian Boltz ",
+    "When I was young I used to wonder why is the sky so dark at night and why is milk white. I also used to love mathematics ",
+    "wondering what is the biggest number and. I like colors espacially the color Blue. I like making new friends so I used ",
+    "to go out and ask people to party. I liked going with my friend Goerge. I also like playing competitive games like football.",
+    "Our team captain was Jeff. I was number 12 in my team. After finishing our last football game in High School, Thomas forgot his umbrella and Philippe ",
+    "forgot his phone in the playing field. In high school, I also used to do the 12 meters sprint. I used to eat up to 11 chocolate bars per week. ",
+    "I takes me 10 minutes to do my homeworks. However, I also used to love my 15 video games and play 2 hours per week. My brother is ",
+    " 14 years old. Now I am 22 years old, I drink a 2 cups of coffee per day. I travel 12 kilometers to go to work. ",
+    "It takes about 12 minutes to go to work. Barack Obama is a humble person. Even when governing he most powerful nation on earth you can still see him wearing a tee-shirt "
+  ],
+  "WH": {
+    "where": [
+      [
+        "Where is my house ?",
+        [
+          "New York",
+          "dog",
+          "cat"
+        ],
+        "New York"
+      ],
+      [
+        "Where are the Pyramids ?",
+        [
+          "Egypt",
+          "1987",
+          "two"
+        ],
+        "Egypt"
+      ]
+    ],
+    "when": [
+      [
+        "When is the festival ?",
+        [
+          "August",
+          "1",
+          "Canada"
+        ],
+        "August"
+      ],
+      [
+        "my birthday is when ?",
+        [
+          "31 May",
+          "Free World",
+          "Google"
+        ],
+        "31 May"
+      ]
+    ],
+    "who": [
+      [
+        "Who is the teacher ?",
+        [
+          "Mr. HartzMann",
+          "door",
+          "8 August"
+        ],
+        "Mr. HartzMann"
+      ],
+      [
+        "Who is the fatest man alive ?",
+        [
+          "Usain Boltz",
+          "happy",
+          "good"
+        ],
+        "Usain Boltz"
+      ]
+    ],
+    "why": [
+      [
+        "Why the sky is dark at night ?",
+        [
+          "because there is no sun",
+          "table",
+          "chair "
+        ],
+        "because there is no sun"
+      ],
+      [
+        "Why is milk white ?",
+        [
+          "because we drank it all",
+          "Coffee",
+          "table"
+        ],
+        "because we drank it all"
+      ]
+    ],
+    "which": [
+      [
+        "Which is the biggest number ?",
+        [
+          "3",
+          "2",
+          "0"
+        ],
+        "3"
+      ],
+      [
+        "Which color do I prefer",
+        [
+          "Blue",
+          "color",
+          "cat"
+        ],
+        "Blue"
+      ]
+    ],
+    "whom": [
+      [
+        "Whom are you going to ask to the party?",
+        [
+          "George is beautiful",
+          "words",
+          "question"
+        ],
+        "George"
+      ],
+      [
+        "Whom did they choose as team captain?",
+        [
+          "Jeff",
+          "twelve",
+          "suggar"
+        ],
+        "Jeff"
+      ]
+    ],
+    "whose": [
+      [
+        "Whose phone is this?",
+        [
+          "Thomas",
+          "two",
+          "iphone"
+        ],
+        "Thomas"
+      ],
+      [
+        "Whose is this umbrella?",
+        [
+          "Philippe",
+          "second",
+          "three"
+        ],
+        "Philippe"
+      ]
+    ],
+    "what": [
+      [
+        "What is Obama wearing?",
+        [
+          "tee-shirt",
+          "ten",
+          "999"
+        ],
+        "tee-shirt"
+      ],
+      [
+        "What is my number in the football team?",
+        [
+          "12",
+          "Obama",
+          "USA"
+        ],
+        "12"
+      ]
+    ],
+    "how_far": [
+      [
+        "How far have I gone sprinting?",
+        [
+          "12 meters",
+          "Trump",
+          "outside"
+        ],
+        "12 meters"
+      ],
+      [
+        "How far do I travel to work?",
+        [
+          "12 kilometers",
+          "Trump",
+          "outside"
+        ],
+        "12 kilometers"
+      ]
+    ],
+    "how_long": [
+      [
+        "How long does it take to do home works?",
+        [
+          "ten minutes",
+          "Japan",
+          "Syria"
+        ],
+        "ten minutes"
+      ],
+      [
+        "How long does it take to go to work ?",
+        [
+          "12 minutes",
+          "Japan",
+          "Syria"
+        ],
+        "12 minutes"
+      ]
+    ],
+    "how_many": [
+      [
+        "How many chocolate bars do I like to have ?",
+        [
+          "11 bars",
+          "tee-shirt",
+          "fire"
+        ],
+        "11 bars"
+      ],
+      [
+        "How many video games do I have ?",
+        [
+          "15 video games",
+          "tee-shirt",
+          "fire"
+        ],
+        "15 video games"
+      ]
+    ],
+    "how_much": [
+      [
+        "How much coffee did I like to have ?",
+        [
+          "2 cups",
+          "water",
+          "phone"
+        ],
+        "2 cups"
+      ],
+      [
+        "How much time I spent playing video games ?",
+        [
+          "I played 2 hours per week",
+          "water",
+          "phone"
+        ],
+        "2 hours per week"
+      ]
+    ],
+    "how_old": [
+      [
+        "How old I am ?",
+        [
+          "22 years old",
+          "hot",
+          "cold"
+        ],
+        "22 years old"
+      ],
+      [
+        "How old is my little brother ?",
+        [
+          "My brother is 14 years old",
+          "hot",
+          "cold"
+        ],
+        "14 years old"
+      ]
+    ]
+  },
+  "OR": {
+  }
+}
