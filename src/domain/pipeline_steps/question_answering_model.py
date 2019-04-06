@@ -7,9 +7,6 @@ TextQuestionAnswerTriplet = Tuple[List[str], str, Dict[float, str]]
 
 UserInputAndQuestionTuple = Tuple[List[str], str]
 
-# TODO Taha: maybe that the above `UserInputAndQuestionTuple` type is just like this instead, I'm not sure of what you did:
-# TODO Taha:     UserInputAndQuestionTuple = Tuple[str, str]
-
 
 class QuestionAnsweringModel(BaseEstimator, TransformerMixin, ABC):
 
