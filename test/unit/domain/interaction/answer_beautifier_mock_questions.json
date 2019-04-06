@@ -1,0 +1,150 @@
+{
+  "yesno_questions": {
+    "no": {
+      "ambiguous": [
+        [
+          "Are elections next year?",
+          "there can not be an election next year"
+        ],
+        [
+          "Does Eric want to stay in the house ?",
+          "Eric wants to leave the house"
+        ],
+        [
+          "Have the boys eaten chicken ?",
+          "The boys ate barely any chickens"
+        ],
+        [
+          "Can the dog swim ?",
+          "the dog can not swim"
+        ]
+      ],
+      "not ambiguous": [
+        [
+          "Am I your friend ?",
+          "I am not your friend"
+        ],
+        [
+          "Is this a good restaurant ?",
+          "Its not a very good restaurant"
+        ],
+        [
+          "Are these islands not Greek ?",
+          "They are Greek"
+        ],
+        [
+          "Is gold mined in Canada?",
+          "There is no mine in Canada"
+        ]
+      ]
+    },
+    "yes": {
+      "ambiguous": [
+        [
+          "Was his idea interesting ?",
+          "The idea was not that bad"
+        ],
+        [
+          "Were they happy?",
+          "the amigos were joyful"
+        ],
+        [
+          "Am I near the correct location?",
+          "I would say that is about right"
+        ],
+        [
+          "Were the demonstrations in the center of town?",
+          "They were nearby the town"
+        ]
+      ],
+      "not ambiguous": [
+        [
+          "Am I going with you and Tom?",
+          "yes you are"
+        ],
+        [
+          "Is she working today?",
+          "She is working"
+        ],
+        [
+          "Are we seeing a play tomorrow?",
+          "we are going to the theatre"
+        ],
+        [
+          "Was it raining?",
+          "it was a little bit rainy"
+        ]
+      ]
+    },
+    "I do not know": {
+      "ambiguous": [
+        [
+          "Are the keys under the books?",
+          ""
+        ],
+        [
+          "Was his house on an island?",
+          ""
+        ],
+        [
+          "Was your trip fun ?",
+          ""
+        ],
+        [
+          "Was your trip fun ?",
+          ""
+        ]
+      ],
+      "not ambiguous": [
+        [
+          "Are the keys under the books?",
+          ""
+        ],
+        [
+          "Was his house on an island?",
+          ""
+        ],
+        [
+          "Is his hair black ?",
+          ""
+        ],
+        [
+          "Is that an apple computer?",
+          ""
+        ]
+      ]
+    }
+  },
+  "not_yesno_questions": [
+    [
+      "How much time I spent playing video games ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "How old I am ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "Where is my house ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "Where are the Pyramids ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "Who is the teacher ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "How many chocolate bars do I like to have ?",
+      "answer test",
+      "answer test"
+    ]
+  ]
+}

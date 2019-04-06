@@ -43,11 +43,8 @@ class BertModelWrapper(QuestionAnsweringModel):
         return self
 
     def transform(self, X: List[UserInputAndQuestionTuple]) -> List[TextQuestionAnswerTriplet]:
-        # TODO Taha: do `for user_input, question in X:` instead. Pipelines are meant to process arrays of things.
-        # TODO Taha: see the class `BertNaturalAnswerPostprocessor` for an example of this for loop.
-        transformed_output = self.transform_one(X)
-        # TODO Taha: return triplets of TextQuestionAnswerTriplet, as seen in `BertNaturalAnswerPostprocessor`.
-        return transformed_output  # The return type must be a list.
+        transformed_output = [self.transform_one(user_input) for user_input in X]
+        return transformed_output
 
     def transform_one(self, X: UserInputAndQuestionTuple) -> TextQuestionAnswerTriplet:
         user_input, question = X
