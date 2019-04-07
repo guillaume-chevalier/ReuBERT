@@ -15,6 +15,7 @@ def load_json_file_test(json_name):
 
 SQUAD_TEST_FILE = load_json_file_test('../../../thales-bert-gcp-bucket/squad_dir/squad_questions_beautified.json')
 
+#Todo: still uncomplete maybe useful for the report or the presentation to see how bert reacts to different input text length
 
 def run_charges_test():
     for elem in SQUAD_TEST_FILE:
@@ -26,13 +27,13 @@ def run_charges_test():
         verify_answers(response, expected_answers)
 
 
-
 def get_proportion(sections, portion):
     portion = int(portion * len(sections))
     text = [sections[i]["qa"]["subtext"] for i in range(portion)]
     questions = [sections[i]["qa"]["qas"] for i in range(portion)]
     flat_question_list = [item for sublist in questions for item in sublist]
     return text, flat_question_list
+
 
 def verify_answers(bert_responses, expected_responses):
     right_answer = None
