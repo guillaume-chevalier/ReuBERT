@@ -1,6 +1,9 @@
 import re
 
 import stringdist
+import en_core_web_sm
+
+nlp = en_core_web_sm.load()
 
 
 class ORQuestionResponseEvaluator:
@@ -15,7 +18,7 @@ class ORQuestionResponseEvaluator:
     def _determine_type_of_expected_response_from_OR_question(self, or_question):
         tokenized_or_question = self._tokenize(or_question)
         ors = []
-        for index in len(range(tokenized_or_question)):
+        for index in range(len(tokenized_or_question)):
             match = re.search(self.OR_regex, tokenized_or_question[index])
             if match:
                 ors.append(tokenized_or_question[index - 1])
@@ -32,3 +35,6 @@ class ORQuestionResponseEvaluator:
                     return bert_res
 
         return bert_answers[0]
+
+    def _tokenize(self, sent):
+        return nlp(sent).ents

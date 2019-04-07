@@ -6,4 +6,4 @@ class YESNOQuestionProcessor():
         return bert_answers[0]
 
     def _determine_type_of_expected_response_from_YESNO_question(self, yes_no_question):
-        return 'thing'
+        return 'UNKNOWN'

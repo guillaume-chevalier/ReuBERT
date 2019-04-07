@@ -1,4 +1,4 @@
-from typing import List, Dict, Union
+from typing import List, Dict
 
 from src.domain.pipeline_steps.question_answering_model import QuestionAnsweringModel, \
     TextQuestionAnswerTriplet, UserInputAndQuestionTuple
@@ -36,7 +36,7 @@ class BertModelWrapper(QuestionAnsweringModel):
         return [(y['probability'], y['text']) for y in [x[1] for x in all_nbest_json.items()][0]]
 
     @staticmethod
-    def question_schema(user_input: List[str], question: str) -> Dict[str, Union[List[str], str]]:
+    def question_schema(user_input: List[str], question: str) -> Dict[List[str], str]:
         return {"user_input": user_input, "question": question}
 
     def fit(self, X: List[UserInputAndQuestionTuple]) -> 'BertModelWrapper':

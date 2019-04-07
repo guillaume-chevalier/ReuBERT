@@ -4,7 +4,7 @@ import os
 
 def extract_question_from_squad():
     training_data = []
-    with open(os.path.join(__file__, '../dev-v2.0.json'), encoding='utf-8') as json_file:
+    with open(os.path.join(__file__, 'dev-v2.0.json'), encoding='utf-8') as json_file:
         data = json.load(json_file)
         for elem in data['data']:
             result = {}
@@ -12,7 +12,7 @@ def extract_question_from_squad():
             result['qa'] = extract_questions_from_paragraph(elem['paragraphs'])
             training_data.append(result)
 
-    with open(os.path.join(__file__, '../squad_questions_beautified.json'), 'w', encoding='utf-8') as outfile:
+    with open(os.path.join(__file__, 'squad_questions_beautified.json'), 'w', encoding='utf-8') as outfile:
         json.dump(training_data, outfile)
 
 

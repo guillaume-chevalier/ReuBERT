@@ -52,9 +52,9 @@ class TestBertPostProcessing(unittest.TestCase):
     def setUp(self):
         self.bert_postprocessor = BertNaturalAnswerPostprocessor()
 
+    @pytest.mark.skipif(os.environ.get("CI") is not None,
+                        reason="Disable test if in CI, because it needs a downloaded model")
     def test__given__some_test_data__when__bert_model_wrapper__then__get_good_results(self):
-        if os.environ.get("CI") is not None:
-            return
         result_output = self.bert_postprocessor.transform(INPUT)
 
         assert result_output == EXPECTED_OUTPUT
