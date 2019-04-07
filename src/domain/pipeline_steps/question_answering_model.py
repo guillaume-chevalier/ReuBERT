@@ -3,9 +3,11 @@ from typing import List, Dict, Tuple
 
 from sklearn.base import BaseEstimator, TransformerMixin
 
-TextQuestionAnswerTriplet = List[Tuple[float, str]]
+TextQuestionAnswerTriplet = Tuple[str, str, List[Tuple[float, str]]]
 
 UserInputAndQuestionTuple = Dict[List[str], str]
+
+BeautifiedAnswer = str
 
 
 class QuestionAnsweringModel(BaseEstimator, TransformerMixin, ABC):

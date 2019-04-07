@@ -31,6 +31,8 @@ class TestBestAnswerExtractor():
         right_res = TEXT_AND_QUESTIONS_MOCK["WH"][type][test_num][2]
 
         response = self.best_answer_extractor.extract_best_answer(self.user_input, question, answers)
+        print("Question : ", question)
+        print("Bert answers : ", answers)
         assert self.response_is_close_enough(response, right_res)
 
     def test__given__answers_and_or_questions__when__bert_answer_extrator__then__choose_best_response(self):
@@ -38,5 +40,5 @@ class TestBestAnswerExtractor():
 
     def response_is_close_enough(self, response, expected_res):
         acceptable_levenshtein_threshold = 0.5
-
+        print("Extracted answer : ", response)
         return stringdist.levenshtein(response, expected_res) / 33 < acceptable_levenshtein_threshold
