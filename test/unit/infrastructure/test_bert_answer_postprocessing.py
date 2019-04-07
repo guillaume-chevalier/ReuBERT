@@ -1,11 +1,13 @@
 import unittest
+from typing import List
+
 import pytest
 import os
 
 from src.infrastructure.pipeline_steps.bert_natural_answer_postprocessor import BertNaturalAnswerPostprocessor
-from src.domain.pipeline_steps.question_answering_model import TextQuestionAnswerTriplet
+from src.domain.pipeline_steps.question_answering_model import TextQuestionAnswerTriplet, BeautifiedAnswer
 
-INPUT: TextQuestionAnswerTriplet = (
+INPUT: TextQuestionAnswerTriplet = [(
     [
         "The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in France.",
         "They were descended from Norse (\"Norman\" comes from \"Norseman\") raiders and pirates from Denmark, Iceland and Norway who, under their leader Rollo, agreed to swear ",
@@ -40,9 +42,9 @@ INPUT: TextQuestionAnswerTriplet = (
      (6.335759322769482e-10,
       'Normandy, a region in France.They were descended from Norse ("Norman" comes from "Norseman") raiders and pirates from Denmark'),
      (5.800012584850742e-10, '')]
-)
+)]
 
-EXPECTED_OUTPUT = ['This is my answer: France.']
+EXPECTED_OUTPUT: List[BeautifiedAnswer] = ['This is my answer: France.']
 
 
 class TestBertPostProcessing(unittest.TestCase):
@@ -53,7 +55,7 @@ class TestBertPostProcessing(unittest.TestCase):
     def test__given__some_test_data__when__bert_model_wrapper__then__get_good_results(self):
         if os.environ.get("CI") is not None:
             return
-        result_output = self.bert_postprocessor.transform([INPUT])
+        result_output = self.bert_postprocessor.transform(INPUT)
 
         assert result_output == EXPECTED_OUTPUT
 
