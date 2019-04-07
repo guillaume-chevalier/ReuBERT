@@ -12,10 +12,10 @@ class AnswerBeautifier:
     def beautify_answer(self, question, answer):
         if self._is_empty_answer(answer):
             return 'I do not know'
-        
-        # this step sometime fails... : It can return 'yes' when the answer is 'no'
+
+        # this step sometime fails... : It can return 'yes' when the answer is 'no' the subjectivity analysis of spacy is not perfect....
         if self._is_yesno_question(question):
-            if self._is_subjective(question) and self._is_subjective(answer):
+            if self._is_subjective(question) or self._is_subjective(answer):
                 if self._is_positive(question) > self._is_positive(answer) \
                         or self._is_positive(question) < self._is_positive(answer):
                     return 'no'
@@ -31,31 +31,7 @@ class AnswerBeautifier:
 
             return answer
 
-        if self._is_wh_question(question):
-            wh_match = re.search(self.WH_regex, question.lower()).group()
-
-            if wh_match == 'how':
-                quantity_word = re.search(self.HOW_quantity_words, question.lower()).group()
-                if quantity_word:
-                    return ['PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'CARDINAL',
-                            'TIME']
-                else:
-                    return ['UNKNOWN']
-
-            if wh_match == 'where':
-                return ['LOC', 'GPE', 'ORG', 'FAC']
-
-            if wh_match in {'why', 'what', 'which'}:
-                return ['UNKNOWN']
-
-            if wh_match in {'whom', 'whose', 'who'}:
-                return ['PERSON']
-
-            if wh_match == 'when':
-                return ['DATE', 'TIME']
-
-
-
+        #could have added more beautifing step but for a lack of time it maybe better to realease something stable...
 
     def _is_yesno_question(self, question):
         return not re.match(self.WH_regex, question.lower()) \
@@ -76,4 +52,5 @@ class AnswerBeautifier:
 
     def _is_subjective(self, sentence):
         subjectivity = TextBlob(sentence).sentiment.subjectivity
-        return subjectivity > 0
+        print(sentence, subjectivity)
+        return subjectivity > 0.0
