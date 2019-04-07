@@ -52,4 +52,4 @@ class BertModelWrapper(QuestionAnsweringModel):
         transformed_input = self._from_normal_input_to_bert_input_dict(normal_input)
         _, all_nbest_json, _ = self.bert_model.transform(transformed_input)
         transformed_output = self._from_bert_output_to_normal_output(all_nbest_json)
-        return transformed_output
+        return (user_input, question, transformed_output)
