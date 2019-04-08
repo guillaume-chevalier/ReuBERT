@@ -15,8 +15,9 @@ class TestReceivingContextStatementInteractionState(unittest.TestCase):
         self.input_text_processor_mock = MagicMock(spec=InputTextProcessor)
 
     def test__when__processing_input_text__then__input_text_processor_processes_context_statement(self):
-        self.receivingContextStatementInteractionState.process_input_text(self._SOME_INPUT_TEXT,
-                                                                          self.input_text_processor_mock)
+        self.receivingContextStatementInteractionState.process_input_text(
+            self._SOME_INPUT_TEXT, self.input_text_processor_mock
+        )
 
         self.input_text_processor_mock.process_context_statement.assert_called_once_with(self._SOME_INPUT_TEXT)
 

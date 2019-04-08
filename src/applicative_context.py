@@ -2,8 +2,8 @@ from src.api.cli.robot_interaction_resource_impl import RobotInteractionResource
 from src.application.input_text.input_text_processor_impl import InputTextProcessorImpl
 from src.application.interaction.interaction_service import InteractionService
 from src.domain.interaction.interaction_context import InteractionContext
-from src.domain.interaction.receiving_statement_context_interaction_state import \
-    ReceivingStatementContextInteractionState
+from src.domain.interaction.receiving_context_statement_interaction_state import \
+    ReceivingContextStatementInteractionState
 from src.domain.pipeline import Pipeline
 from src.infrastructure.persistence.interaction.in_memory_input_text_repository import InMemoryInputTextRepository
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
@@ -12,7 +12,7 @@ from src.infrastructure.pipeline_steps.bert_natural_answer_postprocessor import 
 
 class CLIReuBERTApplicativeContext:
 
-    _INITIAL_INTERACTION_STATE = ReceivingStatementContextInteractionState()
+    _INITIAL_INTERACTION_STATE = ReceivingContextStatementInteractionState()
 
     def __init__(self):
         pass
