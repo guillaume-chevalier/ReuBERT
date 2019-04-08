@@ -6,6 +6,4 @@ class InteractionService:
 
     def process_input_text(self, input_text):
         self.interaction_state = self.interaction_state.fetch_next_state(input_text)
-        return self.interaction_state.process_input_text(
-            input_text, self.input_text_processor
-        )
+        return self.interaction_state.process_input_text(input_text, self.input_text_processor)

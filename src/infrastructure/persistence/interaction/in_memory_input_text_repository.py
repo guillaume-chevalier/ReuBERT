@@ -18,4 +18,3 @@ class InMemoryInputTextRepository(InputTextRepository):
 
     def get_all_questions(self):
         return [question for question in self.questions]
-

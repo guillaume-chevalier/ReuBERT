@@ -27,11 +27,10 @@ class CLIReuBERTApplicativeContext:
         self.input_text_processor = InputTextProcessorImpl(self.input_text_repository, self.pipeline)
 
     def _initialize_application_services(self):
-        self.interaction_service = InteractionService(self._INITIAL_INTERACTION_STATE,  self.input_text_processor)
+        self.interaction_service = InteractionService(self._INITIAL_INTERACTION_STATE, self.input_text_processor)
 
     def _initialize_resources(self):
         self.robot_interaction_resource = RobotInteractionResourceImpl(self.interaction_service)
 
     def execute(self):
         return self.robot_interaction_resource.execute()
-
