@@ -4,6 +4,7 @@ from src.api.cli.waiting_animation_thread import WaitingAnimationThread
 from src.api.robot_interaction_resource import RobotInteractionResource
 
 
+# TODO: finish this class
 class RobotInteractionResourceImpl(RobotInteractionResource):
     FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION = \
         "ReuBERT[greeting]:~$ Welcome! What would you like to talk about?"
@@ -40,19 +41,17 @@ class RobotInteractionResourceImpl(RobotInteractionResource):
         user_input_str = input()
         return user_input_str
 
+
     def _print_bert_answer(self, next_phase_number, user_input: str):
         if next_phase_number == 1:
             waiting_animation_thread = WaitingAnimationThread()
             waiting_animation_thread.start()
 
-        # TODO: uncomment the line below and then remove debugging lines and start at self.next_phase_number = 0, not 1.
         time.sleep(2)
         robot_response_str = "Answer here."
         do_continue = True
 
-        # do_continue, next_phase_number, robot_response_str = self.interaction_service.process_input_text(
-        #     user_input
-        # )
+        #do_continue, next_phase_number, robot_response_str = self.interaction_service.process_input_text(user_input)
 
         if next_phase_number == 1:
             waiting_animation_thread.join()

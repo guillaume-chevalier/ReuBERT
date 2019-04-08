@@ -5,5 +5,6 @@ class InteractionService:
         self.input_text_processor = input_text_processor
 
     def process_input_text(self, input_text):
-        next_interaction_state = self.interaction_context.fetch_next_interaction_state(input_text)
-        return next_interaction_state.process_input_text(input_text, self.input_text_processor)
+        next_interaction_phase = self.interaction_context.fetch_next_interaction_phase(input_text)
+        # response = self.interaction_context.fetch_next_interaction_phase(input_text)
+        return next_interaction_phase.process_input_text(input_text, self.input_text_processor)
