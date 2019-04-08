@@ -1,4 +1,6 @@
-from src.api.cli.robot_interaction_resource_impl import CLIRobotInteractionResourceImpl
+from src.applicative_context import CLIReuBERTApplicativeContext
 
 if __name__ == "__main__":
-    CLIRobotInteractionResourceImpl().execute()
+    applicative_context = CLIReuBERTApplicativeContext()
+    applicative_context.initialize()
+    applicative_context.execute()
