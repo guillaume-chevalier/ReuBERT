@@ -1,6 +1,7 @@
 import pytest
 import unittest
 
+
 from src.infrastructure.persistence.interaction.in_memory_input_text_repository import InMemoryInputTextRepository
 
 
@@ -10,7 +11,7 @@ class TestInMemoryInputTextRepository(unittest.TestCase):
         self.input_text_repository = InMemoryInputTextRepository()
 
     def test__repository_containing_context_statements__when__get_all_context_statements__then__returns_all_context_statements(
-        self
+            self
     ):
         some_context_statement = "some context statement"
         self.input_text_repository.add_context_statement(some_context_statement)

@@ -1,4 +1,4 @@
-from src.domain.interaction.input_text_repository import InputTextRepository
+from src.domain.input_text.input_text_repository import InputTextRepository
 
 
 class InMemoryInputTextRepository(InputTextRepository):
@@ -18,3 +18,4 @@ class InMemoryInputTextRepository(InputTextRepository):
 
     def get_all_questions(self):
         return [question for question in self.questions]
+
