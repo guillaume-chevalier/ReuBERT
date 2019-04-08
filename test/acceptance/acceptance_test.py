@@ -2,8 +2,7 @@ import json
 import os
 
 import pytest
-import stringdist
-
+from src.util.ResponseEvaluator import ResponseEvaluator
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 
@@ -28,7 +27,7 @@ class TestAcceptance():
     @pytest.mark.parametrize("difficulty", ["easy", "hard", "impossible"])
     @pytest.mark.parametrize("question_number", [0, 1, 2, 3])
     def test__given__user_input__when__asking_questions_to_bert_model_wrapper__then__get_good_results(
-        cls, QA_test, difficulty, question_number
+            cls, QA_test, difficulty, question_number
     ):
         user_input = QA_test['user_inputs']
 
@@ -41,12 +40,12 @@ class TestAcceptance():
 
 
 def verify_answers(bert_responses, expected_responses):
+    response_evaluator = ResponseEvaluator()
     right_answer = None
-    acceptable_levenshtein_threshold = 0.5
 
     for bert_res in bert_responses:
         for expected_res in expected_responses:
-            if stringdist.levenshtein(bert_res[1], expected_res) / 33 < acceptable_levenshtein_threshold:
+            if response_evaluator.is_response_close_enough(bert_res[1], expected_res):
                 right_answer = bert_res
 
     assert right_answer is not None

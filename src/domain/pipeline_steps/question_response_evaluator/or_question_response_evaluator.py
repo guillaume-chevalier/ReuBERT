@@ -1,7 +1,7 @@
-import stringdist
 import en_core_web_sm
 
 from src.domain.pipeline_steps.question_response_evaluator.question_type_analyser import QuestionTypeFinder
+from src.util.ResponseEvaluator import ResponseEvaluator
 
 nlp = en_core_web_sm.load()
 
@@ -26,11 +26,10 @@ class ORQuestionResponseEvaluator:
         return ors
 
     def _verify_ors_answers(self, bert_answers, ors):
-        acceptable_levenshtein_threshold = 0.5
-
+        response_evaluator = ResponseEvaluator()
         for bert_res in bert_answers:
             for or_res in ors:
-                if stringdist.levenshtein(bert_res[1], or_res) / 33 < acceptable_levenshtein_threshold:
+                if response_evaluator.is_response_close_enough(bert_res[1], or_res):
                     return bert_res
 
         return bert_answers[0]

@@ -1,10 +1,9 @@
 import pytest
 import os
 import json
-import stringdist
 
 from src.domain.pipeline_steps.best_answer_extractor import BestAnswerExtractor
-
+from src.util.ResponseEvaluator import ResponseEvaluator
 
 def load_json_file_test(json_name):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), json_name), encoding="utf8") as json_data:
@@ -38,6 +37,6 @@ class TestBestAnswerExtractor():
         assert self.response_is_close_enough(response, right_res)
 
     def response_is_close_enough(self, response, expected_res):
-        acceptable_levenshtein_threshold = 0.5
         print("Extracted answer : ", response)
-        return stringdist.levenshtein(response, expected_res) / 33 < acceptable_levenshtein_threshold
+        response_evalluator = ResponseEvaluator()
+        return response_evalluator.is_response_close_enough(response, expected_res)
