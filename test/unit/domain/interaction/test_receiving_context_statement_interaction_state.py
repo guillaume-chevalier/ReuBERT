@@ -9,6 +9,7 @@ from src.domain.interaction.receiving_context_statement_interaction_state import
 class TestReceivingContextStatementInteractionState(unittest.TestCase):
 
     _SOME_INPUT_TEXT = "some context statement"
+    _SOME_RESPONSE = "some response"
 
     def setUp(self):
         self.receivingContextStatementInteractionState = ReceivingContextStatementInteractionState()
@@ -22,7 +23,7 @@ class TestReceivingContextStatementInteractionState(unittest.TestCase):
         self.input_text_processor_mock.process_context_statement.assert_called_once_with(self._SOME_INPUT_TEXT)
 
     def test__when__processing_input_text__then__returns_appropriate_response(self):
-        expected_response = ReceivingContextStatementInteractionState.ASKING_FOR_MORE_INFORMATION_CONTEXT_MESSAGE
+        expected_response = self._SOME_RESPONSE
         self.input_text_processor_mock.process_context_statement.return_value = expected_response
 
         actual_response = self.receivingContextStatementInteractionState.process_input_text(
@@ -30,3 +31,5 @@ class TestReceivingContextStatementInteractionState(unittest.TestCase):
         )
 
         self.assertEqual(expected_response, actual_response)
+
+

@@ -33,7 +33,7 @@ class TestInteractionContext(unittest.TestCase):
         self.assertEqual(expected_next_interaction_state, actual_next_interaction_state)
 
     def test__given__switching_input_text_to_question_interaction_state__when__fetching_next_interaction_state__then__returns_question_interaction_state(
-            self
+        self
     ):
         expected_next_interaction_state = ReceivingQuestionInteractionState()
 
@@ -53,5 +53,3 @@ class TestInteractionContext(unittest.TestCase):
         )
 
         self.assertEqual(expected_next_interaction_state, actual_next_interaction_state)
-
-
