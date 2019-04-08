@@ -9,22 +9,22 @@ from src.domain.pipeline_steps.question_response_evaluator.yesno_question_respon
 
 
 class BestAnswerExtractor():
+    _WH_WORDS_REGEX = r'who|what|how|where|when|why|which|whom|whose'
+    _OR_REGEX = r'or'
+
     def __init__(self):
         self.or_question_processor = ORQuestionResponseEvaluator()
         self.wh_question_processor = WHQuestionResponseEvaluator()
         self.yesno_question_processor = YESNOQuestionProcessor()
 
-        self.WH_words_regex = r'who|what|how|where|when|why|which|whom|whose'
-        self.OR_regex = r'or'
-
     def extract_best_answer(self, user_input, question, bert_answers):
 
         bert_answers = self._extract_responses_only(bert_answers)
 
-        if re.search(self.WH_words_regex, question.lower()):
+        if re.search(self._WH_WORDS_REGEX, question.lower()):
             return self.wh_question_processor.extract_best_answer(user_input, question, bert_answers)
 
-        if re.search(self.OR_regex, question.lower()):
+        if re.search(self._OR_REGEX, question.lower()):
             return self.or_question_processor.extract_best_answer(question, bert_answers)
 
         else:

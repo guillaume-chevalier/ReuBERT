@@ -3,48 +3,57 @@ from textblob import TextBlob
 
 
 class AnswerBeautifier:
+    _WH_REGEX = r'who|what|how|where|when|why|which|whom|whose'
+    _HOW_QUANTITY_WORDS = r'far|long|many|much|old'
+    _OR_REGEX = r'or'
+    _NEGATION_REGEX = r'not|no'
+    _UNKNOWN_ANSWER = 'I do not know'
+    _YES = 'yes'
+    _NO = 'no'
+
     def __init__(self):
-        self.WH_regex = r'who|what|how|where|when|why|which|whom|whose'
-        self.HOW_quantity_words = r'far|long|many|much|old'
-        self.OR_regex = r'or'
-        self.NEGATION_regex = r'not|no'
+        pass
 
     def beautify_answer(self, question, answer):
         if self._is_empty_answer(answer):
-            return 'I do not know'
+            return self._UNKNOWN_ANSWER
 
         # this step sometime fails... : It can return 'yes' when the answer is 'no' the subjectivity analysis of spacy is not perfect....
         if self._is_yesno_question(question):
             if self._is_subjective(question) or self._is_subjective(answer):
-                if self._is_positive(question) > self._is_positive(answer) \
-                        or self._is_positive(question) < self._is_positive(answer):
-                    return 'no'
-
-                else:
-                    return 'yes'
+                self._handle_subjective_questions(question, answer)
 
             elif self._is_negation_word_present(question) or self._is_negation_word_present(answer):
-                if self._is_negation_word_present(question) != self._is_negation_word_present(answer):
-                    return 'no'
-                else:
-                    return 'yes'
+                self._handle_question_with_negation_word(question, answer)
 
             return answer
 
-        #could have added more beautifing step but for a lack of time it maybe better to realease something stable...
+    def _handle_subjective_questions(self, subjective_yesno_question, answer):
+        if self._is_positive(subjective_yesno_question) > self._is_positive(answer) \
+                or self._is_positive(subjective_yesno_question) < self._is_positive(answer):
+            return self._NO
+
+        else:
+            return self._YES
+
+    def _handle_question_with_negation_word(self, question_with_negation_word, answer):
+        if self._is_negation_word_present(question_with_negation_word) != self._is_negation_word_present(answer):
+            return self._NO
+        else:
+            return self._YES
 
     def _is_yesno_question(self, question):
-        return not re.match(self.WH_regex, question.lower()) \
-               and not re.match(self.OR_regex, question.lower())
+        return not re.match(self._WH_REGEX, question.lower()) \
+               and not re.match(self._OR_REGEX, question.lower())
 
     def _is_wh_question(self, question):
-        return re.search(self.WH_regex, question.lower())
+        return re.search(self._WH_REGEX, question.lower())
 
     def _is_empty_answer(self, answer):
         return answer == ''
 
     def _is_negation_word_present(self, sentence):
-        return re.search(self.NEGATION_regex, sentence) is not None
+        return re.search(self._NEGATION_REGEX, sentence) is not None
 
     def _is_positive(self, sentence):
         sentiment = TextBlob(sentence).sentiment.polarity
@@ -52,5 +61,4 @@ class AnswerBeautifier:
 
     def _is_subjective(self, sentence):
         subjectivity = TextBlob(sentence).sentiment.subjectivity
-        print(sentence, subjectivity)
         return subjectivity > 0.0

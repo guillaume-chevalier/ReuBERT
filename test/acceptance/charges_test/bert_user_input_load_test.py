@@ -1,13 +1,10 @@
 import json
 import os
-
-import pytest
 import stringdist
 
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 
-# Todo : put different levels of questions : easy , medium, hard, impossible
 def load_json_file_test(json_name):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), json_name), encoding="utf8") as json_data:
         return json.load(json_data)
@@ -15,7 +12,8 @@ def load_json_file_test(json_name):
 
 SQUAD_TEST_FILE = load_json_file_test('../../../thales-bert-gcp-bucket/squad_dir/squad_questions_beautified.json')
 
-#Todo: still uncomplete maybe useful for the report or the presentation to see how bert reacts to different input text length
+
+# Todo: still uncomplete maybe useful for the report or the presentation to see how bert reacts to different input text length
 
 def run_bert_user_input_load_test():
     for elem in SQUAD_TEST_FILE:
