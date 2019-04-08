@@ -1,6 +1,7 @@
 from src.api.cli.robot_interaction_resource_impl import RobotInteractionResourceImpl
 from src.application.input_text.input_text_processor_impl import InputTextProcessorImpl
 from src.application.interaction.interaction_service import InteractionService
+from src.domain.interaction.interaction_context import InteractionContext
 from src.domain.interaction.receiving_statement_context_interaction_state import \
     ReceivingStatementContextInteractionState
 from src.domain.pipeline import Pipeline
@@ -27,7 +28,8 @@ class CLIReuBERTApplicativeContext:
         self.input_text_processor = InputTextProcessorImpl(self.input_text_repository, self.pipeline)
 
     def _initialize_application_services(self):
-        self.interaction_service = InteractionService(self._INITIAL_INTERACTION_STATE, self.input_text_processor)
+        interaction_context = InteractionContext(self._INITIAL_INTERACTION_STATE)
+        self.interaction_service = InteractionService(interaction_context, self.input_text_processor)
 
     def _initialize_resources(self):
         self.robot_interaction_resource = RobotInteractionResourceImpl(self.interaction_service)
