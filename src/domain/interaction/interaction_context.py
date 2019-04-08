@@ -4,8 +4,8 @@ from src.domain.interaction.receiving_question_interaction_state import Receivin
 
 
 class InteractionContext:
-    SWITCHING_TO_STATEMENT_CONTEXT_PHASE_MESSAGE = "I have no more questions to ask"
-    SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE = "I am ready to ask questions"
+    SWITCHING_TO_STATEMENT_CONTEXT_PHASE_MESSAGE = "I have no more questions to ask."
+    SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE = "I am ready to ask questions."
 
     def __init__(self, interaction_state):
         self.interaction_state = interaction_state

@@ -10,4 +10,3 @@ class InteractionState(ABC):
     @abstractmethod
     def __eq__(self, other):
         pass
-
