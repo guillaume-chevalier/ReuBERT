@@ -5,6 +5,7 @@ import stringdist
 
 from src.domain.pipeline_steps.best_answer_extractor import BestAnswerExtractor
 
+
 def load_json_file_test(json_name):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), json_name), encoding="utf8") as json_data:
         return json.load(json_data)

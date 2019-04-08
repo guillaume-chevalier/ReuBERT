@@ -1,3 +1,6 @@
+from src.domain.pipeline_steps.question_response_evaluator.spacy_constants import SPACY_NER
+
+
 class YESNOQuestionProcessor():
     def __init__(self):
         super().__init__()
@@ -6,4 +9,4 @@ class YESNOQuestionProcessor():
         return bert_answers[0]
 
     def _determine_type_of_expected_response_from_YESNO_question(self, yes_no_question):
-        return 'UNKNOWN'
+        return SPACY_NER.UNKNOWN.value

@@ -1,7 +1,7 @@
-import re
-
 import stringdist
 import en_core_web_sm
+
+from src.domain.pipeline_steps.question_response_evaluator.question_type_analyser import QuestionTypeFinder
 
 nlp = en_core_web_sm.load()
 
@@ -9,7 +9,7 @@ nlp = en_core_web_sm.load()
 class ORQuestionResponseEvaluator:
     def __init__(self):
         super().__init__()
-        self.OR_regex = r'or'
+        self.question_type_finder = QuestionTypeFinder()
 
     def extract_best_answer(self, or_question, bert_answers):
         ors_responses = self._determine_type_of_expected_response_from_OR_question(or_question)
@@ -19,8 +19,7 @@ class ORQuestionResponseEvaluator:
         tokenized_or_question = self._tokenize(or_question)
         ors = []
         for index in range(len(tokenized_or_question)):
-            match = re.search(self.OR_regex, tokenized_or_question[index])
-            if match:
+            if self.question_type_finder.is_or_word(tokenized_or_question[index]):
                 ors.append(tokenized_or_question[index - 1])
                 ors.append(tokenized_or_question[index + 1])
 
