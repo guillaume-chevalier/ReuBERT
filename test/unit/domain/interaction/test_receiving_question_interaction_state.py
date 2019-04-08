@@ -23,7 +23,8 @@ class TestReceivingQuestionInteractionState(unittest.TestCase):
         expected_response = self._SOME_RESPONSE
         self.input_text_processor_mock.process_question.return_value = expected_response
 
-        actual_response = self.receivingQuestionInteractionState.process_input_text(self._SOME_INPUT_TEXT,
-                                                                                    self.input_text_processor_mock)
+        actual_response = self.receivingQuestionInteractionState.process_input_text(
+            self._SOME_INPUT_TEXT, self.input_text_processor_mock
+        )
 
         self.assertEqual(expected_response, actual_response)
