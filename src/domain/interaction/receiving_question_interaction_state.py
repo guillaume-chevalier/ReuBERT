@@ -1,5 +1,5 @@
 #from src.domain.interaction.receiving_statement_context_interaction_state import \
-    #ReceivingStatementContextInteractionState
+#ReceivingStatementContextInteractionState
 from src.domain.interaction.interaction_state import InteractionState
 
 
