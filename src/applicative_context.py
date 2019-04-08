@@ -2,8 +2,6 @@ from src.api.cli.robot_interaction_resource_impl import RobotInteractionResource
 from src.application.input_text.input_text_processor_impl import InputTextProcessorImpl
 from src.application.interaction.interaction_service import InteractionService
 from src.domain.interaction.interaction_context import InteractionContext
-from src.domain.interaction.receiving_context_statement_interaction_state import \
-    ReceivingContextStatementInteractionState
 from src.domain.pipeline import Pipeline
 from src.infrastructure.persistence.interaction.in_memory_input_text_repository import InMemoryInputTextRepository
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
@@ -11,8 +9,6 @@ from src.infrastructure.pipeline_steps.bert_natural_answer_postprocessor import 
 
 
 class CLIReuBERTApplicativeContext:
-
-    _INITIAL_INTERACTION_STATE = ReceivingContextStatementInteractionState()
 
     def __init__(self):
         pass
@@ -28,8 +24,7 @@ class CLIReuBERTApplicativeContext:
         self.input_text_processor = InputTextProcessorImpl(self.input_text_repository, self.pipeline)
 
     def _initialize_application_services(self):
-        interaction_context = InteractionContext(self._INITIAL_INTERACTION_STATE)
-        self.interaction_service = InteractionService(interaction_context, self.input_text_processor)
+        self.interaction_service = InteractionService(InteractionContext(), self.input_text_processor)
 
     def _initialize_resources(self):
         self.robot_interaction_resource = RobotInteractionResourceImpl(self.interaction_service)
