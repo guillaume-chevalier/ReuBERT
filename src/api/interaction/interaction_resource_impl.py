@@ -3,7 +3,6 @@ import time
 from src.api.interaction.waiting_animation_thread import WaitingAnimationThread
 from src.api.interaction.interaction_resource import InteractionResource
 
-
 # TODO: finish this class
 from src.api.response.ending_interaction_response import EndingInteractionResponse
 from src.api.response.information_phase_response import InformationPhaseResponse
@@ -41,8 +40,6 @@ class InteractionResourceImpl(InteractionResource):
             user_input = input()
             reubert_output = self.interaction_service.process_input_text(user_input)
             print(InformationPhaseResponse().with_output(reubert_output))
-
-
 
     def _obtain_user_input(self, next_phase_number):
         if next_phase_number == 0:

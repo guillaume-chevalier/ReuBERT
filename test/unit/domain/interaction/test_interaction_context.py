@@ -31,7 +31,9 @@ class TestInteractionContext(unittest.TestCase):
     ):
         expected_next_interaction_phase = InteractionPhase.QUESTION_ANSWERING_PHASE
 
-        self.interaction_context.fetch_next_interaction_phase(InteractionContext.SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE)
+        self.interaction_context.fetch_next_interaction_phase(
+            InteractionContext.SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE
+        )
 
         actual_next_interaction_phase = self.interaction_context.interaction_phase
         self.assertEqual(expected_next_interaction_phase, actual_next_interaction_phase)
@@ -41,9 +43,7 @@ class TestInteractionContext(unittest.TestCase):
     ):
         expected_next_interaction_phase = InteractionPhase.EXIT_PHASE
 
-        self.interaction_context.fetch_next_interaction_phase(
-            InteractionContext.SWITCHING_TO_EXIT_PHASE_MESSAGE
-        )
+        self.interaction_context.fetch_next_interaction_phase(InteractionContext.SWITCHING_TO_EXIT_PHASE_MESSAGE)
 
         actual_next_interaction_phase = self.interaction_context.interaction_phase
         self.assertEqual(expected_next_interaction_phase, actual_next_interaction_phase)

@@ -21,5 +21,3 @@ class InteractionContext:
 
     def get_interaction_phase(self):
         return self.interaction_phase
-
-
