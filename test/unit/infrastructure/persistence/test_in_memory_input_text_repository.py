@@ -9,7 +9,7 @@ class TestInMemoryInputTextRepository(unittest.TestCase):
     def setUp(self):
         self.input_text_repository = InMemoryInputTextRepository()
 
-    def test__repository_containing_context_statements__when__get_all_context_statements__then__returns_all_context_statements(
+    def test__given__repository_containing_context_statements__when__get_all_context_statements__then__returns_all_context_statements(
         self
     ):
         some_context_statement = "some context statement"
@@ -20,7 +20,7 @@ class TestInMemoryInputTextRepository(unittest.TestCase):
         expected_context_statements = [some_context_statement]
         self.assertEqual(expected_context_statements, actual_context_statements)
 
-    def test__repository_containing_questions__when__get_all_questions__then__returns_all_questions(self):
+    def test__given__repository_containing_questions__when__get_all_questions__then__returns_all_questions(self):
         some_question = "some context statement"
         self.input_text_repository.add_question(some_question)
 
