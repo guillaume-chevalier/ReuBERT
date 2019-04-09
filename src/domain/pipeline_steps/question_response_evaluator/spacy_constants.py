@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class SPACY_NER(Enum):
     PERCENT = 'PERCENT'
     PERSON = 'PERSON'

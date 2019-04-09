@@ -2,6 +2,7 @@ from src.domain.pipeline_steps.question_response_evaluator.spacy_constants impor
 
 
 class YESNOQuestionProcessor():
+
     def __init__(self):
         super().__init__()
 

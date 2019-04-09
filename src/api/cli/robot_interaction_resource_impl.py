@@ -41,7 +41,6 @@ class RobotInteractionResourceImpl(RobotInteractionResource):
         user_input_str = input()
         return user_input_str
 
-
     def _print_bert_answer(self, next_phase_number, user_input: str):
         if next_phase_number == 1:
             waiting_animation_thread = WaitingAnimationThread()

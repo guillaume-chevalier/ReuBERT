@@ -15,10 +15,11 @@ SQUAD_TEST_FILE = load_json_file_test('../../../thales-bert-gcp-bucket/squad_dir
 
 #Todo: still uncomplete maybe useful for the report or the presentation to see how bert reacts to different input text length
 
+
 def run_bert_user_input_load_test():
     for elem in SQUAD_TEST_FILE:
         sections = elem["qa"]
-        user_input, questions = get_proportion(sections, )
+        user_input, questions = get_proportion(sections,)
         bert_wrapper = BertModelWrapper()
         response = bert_wrapper.transform((user_input, question))
 

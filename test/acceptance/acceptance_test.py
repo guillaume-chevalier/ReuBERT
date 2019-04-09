@@ -29,7 +29,7 @@ class TestAcceptance():
     @pytest.mark.parametrize("difficulty", ["easy", "hard", "impossible"])
     @pytest.mark.parametrize("question_number", [0, 1, 2, 3])
     def test__given__user_input__when__asking_questions_to_bert_model_wrapper__then__get_good_results(
-            cls, QA_test, difficulty, question_number
+        cls, QA_test, difficulty, question_number
     ):
         user_input = QA_test['user_inputs']
 

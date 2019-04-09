@@ -26,7 +26,6 @@ class AnswerBeautifier:
 
         return answer
 
-
     def _handle_subjective_questions(self, subjective_yesno_question, answer):
         if self._is_positive(subjective_yesno_question) > self._is_positive(answer) \
                 or self._is_positive(subjective_yesno_question) < self._is_positive(answer):

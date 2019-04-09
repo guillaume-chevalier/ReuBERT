@@ -2,6 +2,7 @@ import stringdist
 
 
 class ResponseEvaluator:
+
     def __int__(self):
         pass
 

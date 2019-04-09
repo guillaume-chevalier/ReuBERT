@@ -7,6 +7,7 @@ nlp = en_core_web_sm.load()
 
 
 class ORQuestionResponseEvaluator:
+
     def __init__(self):
         super().__init__()
         self.question_type_finder = QuestionTypeFinder()
