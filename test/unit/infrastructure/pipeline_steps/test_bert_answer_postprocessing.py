@@ -49,7 +49,7 @@ INPUT = [
     )
 ]
 
-EXPECTED_OUTPUT = ['This is my answer: France.']
+EXPECTED_OUTPUT = ['France']
 
 
 class TestBertPostProcessing(unittest.TestCase):
