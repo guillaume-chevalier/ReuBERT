@@ -3,7 +3,7 @@ import os
 
 import pytest
 
-from src.util.ResponseEvaluator import ResponseEvaluator
+from src.util.response_evaluator import ResponseEvaluator
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 # Todo : put different levels of questions : easy , medium, hard, impossible

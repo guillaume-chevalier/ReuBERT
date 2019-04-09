@@ -1,7 +1,7 @@
 import json
 import os
 
-from src.util.ResponseEvaluator import ResponseEvaluator
+from src.util.response_evaluator import ResponseEvaluator
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 

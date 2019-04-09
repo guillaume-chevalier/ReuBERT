@@ -3,7 +3,7 @@ import os
 import json
 
 from src.domain.pipeline_steps.best_answer_extractor import BestAnswerExtractor
-from src.util.ResponseEvaluator import ResponseEvaluator
+from src.util.response_evaluator import ResponseEvaluator
 
 
 def load_json_file_test(json_name):

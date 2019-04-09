@@ -1,6 +1,6 @@
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 from src.infrastructure.pipeline_steps.bert_natural_answer_postprocessor import BertNaturalAnswerPostprocessor
-from src.util.ResponseEvaluator import ResponseEvaluator
+from src.util.response_evaluator import ResponseEvaluator
 
 import os
 import json
@@ -77,12 +77,14 @@ def bert_with_coqa_test():
 
             best_bert_ans = output[2][0][1]
 
-            if bert_evaluator.is_response_close_enough_using_leveinstein(best_bert_ans, answer):
-                good_res+=1
-
-
+            print('\n')
             print("number :", q_index)
             # print("story :", story)
+            if bert_evaluator.is_response_close_enough_using_leveinstein(best_bert_ans, answer):
+                good_res += 1
+                print("success")
+            else:
+                print("failed")
             print("Question:", question)
             print("possible answer:", answer)
             print("bert answer:", output[2])

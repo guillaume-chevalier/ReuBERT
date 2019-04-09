@@ -1,7 +1,7 @@
 import en_core_web_sm
 
 from src.domain.pipeline_steps.question_response_evaluator.question_type_analyser import QuestionTypeFinder
-from src.util.ResponseEvaluator import ResponseEvaluator
+from src.util.response_evaluator import ResponseEvaluator
 
 nlp = en_core_web_sm.load()
 
