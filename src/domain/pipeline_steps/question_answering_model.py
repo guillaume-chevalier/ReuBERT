@@ -3,12 +3,11 @@ from typing import List, Dict, Tuple
 
 from sklearn.base import BaseEstimator, TransformerMixin
 
-TextQuestionAnswerTriplet = Tuple[List[str], str, Dict[float, str]]
+TextQuestionAnswerTriplet = Tuple[str, str, List[Tuple[float, str]]]
 
 UserInputAndQuestionTuple = Tuple[List[str], str]
 
-# TODO Taha: maybe that the above `UserInputAndQuestionTuple` type is just like this instead, I'm not sure of what you did:
-# TODO Taha:     UserInputAndQuestionTuple = Tuple[str, str]
+BeautifiedAnswer = str
 
 
 class QuestionAnsweringModel(BaseEstimator, TransformerMixin, ABC):

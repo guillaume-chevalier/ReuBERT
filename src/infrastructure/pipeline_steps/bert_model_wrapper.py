@@ -19,16 +19,16 @@ class BertModelWrapper(QuestionAnsweringModel):
                     {
                         "context": joined_user_inputs,
                         "qas":
-                        [{
-                            "answers": [],
-                            "id": "",
-                            "is_impossible": False,
-                            "question": normal_input["question"]
-                        }]
+                            [{
+                                "answers": [],
+                                "id": "",
+                                "is_impossible": False,
+                                "question": normal_input["question"]
+                            }]
                     }
                 ],
                 "title":
-                ""
+                    ""
             }
         ]
 
@@ -36,18 +36,15 @@ class BertModelWrapper(QuestionAnsweringModel):
         return [(y['probability'], y['text']) for y in [x[1] for x in all_nbest_json.items()][0]]
 
     @staticmethod
-    def question_schema(user_input, question) -> Dict[str, str]:
+    def question_schema(user_input: List[str], question: str) -> Dict[List[str], str]:
         return {"user_input": user_input, "question": question}
 
     def fit(self, X: List[UserInputAndQuestionTuple]) -> 'BertModelWrapper':
         return self
 
     def transform(self, X: List[UserInputAndQuestionTuple]) -> List[TextQuestionAnswerTriplet]:
-        # TODO Taha: do `for user_input, question in X:` instead. Pipelines are meant to process arrays of things.
-        # TODO Taha: see the class `BertNaturalAnswerPostprocessor` for an example of this for loop.
-        transformed_output = self.transform_one(X)
-        # TODO Taha: return triplets of TextQuestionAnswerTriplet, as seen in `BertNaturalAnswerPostprocessor`.
-        return transformed_output  # The return type must be a list.
+        transformed_output = [self.transform_one(user_input) for user_input in X]
+        return transformed_output
 
     def transform_one(self, X: UserInputAndQuestionTuple) -> TextQuestionAnswerTriplet:
         user_input, question = X
@@ -55,4 +52,4 @@ class BertModelWrapper(QuestionAnsweringModel):
         transformed_input = self._from_normal_input_to_bert_input_dict(normal_input)
         _, all_nbest_json, _ = self.bert_model.transform(transformed_input)
         transformed_output = self._from_bert_output_to_normal_output(all_nbest_json)
-        return transformed_output
+        return (user_input, question, transformed_output)

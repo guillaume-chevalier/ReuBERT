@@ -27,12 +27,8 @@ def prepare_test():
     bert_model = TrainedBERTQuestionAnsweringModel(flags)
     return expected_predictions, bert_model, input_data
 
-
+@pytest.mark.skipif(os.environ.get("CI") is not None, reason="Disable test if in CI, because it needs a downloaded model")
 def test__given__some_test_data__when__running_squad__then__get_good_results():
-    # Disable test if in CI, because it needs a downloaded model:
-    if os.environ.get("CI") is not None:
-        return
-
     expected_predictions, bert_model, input_data = prepare_test()
     # pprint(input_data)
 

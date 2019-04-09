@@ -1,0 +1,150 @@
+{
+  "yesno_questions": {
+    "no": {
+      "subjective": [
+        [
+          "Does Eric like chocolate cakes ?",
+          "He does not like it that much"
+        ],
+		[
+          "Have the boys eaten chicken ?",
+          "They barely tasted it"
+        ],
+		[
+          "Can the dog swim ?",
+          "the dog is terrified of swimming"
+        ],
+		[
+          "Do you think the elections when well?",
+          "Trump as president will be horrible"
+        ]
+      ],
+      "not subjective": [
+        [
+          "Am I your friend ?",
+          "I am not your friend"
+        ],
+		[
+          "Is this a good restaurant ?",
+          "Its not a very good restaurant"
+        ],
+		[
+          "Are these islands not Greek ?",
+          "They are Greek"
+        ],
+		[
+          "Is gold mined in Canada?",
+          "There is no mine in Canada"
+        ]
+      ]
+    },
+    "yes": {
+      "subjective": [
+        [
+          "Was his idea interesting ?",
+          "The idea was not that bad"
+        ],
+		[
+          "Were they happy?",
+          "the amigos were joyful"
+        ],
+		[
+          "Am I near the correct location?",
+          "I would say that is about right"
+        ],
+		[
+          "Were the demonstrations Catastrophic?",
+          "They were peaceful"
+        ]
+      ],
+      "not subjective": [
+        [
+          "Am I going with you and Tom?",
+          "yes you are"
+        ],
+[
+          "Were the demonstrations in the center of town?",
+          "Yes, they were in the town"
+        ],
+[
+          "Am I going with you and Tom?",
+          "yes you are"
+        ],
+[
+          "Is she working today?",
+          "She is working"
+        ]
+      ]
+    },
+    "I do not know": {
+      "subjective": [
+        [
+          "Are the keys under the books?",
+          ""
+        ],
+        [
+          "Was his house on an island?",
+          ""
+        ],
+        [
+          "Was your trip fun ?",
+          ""
+        ],
+        [
+          "Was your trip fun ?",
+          ""
+        ]
+      ],
+      "not subjective": [
+        [
+          "Are the keys under the books?",
+          ""
+        ],
+        [
+          "Was his house on an island?",
+          ""
+        ],
+        [
+          "Is his hair black ?",
+          ""
+        ],
+        [
+          "Is that an apple computer?",
+          ""
+        ]
+      ]
+    }
+  },
+  "not_yesno_questions": [
+    [
+      "How much time I spent playing video games ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "How old I am ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "Where is my house ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "Where are the Pyramids ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "Who is the teacher ?",
+      "answer test",
+      "answer test"
+    ],
+    [
+      "How many chocolate bars do I like to have ?",
+      "answer test",
+      "answer test"
+    ]
+  ]
+}
