@@ -11,15 +11,13 @@ class TestInteractionContext(unittest.TestCase):
     def setUp(self):
         self.interaction_context = InteractionContext()
 
-    def test__when__instantiating_interaction_context__then__has_information_phase_as_initial_interaction_phase(
-            self
-    ):
+    def test__when__instantiating_interaction_context__then__has_information_phase_as_initial_interaction_phase(self):
         actual_initial_interaction_phase = self.interaction_context.interaction_phase
 
         self.assertEqual(InteractionPhase.INFORMATION_PHASE, actual_initial_interaction_phase)
 
     def test__given__non_switching_input_text__when__fetching_next_interaction_phase__then__returns_current_interaction_phase(
-            self
+        self
     ):
         expected_next_interaction_phase = self.interaction_context.interaction_phase
 
@@ -30,7 +28,7 @@ class TestInteractionContext(unittest.TestCase):
         self.assertEqual(expected_next_interaction_phase, actual_next_interaction_phase)
 
     def test__given__switching_input_text_to_question_answering_phase__when__fetching_next_interaction_phase__then__returns_question_answering_phase(
-            self
+        self
     ):
         expected_next_interaction_phase = InteractionPhase.QUESTION_ANSWERING_PHASE
 
@@ -41,7 +39,7 @@ class TestInteractionContext(unittest.TestCase):
         self.assertEqual(expected_next_interaction_phase, actual_next_interaction_phase)
 
     def test__given__switching_input_text_to_exit_phase__when__fetching_next_interaction_phase__then__returns_exit_phase(
-            self
+        self
     ):
         expected_next_interaction_phase = InteractionPhase.EXIT_PHASE
 

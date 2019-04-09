@@ -39,5 +39,6 @@ def extract_questions_from_paragraph(para):
         result.append(section)
     return result
 
+
 if __name__ == '__main__':
     extract_question_from_squad()

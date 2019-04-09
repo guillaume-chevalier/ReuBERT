@@ -1,7 +1,7 @@
 import json
 import os
 
-from src.util.ResponseEvaluator import ResponseEvaluator
+from src.util.response_evaluator import ResponseEvaluator
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 
@@ -15,10 +15,11 @@ SQUAD_TEST_FILE = load_json_file_test('../../../thales-bert-gcp-bucket/squad_dir
 
 #Todo: still uncomplete maybe useful for the report or the presentation to see how bert reacts to different input text length
 
+
 def run_bert_user_input_load_test():
     for elem in SQUAD_TEST_FILE:
         sections = elem["qa"]
-        user_input, questions = get_proportion(sections, )
+        user_input, questions = get_proportion(sections,)
         bert_wrapper = BertModelWrapper()
         response = bert_wrapper.transform((user_input, question))
 
@@ -39,7 +40,7 @@ def verify_answers(bert_responses, expected_responses):
 
     for bert_res in bert_responses:
         for expected_res in expected_responses:
-            if response_evaluator.is_response_close_enough(bert_res[1], expected_res):
+            if response_evaluator.is_response_close_enough_using_leveinstein(bert_res[1], expected_res):
                 right_answer = bert_res
 
     assert right_answer is not None

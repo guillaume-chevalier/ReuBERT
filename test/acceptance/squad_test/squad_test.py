@@ -11,6 +11,7 @@ SQUAD_DATA_SET = load_json_file_test('squad_questions_beautified.json')
 
 
 class TestSquad():
+
     @classmethod
     def setup_class(cls):
         pass

@@ -14,7 +14,9 @@ class TestInteractionPhase(unittest.TestCase):
     def setUp(self):
         self.input_text_processor_mock = MagicMock(spec=InputTextProcessor)
 
-    def test__given__information_phase__when__processing_input_text__then__input_text_processor_processes_context_statement_and_returns_appropriate_response(self):
+    def test__given__information_phase__when__processing_input_text__then__input_text_processor_processes_context_statement_and_returns_appropriate_response(
+        self
+    ):
         information_phase = InteractionPhase.INFORMATION_PHASE
         expected_response = self._SOME_RESPONSE
         self.input_text_processor_mock.process_context_statement.return_value = expected_response
@@ -24,17 +26,23 @@ class TestInteractionPhase(unittest.TestCase):
         self.input_text_processor_mock.process_context_statement.assert_called_once_with(self._SOME_INPUT_TEXT)
         self.assertEqual(expected_response, actual_response)
 
-    def test__given__question_answering_phase__when__processing_input_text__then__input_text_processor_processes_question_and_returns_appropriate_response(self):
+    def test__given__question_answering_phase__when__processing_input_text__then__input_text_processor_processes_question_and_returns_appropriate_response(
+        self
+    ):
         question_answering_phase = InteractionPhase.QUESTION_ANSWERING_PHASE
         expected_response = self._SOME_RESPONSE
         self.input_text_processor_mock.process_question.return_value = expected_response
 
-        actual_response = question_answering_phase.process_input_text(self._SOME_INPUT_TEXT, self.input_text_processor_mock)
+        actual_response = question_answering_phase.process_input_text(
+            self._SOME_INPUT_TEXT, self.input_text_processor_mock
+        )
 
         self.input_text_processor_mock.process_question.assert_called_once_with(self._SOME_INPUT_TEXT)
         self.assertEqual(expected_response, actual_response)
 
-    def test__given__exit_phase__when__processing_input_text__then__input_text_processor_processes_exit_statement_and_returns_appropriate_response(self):
+    def test__given__exit_phase__when__processing_input_text__then__input_text_processor_processes_exit_statement_and_returns_appropriate_response(
+        self
+    ):
         exit_phase = InteractionPhase.EXIT_PHASE
         expected_response = self._SOME_RESPONSE
         self.input_text_processor_mock.process_exit_statement.return_value = expected_response
@@ -43,4 +51,3 @@ class TestInteractionPhase(unittest.TestCase):
 
         self.input_text_processor_mock.process_exit_statement.assert_called_once_with(self._SOME_INPUT_TEXT)
         self.assertEqual(expected_response, actual_response)
-

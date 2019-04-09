@@ -19,16 +19,16 @@ class BertModelWrapper(QuestionAnsweringModel):
                     {
                         "context": joined_user_inputs,
                         "qas":
-                            [{
-                                "answers": [],
-                                "id": "",
-                                "is_impossible": False,
-                                "question": normal_input["question"]
-                            }]
+                        [{
+                            "answers": [],
+                            "id": "",
+                            "is_impossible": False,
+                            "question": normal_input["question"]
+                        }]
                     }
                 ],
                 "title":
-                    ""
+                ""
             }
         ]
 
