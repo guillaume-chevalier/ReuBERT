@@ -26,5 +26,3 @@ class BestAnswerExtractor():
 
         else:
             return self.yesno_question_processor.extract_best_answer(question, bert_answers)
-
-

@@ -1,5 +1,6 @@
 import copy
 
+
 class YESNOQuestionProcessor():
 
     def __init__(self):

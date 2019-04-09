@@ -22,9 +22,11 @@ user_input = [
     "published a more definitive text known as the First Folio, a posthumous collected edition of Shakespeare's dramatic works that included all but two of his plays."
     "[13] The volume was prefaced with a poem by Ben Jonson, in which Jonson presciently hails Shakespeare in a now-famous quote as \"not of an age, but for all time\".[13]"
     "Throughout the 20th and 21st centuries, Shakespeare's works have been continually adapted and rediscovered by new movements in scholarship and performance. His plays remain "
-    "popular and are studied, performed, and reinterpreted through various cultural and political contexts around the world."]
+    "popular and are studied, performed, and reinterpreted through various cultural and political contexts around the world."
+]
 
 question = "Where was Shakespeare raised?"
+
 
 def extract_question_from_coqa():
     with open(os.path.join(__file__, '../coqa-dev-v1.0.json'), encoding='utf-8') as json_file:
@@ -35,6 +37,7 @@ def extract_question_from_coqa():
 bert_wrapper = BertModelWrapper()
 best_post_processor = BertNaturalAnswerPostprocessor()
 bert_evaluator = ResponseEvaluator()
+
 
 def bert_postprocessor_test():
     story = "Once upon a time, in a barn near a farm house, there lived a little white kitten named Cotton." \
@@ -52,12 +55,41 @@ def bert_postprocessor_test():
             "all cried. \"Next time you might mess up that pretty white fur of yours and we wouldn't want that! " \
             "Then Cotton thought, \"I change my mind. I like being special\"."
     question = "Did she live alone?"
-    bert_res = [(0.38090299723492976, "Cotton wasn't alone in her little home above the barn, oh no"), (0.26082781056632415, "Cotton wasn't alone"), (0.07662491659353675, "But Cotton wasn't alone in her little home above the barn, oh no"), (0.0662266001610968, "Cotton wasn't alone in her little home above the barn, oh no."), (0.05246981350895664, "But Cotton wasn't alone"), (0.027339701347176133, "Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy and 5 other sisters."), (0.016248778451646014, "Cotton wasn't alone in her little home above the barn"), (0.01582834090282384, "Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy and 5 other sisters"), (0.014138185568693588, "Cotton wasn't alone in her little home above the barn,"), (0.013322572283377652, "But Cotton wasn't alone in her little home above the barn, oh no."), (0.01330056290201684, "wasn't alone in her little home above the barn, oh no"), (0.012172311463110286, 't alone in her little home above the barn, oh no'), (0.011121160451637777, "Cotton wasn't"), (0.0091077169941329, "wasn't alone"), (0.008335133541877211, 't alone'), (0.005787933137609206, 'oh no'), (0.005499831586065209, "But Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy and 5 other sisters."), (0.004292706112305063, "Cotton wasn't alone in her little home"), (0.0032687096259216776, "But Cotton wasn't alone in her little home above the barn"), (0.0031841316825997443, "But Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy and 5 other sisters"), (8.58841627496776e-08, '')]
+    bert_res = [
+        (0.38090299723492976, "Cotton wasn't alone in her little home above the barn, oh no"),
+        (0.26082781056632415, "Cotton wasn't alone"),
+        (0.07662491659353675, "But Cotton wasn't alone in her little home above the barn, oh no"),
+        (0.0662266001610968, "Cotton wasn't alone in her little home above the barn, oh no."),
+        (0.05246981350895664, "But Cotton wasn't alone"),
+        (
+            0.027339701347176133,
+            "Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy and 5 other sisters."
+        ), (0.016248778451646014, "Cotton wasn't alone in her little home above the barn"),
+        (
+            0.01582834090282384,
+            "Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy and 5 other sisters"
+        ), (0.014138185568693588, "Cotton wasn't alone in her little home above the barn,"),
+        (0.013322572283377652, "But Cotton wasn't alone in her little home above the barn, oh no."),
+        (0.01330056290201684, "wasn't alone in her little home above the barn, oh no"),
+        (0.012172311463110286, 't alone in her little home above the barn, oh no'),
+        (0.011121160451637777, "Cotton wasn't"), (0.0091077169941329, "wasn't alone"),
+        (0.008335133541877211, 't alone'), (0.005787933137609206, 'oh no'),
+        (
+            0.005499831586065209,
+            "But Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy and 5 other sisters."
+        ), (0.004292706112305063, "Cotton wasn't alone in her little home"),
+        (0.0032687096259216776, "But Cotton wasn't alone in her little home above the barn"),
+        (
+            0.0031841316825997443,
+            "But Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy and 5 other sisters"
+        ), (8.58841627496776e-08, '')
+    ]
 
     output = (story, question, bert_res)
 
     transformed_answer = best_post_processor.transform_one(output)
     print(transformed_answer)
+
 
 def bert_with_coqa_test():
     total_qu = 0
@@ -89,8 +121,8 @@ def bert_with_coqa_test():
             print("possible answer:", answer)
             print("bert answer:", output[2])
             print("transformed answer:", transformed_answer)
-            print("accuracy :", good_res/total_qu)
+            print("accuracy :", good_res / total_qu)
+
 
 bert_with_coqa_test()
 # bert_postprocessor_test()
-
