@@ -16,7 +16,7 @@ class InputTextProcessorImpl(InputTextProcessor):
 
     def process_question(self, question):
         context_statements = self.input_text_repository.get_all_context_statements()
-        response = self.pipeline.transform((context_statements, question))
+        response = self.pipeline.transform([(context_statements, question)])
         return response
 
     def process_exit_statement(self, exit_statement):

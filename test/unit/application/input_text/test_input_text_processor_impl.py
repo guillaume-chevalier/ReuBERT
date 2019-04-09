@@ -39,7 +39,7 @@ class TestInputTextProcessorImpl(unittest.TestCase):
 
         self.input_text_processor.process_question(self._SOME_QUESTION)
 
-        self.pipeline_mock.transform.assert_called_once_with(([self._SOME_CONTEXT_STATEMENT], self._SOME_QUESTION))
+        self.pipeline_mock.transform.assert_called_once_with([([self._SOME_CONTEXT_STATEMENT], self._SOME_QUESTION)])
 
     def test__when__processing_question__then__returns_appropriate_response(self):
         expected_response = self._SOME_RESPONSE
