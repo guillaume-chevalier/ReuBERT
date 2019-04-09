@@ -1,4 +1,4 @@
-from src.api.cli.robot_interaction_resource_impl import RobotInteractionResourceImpl
+from src.api.interaction.robot_interaction_resource_impl import RobotInteractionResourceImpl
 from src.application.input_text.input_text_processor_impl import InputTextProcessorImpl
 from src.application.interaction.interaction_service import InteractionService
 from src.domain.interaction.interaction_context import InteractionContext

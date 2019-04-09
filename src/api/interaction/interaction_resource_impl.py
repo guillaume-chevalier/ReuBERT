@@ -1,11 +1,11 @@
 import time
 
-from src.api.cli.waiting_animation_thread import WaitingAnimationThread
-from src.api.robot_interaction_resource import RobotInteractionResource
+from src.api.interaction.waiting_animation_thread import WaitingAnimationThread
+from src.api.interaction.interaction_resource import InteractionResource
 
 
 # TODO: finish this class
-class RobotInteractionResourceImpl(RobotInteractionResource):
+class InteractionResourceImpl(InteractionResource):
     FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION = \
         "ReuBERT[greeting]:~$ Welcome! What would you like to talk about?"
     RECEIVING_QUESTION_INPUT_AREA_BEGIN = \
@@ -20,7 +20,7 @@ class RobotInteractionResourceImpl(RobotInteractionResource):
     def execute(self):
         # TODO: Note: a few edits are needed for this code to manage the user going idle when asking him something.
 
-        print(RobotInteractionResourceImpl.FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION)
+        print(InteractionResourceImpl.FIRST_WELCOME_MESSAGE_BEFORE_INTERACTION)
         do_continue = True
 
         next_phase_number = 1
@@ -34,9 +34,9 @@ class RobotInteractionResourceImpl(RobotInteractionResource):
 
     def _obtain_user_input(self, next_phase_number):
         if next_phase_number == 0:
-            print(RobotInteractionResourceImpl.RECEIVING_QUESTION_INPUT_AREA_BEGIN, end="")
+            print(InteractionResourceImpl.RECEIVING_QUESTION_INPUT_AREA_BEGIN, end="")
         elif next_phase_number == 1:
-            print(RobotInteractionResourceImpl.RECEIVING_STATEMENT_INPUT_AREA_BEGIN, end="")
+            print(InteractionResourceImpl.RECEIVING_STATEMENT_INPUT_AREA_BEGIN, end="")
 
         user_input_str = input()
         return user_input_str
@@ -54,7 +54,7 @@ class RobotInteractionResourceImpl(RobotInteractionResource):
 
         if next_phase_number == 1:
             waiting_animation_thread.join()
-            print(RobotInteractionResourceImpl.RECEIVING_STATEMENT_BERT_RESPONSE.format(robot_response_str))
+            print(InteractionResourceImpl.RECEIVING_STATEMENT_BERT_RESPONSE.format(robot_response_str))
         else:
-            print(RobotInteractionResourceImpl.RECEIVING_QUESTION_BERT_RESPONSE.format(robot_response_str))
+            print(InteractionResourceImpl.RECEIVING_QUESTION_BERT_RESPONSE.format(robot_response_str))
         return next_phase_number, do_continue
