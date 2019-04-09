@@ -3,7 +3,6 @@ import os
 
 import pytest
 
-from src.domain.pipeline_steps.question_answering_model import UserInputAndQuestionTuple
 from src.util.ResponseEvaluator import ResponseEvaluator
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
@@ -37,7 +36,7 @@ class TestAcceptance():
         question = QA_test['QA'][difficulty][question_number]['question']
         expected_answers = (user_input, question, QA_test['QA'][difficulty][question_number]['answers'])
 
-        input: UserInputAndQuestionTuple = [(user_input, question)]
+        input = [(user_input, question)]
 
         response = TestAcceptance.bert_wrapper.transform(input)
 

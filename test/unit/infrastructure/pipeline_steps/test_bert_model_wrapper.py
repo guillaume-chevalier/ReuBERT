@@ -1,23 +1,21 @@
 import unittest
-from typing import List, Any, Union, Tuple, Dict
 
 import pytest
 import os
 
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
-from src.domain.pipeline_steps.question_answering_model import TextQuestionAnswerTriplet, UserInputAndQuestionTuple
 
-INPUT: UserInputAndQuestionTuple = (
+INPUT = (
     [
         "The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in France.",
         "They were descended from Norse (\"Norman\" comes from \"Norseman\") raiders and pirates from Denmark, Iceland and Norway who, under their leader Rollo, agreed to swear ",
         "fealty to King Charles III of West Francia. Through generations of assimilation and mixing with the native Frankish and Roman-Gaulish populations, their descendants would ",
         "gradually merge with the Carolingian-based cultures of West Francia. The distinct cultural and ethnic identity of the Normans emerged initially in the first half of the 10th",
-        " century, and it continued to evolve over the succeeding centuries."],
-    "In what country is Normandy located?"
+        " century, and it continued to evolve over the succeeding centuries."
+    ], "In what country is Normandy located?"
 )
 
-EXPECTED_OUTPUT: TextQuestionAnswerTriplet = \
+EXPECTED_OUTPUT = \
     [([
           'The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in France.',
           'They were descended from Norse ("Norman" comes from "Norseman") raiders and pirates from Denmark, Iceland and Norway who, under their leader Rollo, agreed to swear ',
@@ -56,8 +54,9 @@ class TestModelWrapper(unittest.TestCase):
     def setUp(self):
         self.bert_wrapper = BertModelWrapper()
 
-    @pytest.mark.skipif(os.environ.get("CI") is not None,
-                        reason="Disable test if in CI, because it needs a downloaded model")
+    @pytest.mark.skipif(
+        os.environ.get("CI") is not None, reason="Disable test if in CI, because it needs a downloaded model"
+    )
     def test__given__some_test_data__when__bert_model_wrapper__then__get_good_results(self):
         result_output = self.bert_wrapper.transform([INPUT])
 
