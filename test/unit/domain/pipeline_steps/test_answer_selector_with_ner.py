@@ -3,7 +3,7 @@ import os
 import json
 
 from src.domain.pipeline_steps.best_answer_extractor import BestAnswerExtractor
-from src.util.ResponseEvaluator import ResponseEvaluator
+from src.util.response_evaluator import ResponseEvaluator
 
 
 def load_json_file_test(json_name):
@@ -43,4 +43,4 @@ class TestBestAnswerExtractor():
     def response_is_close_enough(self, response, expected_res):
         print("Extracted answer : ", response)
         response_evalluator = ResponseEvaluator()
-        return response_evalluator.is_response_close_enough(response, expected_res)
+        return response_evalluator.is_response_close_enough_using_leveinstein(response, expected_res)

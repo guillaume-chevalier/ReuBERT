@@ -3,7 +3,7 @@ import os
 
 import pytest
 
-from src.util.ResponseEvaluator import ResponseEvaluator
+from src.util.response_evaluator import ResponseEvaluator
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
 # Todo : put different levels of questions : easy , medium, hard, impossible
@@ -49,7 +49,7 @@ def verify_answers(bert_responses, expected_responses):
 
     for bert_res in bert_responses:
         for expected_res in expected_responses:
-            if response_evaluator.is_response_close_enough(bert_res[1], expected_res):
+            if response_evaluator.is_response_close_enough_using_leveinstein(bert_res[1], expected_res):
                 right_answer = bert_res
 
     assert right_answer is not None

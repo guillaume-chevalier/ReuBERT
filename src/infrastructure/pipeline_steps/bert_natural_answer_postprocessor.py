@@ -28,4 +28,4 @@ class BertNaturalAnswerPostprocessor(NaturalAnswerPostprocessor):
         original_text, user_question, bert_answers = X
         best_answer = self.best_answer_extractor.extract_best_answer(original_text, user_question, bert_answers)
         beautified_answer = self.answer_beautifier.beautify_answer(user_question, best_answer)
-        return "This is my answer: {}.".format(beautified_answer)
+        return beautified_answer
