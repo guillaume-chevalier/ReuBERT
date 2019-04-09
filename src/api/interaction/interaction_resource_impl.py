@@ -5,7 +5,7 @@ from src.api.response.information_phase_response import InformationPhaseResponse
 from src.api.response.initiating_interaction_response import InitiatingInteractionResponse
 from src.api.response.question_answering_phase_response import QuestionAnsweringPhaseResponse
 from src.api.response.switching_to_question_answering_phase_response import SwitchingToQuestionAnsweringPhaseResponse
-from src.api.response.waiting_animation_thread import WaitingAnimationThread
+from src.api.interaction.waiting_animation_thread import WaitingAnimationThread
 from src.domain.interaction.interaction_phase import InteractionPhase
 
 
