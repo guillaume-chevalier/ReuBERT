@@ -30,14 +30,14 @@ class TestInputTextProcessorImpl(unittest.TestCase):
         self.assertEqual(expected_response, actual_response)
 
     def test__when__processing_question__then__retrieves_all_context_statements_from_input_text_repository(self):
-        self.input_text_processor.process_question(self._SOME_QUESTION, self.pipeline_mock)
+        self.input_text_processor.process_question(self._SOME_QUESTION)
 
         self.input_text_repository_mock.get_all_context_statements.assert_called_once()
 
     def test__when__processing_question__then__passes_context_statements_and_given_question_to_pipeline(self):
         self.input_text_repository_mock.get_all_context_statements.return_value = [self._SOME_CONTEXT_STATEMENT]
 
-        self.input_text_processor.process_question(self._SOME_QUESTION, self.pipeline_mock)
+        self.input_text_processor.process_question(self._SOME_QUESTION)
 
         self.pipeline_mock.transform.assert_called_once_with(([self._SOME_CONTEXT_STATEMENT], self._SOME_QUESTION))
 
@@ -46,7 +46,7 @@ class TestInputTextProcessorImpl(unittest.TestCase):
         self.input_text_repository_mock.get_all_context_statements.return_value = [self._SOME_CONTEXT_STATEMENT]
         self.pipeline_mock.transform.return_value = expected_response
 
-        actual_response = self.input_text_processor.process_question(self._SOME_QUESTION, self.pipeline_mock)
+        actual_response = self.input_text_processor.process_question(self._SOME_QUESTION)
 
         self.assertEqual(expected_response, actual_response)
 

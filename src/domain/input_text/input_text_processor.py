@@ -8,7 +8,7 @@ class InputTextProcessor(ABC):
         pass
 
     @abstractmethod
-    def process_question(self, question, pipeline):
+    def process_question(self, question):
         pass
 
     @abstractmethod

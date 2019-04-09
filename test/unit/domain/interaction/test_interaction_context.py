@@ -16,35 +16,34 @@ class TestInteractionContext(unittest.TestCase):
 
         self.assertEqual(InteractionPhase.INFORMATION_PHASE, actual_initial_interaction_phase)
 
-    def test__given__non_switching_input_text__when__fetching_next_interaction_phase__then__returns_current_interaction_phase(
+    def test__given__non_switching_input_text__when__fetching_next_interaction_phase__then__interaction_phase_remains_unchanged(
         self
     ):
         expected_next_interaction_phase = self.interaction_context.interaction_phase
 
-        actual_next_interaction_phase = self.interaction_context.fetch_next_interaction_phase(
-            self._SOME_NON_SWITCHING_INPUT_TEXT
-        )
+        self.interaction_context.fetch_next_interaction_phase(self._SOME_NON_SWITCHING_INPUT_TEXT)
 
+        actual_next_interaction_phase = self.interaction_context.interaction_phase
         self.assertEqual(expected_next_interaction_phase, actual_next_interaction_phase)
 
-    def test__given__switching_input_text_to_question_answering_phase__when__fetching_next_interaction_phase__then__returns_question_answering_phase(
+    def test__given__switching_input_text_to_question_answering_phase__when__fetching_next_interaction_phase__then__interaction_phase_is_set_to_question_answering_phase(
         self
     ):
         expected_next_interaction_phase = InteractionPhase.QUESTION_ANSWERING_PHASE
 
-        actual_next_interaction_phase = self.interaction_context.fetch_next_interaction_phase(
-            InteractionContext.SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE
-        )
+        self.interaction_context.fetch_next_interaction_phase(InteractionContext.SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE)
 
+        actual_next_interaction_phase = self.interaction_context.interaction_phase
         self.assertEqual(expected_next_interaction_phase, actual_next_interaction_phase)
 
-    def test__given__switching_input_text_to_exit_phase__when__fetching_next_interaction_phase__then__returns_exit_phase(
+    def test__given__switching_input_text_to_exit_phase__when__fetching_next_interaction_phase__then__interaction_phase_is_set_to_exit_phase(
         self
     ):
         expected_next_interaction_phase = InteractionPhase.EXIT_PHASE
 
-        actual_next_interaction_phase = self.interaction_context.fetch_next_interaction_phase(
+        self.interaction_context.fetch_next_interaction_phase(
             InteractionContext.SWITCHING_TO_EXIT_PHASE_MESSAGE
         )
 
+        actual_next_interaction_phase = self.interaction_context.interaction_phase
         self.assertEqual(expected_next_interaction_phase, actual_next_interaction_phase)
