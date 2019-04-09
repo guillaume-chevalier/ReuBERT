@@ -36,7 +36,7 @@ bert_wrapper = BertModelWrapper()
 best_post_processor = BertNaturalAnswerPostprocessor()
 bert_evaluator = ResponseEvaluator()
 
-def test_bert_postprocessor():
+def bert_postprocessor_test():
     story = "Once upon a time, in a barn near a farm house, there lived a little white kitten named Cotton." \
             " Cotton lived high up in a nice warm place above the barn where all of the farmer's horses slept. " \
             "But Cotton wasn't alone in her little home above the barn, oh no. She shared her hay bed with her mommy " \
@@ -59,7 +59,7 @@ def test_bert_postprocessor():
     transformed_answer = best_post_processor.transform_one(output)
     print(transformed_answer)
 
-def test_bert_with_coqa():
+def bert_with_coqa_test():
     total_qu = 0
     good_res = 0
     data = extract_question_from_coqa()
@@ -89,7 +89,6 @@ def test_bert_with_coqa():
             print("transformed answer:", transformed_answer)
             print("accuracy :", good_res/total_qu)
 
-test_bert_with_coqa()
-# test_bert_postprocessor()
-
+bert_with_coqa_test()
+# bert_postprocessor_test()
 
