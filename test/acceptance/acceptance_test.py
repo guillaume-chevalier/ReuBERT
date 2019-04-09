@@ -2,6 +2,8 @@ import json
 import os
 
 import pytest
+
+from src.domain.pipeline_steps.question_answering_model import UserInputAndQuestionTuple
 from src.util.ResponseEvaluator import ResponseEvaluator
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 
@@ -32,9 +34,11 @@ class TestAcceptance():
         user_input = QA_test['user_inputs']
 
         question = QA_test['QA'][difficulty][question_number]['question']
-        expected_answers = QA_test['QA'][difficulty][question_number]['answers']
+        expected_answers = (user_input, question, QA_test['QA'][difficulty][question_number]['answers'])
 
-        response = TestAcceptance.bert_wrapper.transform((user_input, question))
+        input: UserInputAndQuestionTuple = [(user_input, question)]
+
+        response = TestAcceptance.bert_wrapper.transform(input)
 
         verify_answers(response, expected_answers)
 
