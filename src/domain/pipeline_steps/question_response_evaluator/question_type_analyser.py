@@ -5,8 +5,8 @@ from enum import Enum
 class WH_CONST(Enum):
     WH_REGEX = r'who|what|how|where|when|why|which|whom|whose'
     HOW_QUANTITY_WORDS = r'far|long|many|much|old'
-    OR_REGEX = r'or'
-    NEGATION_REGEX = r'not|no'
+    OR_REGEX = r' or '
+    NEGATION_REGEX = r'not|\'t'
     UNKNOWN_ANSWER = 'I do not know'
     YES = 'yes'
     NO = 'no'
@@ -27,7 +27,7 @@ class QuestionTypeFinder:
         pass
 
     def is_or_word(self, word):
-        match = re.search(WH_CONST._OR_REGEX.value, word)
+        match = re.search(WH_CONST.OR_REGEX.value, word.lower())
         if match:
             return True
         else:
@@ -38,23 +38,24 @@ class QuestionTypeFinder:
         return wh_match
 
     def contains_wh_word(self, wh_question, wh_word):
-        return self.get_wh_word_from_wh_question(wh_question) == wh_word
+        return self.get_wh_word_from_wh_question(wh_question) == wh_word.lower()
 
     def contains_multiple_wh_words(self, wh_question, wh_words):
-        return self.get_wh_word_from_wh_question(wh_question) in wh_words
+        lower_words = [wh.lower() for wh in wh_words]
+        return self.get_wh_word_from_wh_question(wh_question) in lower_words
 
     def find_how_quantity_word(self, wh_question):
         return re.search(WH_CONST.HOW_QUANTITY_WORDS.value, wh_question.lower()).group()
 
     def is_wh_question(self, question):
-        match = re.search(WH_CONST.WH_REGEX.value, question)
+        match = re.search(WH_CONST.WH_REGEX.value, question.lower())
         if match:
             return True
         else:
             return False
 
     def is_or_question(self, question):
-        match = re.search(WH_CONST.OR_REGEX.value, question)
+        match = re.search(WH_CONST.OR_REGEX.value, question.lower())
         if match:
             return True
         else:

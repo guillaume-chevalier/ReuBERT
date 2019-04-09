@@ -9,6 +9,7 @@ You must first setup a **Python 3.6** virtualenv.
 1. Create the "env" virtual environment in the root of the project: `virtualenv env -p python3`.
 1. You may now activate it as needed, and configure the new virtualenv in your IDE: `source env/bin/activate`.
 1. Install requirements: `pip install -r requirements.txt.`
+1. Download Spacy nlp model: `python -m spacy download en_core_web_sm`
 
 ### Set up pre-commit hooks
 
