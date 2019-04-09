@@ -43,4 +43,3 @@ class TestInteractionService(unittest.TestCase):
         actual_response = self.interaction_service.process_input_text(self._SOME_INPUT_TEXT)
 
         self.assertEqual(expected_response, actual_response)
-

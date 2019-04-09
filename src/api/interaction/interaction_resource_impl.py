@@ -26,4 +26,3 @@ class InteractionResourceImpl(InteractionResource):
             elif next_interaction_phase == InteractionPhase.EXIT_PHASE:
                 print(EndingInteractionResponse())
                 do_continue = False
-
