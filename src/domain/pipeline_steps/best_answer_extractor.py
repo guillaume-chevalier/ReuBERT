@@ -18,8 +18,6 @@ class BestAnswerExtractor():
 
     def extract_best_answer(self, user_input, question, bert_answers):
 
-        bert_answers = self._extract_responses_only(bert_answers)
-
         if self.question_type_finder.is_wh_question(question):
             return self.wh_question_processor.extract_best_answer(user_input, question, bert_answers)
 
@@ -29,5 +27,4 @@ class BestAnswerExtractor():
         else:
             return self.yesno_question_processor.extract_best_answer(question, bert_answers)
 
-    def _extract_responses_only(self, bert_response):
-        return [answer[1] for answer in bert_response]
+

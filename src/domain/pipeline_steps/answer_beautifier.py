@@ -18,11 +18,11 @@ class AnswerBeautifier:
         # this step sometime fails... : It can return 'yes' when the answer is 'no' the subjectivity analysis of spacy is not perfect....
         if self.question_type_finder.is_yesno_question(question):
             if self._is_subjective(question) or self._is_subjective(answer):
-                self._handle_subjective_questions(question, answer)
+                return self._handle_subjective_questions(question, answer)
 
             elif self.question_type_finder.is_negation_word_present(question) \
                     or self.question_type_finder.is_negation_word_present(answer):
-                self._handle_question_with_negation_word(question, answer)
+                return self._handle_question_with_negation_word(question, answer)
 
         return answer
 

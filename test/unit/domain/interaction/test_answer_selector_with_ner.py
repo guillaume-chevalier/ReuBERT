@@ -39,4 +39,4 @@ class TestBestAnswerExtractor():
     def response_is_close_enough(self, response, expected_res):
         print("Extracted answer : ", response)
         response_evalluator = ResponseEvaluator()
-        return response_evalluator.is_response_close_enough(response, expected_res)
+        return response_evalluator.is_response_close_enough_using_leveinstein(response, expected_res)
