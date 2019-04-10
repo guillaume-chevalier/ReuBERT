@@ -16,4 +16,4 @@ class ResponseFactory:
         elif next_interaction_phase == InteractionPhase.QUESTION_ANSWERING_PHASE:
             return QuestionAnsweringPhaseResponse().with_output(reubert_output)
         elif next_interaction_phase == InteractionPhase.EXIT_PHASE:
-            return EndingInteractionResponse()
+            return EndingInteractionResponse().with_output(reubert_output)

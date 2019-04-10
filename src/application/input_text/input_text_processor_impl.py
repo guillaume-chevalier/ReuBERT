@@ -5,7 +5,7 @@ class InputTextProcessorImpl(InputTextProcessor):
 
     ASKING_FOR_MORE_INFORMATION_CONTEXT_MESSAGE = "Can you give me more information please?"
     READY_TO_ANSWER_QUESTIONS_MESSAGE = "Ok. Ask me your questions."
-    EXIT_CODE = 0
+    EXIT_MESSAGE = "See you later!"
 
     def __init__(self, input_text_repository, pipeline):
         self.input_text_repository = input_text_repository
@@ -24,4 +24,4 @@ class InputTextProcessorImpl(InputTextProcessor):
         return response
 
     def process_exit_statement(self, exit_statement):
-        return self.EXIT_CODE
+        return self.EXIT_MESSAGE

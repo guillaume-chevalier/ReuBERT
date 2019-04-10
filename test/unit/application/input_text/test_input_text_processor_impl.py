@@ -61,7 +61,7 @@ class TestInputTextProcessorImpl(unittest.TestCase):
         self.assertEqual(expected_response, actual_response)
 
     def test__when__processing_exit_statement__then__returns_appropriate_response(self):
-        expected_response = InputTextProcessorImpl.EXIT_CODE
+        expected_response = InputTextProcessorImpl.EXIT_MESSAGE
 
         actual_response = self.input_text_processor.process_exit_statement(self._SOME_EXIT_STATEMENT)
 

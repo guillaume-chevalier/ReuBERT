@@ -49,8 +49,10 @@ class TestResponseFactory(unittest.TestCase):
 
         self.assertEqual(expected_response, actual_response)
 
-    def test__given__exit_phase__when__creating_response__then__returns_appropriate_response_format(self):
-        expected_response = EndingInteractionResponse()
+    def test__given__exit_phase__when__creating_response__then__returns_reuBERT_output_in_appropriate_response_forma(
+        self
+    ):
+        expected_response = EndingInteractionResponse().with_output(self._SOME_REUBERT_OUTPUT)
 
         actual_response = self.response_factory.create_from(self._SOME_REUBERT_OUTPUT, InteractionPhase.EXIT_PHASE)
 
