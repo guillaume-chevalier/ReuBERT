@@ -8,7 +8,11 @@ class InputTextProcessor(ABC):
         pass
 
     @abstractmethod
-    def process_question(self, question, pipeline):
+    def process_phase_transition_statement(self, phase_transition_statement):
+        pass
+
+    @abstractmethod
+    def process_question(self, question):
         pass
 
     @abstractmethod

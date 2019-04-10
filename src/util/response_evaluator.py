@@ -13,27 +13,25 @@ class ResponseEvaluator:
         if len(response) < len(expected_response):
             expected_response = self._return_response_in_same_length(response, expected_response)
             for res in expected_response:
-                    if stringdist.levenshtein(response, res) / 33 < acceptable_levenshtein_threshold:
-                        return True
+                if stringdist.levenshtein(response, res) / 33 < acceptable_levenshtein_threshold:
+                    return True
 
         elif len(response) > len(expected_response):
             response = self._return_response_in_same_length(expected_response, response)
             for res in response:
-                    if stringdist.levenshtein(expected_response, res) / 33 < acceptable_levenshtein_threshold:
-                        return True
+                if stringdist.levenshtein(expected_response, res) / 33 < acceptable_levenshtein_threshold:
+                    return True
         else:
             if stringdist.levenshtein(response, expected_response) / 33 < acceptable_levenshtein_threshold:
                 return True
         return False
-
-
 
     def is_response_close_enough_using_difflib_with_text_separation(self, response, expected_response):
         if len(response) < len(expected_response):
             expected_response = self._return_response_in_same_length(response, expected_response)
             closest_match = difflib.get_close_matches(response, expected_response)
             if closest_match:
-                    return True
+                return True
 
         elif len(response) > len(expected_response):
             response = self._return_response_in_same_length(expected_response, response)

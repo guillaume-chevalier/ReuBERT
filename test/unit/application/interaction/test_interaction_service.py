@@ -9,6 +9,7 @@ from src.domain.interaction.interaction_context import InteractionContext
 class TestInteractionService(unittest.TestCase):
 
     _SOME_INPUT_TEXT = "input text"
+    _SOME_OUTPUT_TEXT = "output text"
 
     def setUp(self):
         self.interaction_context_mock = MagicMock(spec=InteractionContext)
@@ -30,3 +31,15 @@ class TestInteractionService(unittest.TestCase):
         next_interaction_phase_mock.process_input_text.assert_called_once_with(
             self._SOME_INPUT_TEXT, self.input_text_processor_mock
         )
+
+    def test__when__processing_input_text__then__returns_output_from_processing_in_tuple_with_next_interaction_phase(
+        self
+    ):
+        next_interaction_phase_mock = MagicMock()
+        self.interaction_context_mock.fetch_next_interaction_phase.return_value = next_interaction_phase_mock
+        next_interaction_phase_mock.process_input_text.return_value = self._SOME_OUTPUT_TEXT
+        expected_response = self._SOME_OUTPUT_TEXT, next_interaction_phase_mock
+
+        actual_response = self.interaction_service.process_input_text(self._SOME_INPUT_TEXT)
+
+        self.assertEqual(expected_response, actual_response)

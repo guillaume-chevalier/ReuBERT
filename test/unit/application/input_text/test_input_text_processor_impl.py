@@ -8,6 +8,7 @@ from src.domain.pipeline import Pipeline
 
 class TestInputTextProcessorImpl(unittest.TestCase):
     _SOME_CONTEXT_STATEMENT = "some context statement"
+    _SOME_PHASE_TRANSITION_STATEMENT = "some phase transition statement"
     _SOME_QUESTION = "some question"
     _SOME_EXIT_STATEMENT = "some exit statement"
     _SOME_RESPONSE = "some response"
@@ -29,29 +30,38 @@ class TestInputTextProcessorImpl(unittest.TestCase):
 
         self.assertEqual(expected_response, actual_response)
 
+    def test__when__processing_phase_transition_statement__then__returns_appropriate_response(self):
+        expected_response = InputTextProcessorImpl.READY_TO_ANSWER_QUESTIONS_MESSAGE
+
+        actual_response = self.input_text_processor.process_phase_transition_statement(
+            self._SOME_PHASE_TRANSITION_STATEMENT
+        )
+
+        self.assertEqual(expected_response, actual_response)
+
     def test__when__processing_question__then__retrieves_all_context_statements_from_input_text_repository(self):
-        self.input_text_processor.process_question(self._SOME_QUESTION, self.pipeline_mock)
+        self.input_text_processor.process_question(self._SOME_QUESTION)
 
         self.input_text_repository_mock.get_all_context_statements.assert_called_once()
 
     def test__when__processing_question__then__passes_context_statements_and_given_question_to_pipeline(self):
         self.input_text_repository_mock.get_all_context_statements.return_value = [self._SOME_CONTEXT_STATEMENT]
 
-        self.input_text_processor.process_question(self._SOME_QUESTION, self.pipeline_mock)
+        self.input_text_processor.process_question(self._SOME_QUESTION)
 
-        self.pipeline_mock.transform.assert_called_once_with(([self._SOME_CONTEXT_STATEMENT], self._SOME_QUESTION))
+        self.pipeline_mock.transform.assert_called_once_with([([self._SOME_CONTEXT_STATEMENT], self._SOME_QUESTION)])
 
     def test__when__processing_question__then__returns_appropriate_response(self):
         expected_response = self._SOME_RESPONSE
         self.input_text_repository_mock.get_all_context_statements.return_value = [self._SOME_CONTEXT_STATEMENT]
         self.pipeline_mock.transform.return_value = expected_response
 
-        actual_response = self.input_text_processor.process_question(self._SOME_QUESTION, self.pipeline_mock)
+        actual_response = self.input_text_processor.process_question(self._SOME_QUESTION)
 
         self.assertEqual(expected_response, actual_response)
 
     def test__when__processing_exit_statement__then__returns_appropriate_response(self):
-        expected_response = InputTextProcessorImpl.EXIT_CODE
+        expected_response = InputTextProcessorImpl.EXIT_MESSAGE
 
         actual_response = self.input_text_processor.process_exit_statement(self._SOME_EXIT_STATEMENT)
 
