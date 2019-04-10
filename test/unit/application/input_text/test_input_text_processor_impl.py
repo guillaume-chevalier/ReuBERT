@@ -8,6 +8,7 @@ from src.domain.pipeline import Pipeline
 
 class TestInputTextProcessorImpl(unittest.TestCase):
     _SOME_CONTEXT_STATEMENT = "some context statement"
+    _SOME_PHASE_TRANSITION_STATEMENT = "some phase transition statement"
     _SOME_QUESTION = "some question"
     _SOME_EXIT_STATEMENT = "some exit statement"
     _SOME_RESPONSE = "some response"
@@ -26,6 +27,15 @@ class TestInputTextProcessorImpl(unittest.TestCase):
         expected_response = InputTextProcessorImpl.ASKING_FOR_MORE_INFORMATION_CONTEXT_MESSAGE
 
         actual_response = self.input_text_processor.process_context_statement(self._SOME_CONTEXT_STATEMENT)
+
+        self.assertEqual(expected_response, actual_response)
+
+    def test__when__processing_phase_transition_statement__then__returns_appropriate_response(self):
+        expected_response = InputTextProcessorImpl.READY_TO_ANSWER_QUESTIONS_MESSAGE
+
+        actual_response = self.input_text_processor.process_phase_transition_statement(
+            self._SOME_PHASE_TRANSITION_STATEMENT
+        )
 
         self.assertEqual(expected_response, actual_response)
 
