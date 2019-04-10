@@ -8,6 +8,7 @@ class InformationPhaseResponse:
 
     def with_output(self, output):
         self.output = output
+        return self
 
     def print(self):
         print("\n" + ResponseTag.GATHER_INFORMATION_TAG.__str__().format(self.output), end="\n")
