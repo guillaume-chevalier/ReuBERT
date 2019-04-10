@@ -1,4 +1,5 @@
 from src.api.interaction.interaction_resource_impl import InteractionResourceImpl
+from src.api.response.response_factory import ResponseFactory
 from src.application.input_text.input_text_processor_impl import InputTextProcessorImpl
 from src.application.interaction.interaction_service import InteractionService
 from src.domain.interaction.interaction_context import InteractionContext
@@ -27,7 +28,8 @@ class CLIReuBERTApplicativeContext:
         self.interaction_service = InteractionService(InteractionContext(), self.input_text_processor)
 
     def _initialize_resources(self):
-        self.robot_interaction_resource = InteractionResourceImpl(self.interaction_service)
+        response_factory = ResponseFactory()
+        self.robot_interaction_resource = InteractionResourceImpl(self.interaction_service, response_factory)
 
     def execute(self):
         return self.robot_interaction_resource.execute()
