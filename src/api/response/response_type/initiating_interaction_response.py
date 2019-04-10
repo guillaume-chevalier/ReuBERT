@@ -1,4 +1,4 @@
-from src.api.response.response_type.response_tag import ResponseTag
+from src.api.response.response_tag import ResponseTag
 
 
 class InitiatingInteractionResponse:
