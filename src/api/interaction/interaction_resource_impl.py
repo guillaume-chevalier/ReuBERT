@@ -23,4 +23,3 @@ class InteractionResourceImpl(InteractionResource):
         reubert_output, next_interaction_phase = self.interaction_service.process_input_text(user_input)
         waiting_animation_thread.join()
         return reubert_output, next_interaction_phase
-
