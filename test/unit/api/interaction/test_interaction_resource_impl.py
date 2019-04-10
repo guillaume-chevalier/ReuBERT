@@ -25,7 +25,9 @@ class TestInteractionResourceImpl(unittest.TestCase):
         self.interaction_service_mock.process_input_text.side_effect = self._SOME_REUBERT_OUTPUTS
 
     @patch("src.api.interaction.waiting_animation_thread.Thread")
-    def test__when__executing__then__interaction_service_processes_all_user_inputs_until_exit_phase_is_reached(self, thread_mock):
+    def test__when__executing__then__interaction_service_processes_all_user_inputs_until_exit_phase_is_reached(
+        self, thread_mock
+    ):
         with patch('builtins.input', side_effect=self._SOME_USER_INPUTS):
             interaction_service_calls_with_user_inputs = [
                 call("input 1"), call("input 2"), call("input 3"),
