@@ -9,7 +9,6 @@ You must first setup a **Python 3.6** virtualenv.
 1. Create the "env" virtual environment in the root of the project: `virtualenv env -p python3`.
 1. You may now activate it as needed, and configure the new virtualenv in your IDE: `source env/bin/activate`.
 1. Install requirements: `pip install -r requirements.txt.`
-1. Download Spacy nlp model: `python -m spacy download en_core_web_sm`
 
 ### Set up pre-commit hooks
 
@@ -30,6 +29,10 @@ You may skip this step if a member of your team already did this step, as it is 
 
 See the steps 3, 4 and 5 in the cloud directory's [README.md](cloud_scripts/README.md). Basically, you need to download the trained BERT model and place it at some place under the `./thales-bert-gcp-bucket` directory here.
 
+### Download Spacy NLP model
+ 
+Run `python -m spacy download en_core_web_sm` in the virtual environment to setup the spacy dependency. 
+
 ### Run tests
 
 Once install, verify your installation by running tests within the virtualenv using the command `./run_tests.sh` when placed in the root of the project.
@@ -42,9 +45,16 @@ You can now run the main, such as by doing `python main.py`, to use the Question
 
 - [BERT](https://github.com/google-research/bert): Apache 2.0
 - [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/): CC-BY-SA 4.0
+- [en_core_web_sm](https://spacy.io/models/en#en_core_web_sm) MIT
 
-### Acceptance tests :
+### Acceptance tests' content :
 
 - [William_Shakespeare](https://en.wikipedia.org/wiki/William_Shakespeare): CC BY-SA 3.0 Unported License
 - [Abraham Lincoln](https://en.wikipedia.org/wiki/Abraham_Lincoln): CC BY-SA 3.0 Unported License
 - [Barack Obama](https://en.wikipedia.org/wiki/Barack_Obama): CC BY-SA 3.0 Unported License
+
+## Authors
+
+- Guillaume Chevalier
+- Taha Racicot
+- Julie Tétrault
