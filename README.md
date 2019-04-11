@@ -10,7 +10,7 @@ You must first setup a **Python 3.6** virtualenv.
 1. You may now activate it as needed, and configure the new virtualenv in your IDE: `source env/bin/activate`.
 1. Install requirements: `pip install -r requirements.txt.`
 
-### Set up pre-commit hooks
+### Set up pre-commit hooks (only if you intend to develop and push new commits)
 
 1. Ensure that the virtual environment's name is "env". 
 1. Modify your local git configuration to point the correct emplacement of the project hooks
@@ -24,6 +24,8 @@ You must first setup a **Python 3.6** virtualenv.
 See the steps 1 and 2 in the cloud directory's [README.md](cloud_scripts/README.md).
 
 You may skip this step if a member of your team already did this step, as it is compute-intensive and costly.
+
+\# TODO: Google Drive link or other link for the data folder.
 
 ### Download the fine-tuned BERT's weights for local CPU usage of the model
 
