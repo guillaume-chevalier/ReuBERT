@@ -10,3 +10,6 @@ class Pipeline(P):
         self, question_answering_model: QuestionAnsweringModel, natural_answer_postprocessor: NaturalAnswerPostprocessor
     ):
         super().__init__([('qa_model', question_answering_model), ('post_processor', natural_answer_postprocessor)])
+
+    def transform_one(self, X):
+        return self.transform([X])[0]
