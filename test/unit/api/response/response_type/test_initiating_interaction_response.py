@@ -6,13 +6,14 @@ from src.api.response.response_type.initiating_interaction_response import Initi
 
 
 class TestInitiatingInteractionResponse(unittest.TestCase):
+    _SOME_REUBERT_OUTPUT = "some reuBERT output"
 
     def setUp(self):
-        self.initiating_interaction_response = InitiatingInteractionResponse()
+        self.initiating_interaction_response = InitiatingInteractionResponse().with_output(self._SOME_REUBERT_OUTPUT)
 
     @patch('builtins.print')
     def test__when__printing__then__prints_reuBERT_output_in_appropriate_response_format(self, print_mock):
-        expected_response_format = ResponseTag.GREETING_TAG.__str__() + "\n" \
+        expected_response_format = ResponseTag.GREETING_TAG.__str__().format(self._SOME_REUBERT_OUTPUT) + "\n" \
                                    + ResponseTag.ENTER_INFORMATION_TAG.__str__() + "\n"
 
         self.initiating_interaction_response.print()

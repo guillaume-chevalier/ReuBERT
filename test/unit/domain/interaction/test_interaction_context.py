@@ -11,10 +11,12 @@ class TestInteractionContext(unittest.TestCase):
     def setUp(self):
         self.interaction_context = InteractionContext()
 
-    def test__when__instantiating_interaction_context__then__has_information_phase_as_initial_interaction_phase(self):
+    def test__when__instantiating_interaction_context__then__has_interaction_initialization_phase_as_initial_interaction_phase(
+        self
+    ):
         actual_initial_interaction_phase = self.interaction_context.current_interaction_phase
 
-        self.assertEqual(InteractionPhase.INFORMATION_PHASE, actual_initial_interaction_phase)
+        self.assertEqual(InteractionPhase.INTERACTION_INITIALIZATION_PHASE, actual_initial_interaction_phase)
 
     def test__given__non_switching_input_text_in_information_phase__when__fetching_next_interaction_phase__then__returns_information_phase(
         self
