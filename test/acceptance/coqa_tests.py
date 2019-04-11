@@ -93,7 +93,8 @@ def bert_postprocessor_test():
 
 def bert_with_coqa_test():
     total_qu = 0
-    good_res = 0
+    good_res_bert_only = 0
+    good_res_with_postprocessing = 0
     data = extract_question_from_coqa()
     for elem in data['data']:
         story = elem['story']
@@ -112,16 +113,25 @@ def bert_with_coqa_test():
             print('\n')
             print("number :", q_index)
             # print("story :", story)
-            if bert_evaluator.is_response_close_enough_using_leveinstein(best_bert_ans, answer):
-                good_res += 1
-                print("success")
+            if bert_evaluator.is_response_close_enough_using_difflib(best_bert_ans, answer):
+                good_res_bert_only += 1
+                print("bert only success")
             else:
-                print("failed")
+                print("bert only failed")
+
+            if bert_evaluator.is_response_close_enough_using_difflib(transformed_answer, answer):
+                good_res_with_postprocessing += 1
+                print("bert with postprocessing success")
+            else:
+                print("bert with postprocessing failed")
+
             print("Question:", question)
             print("possible answer:", answer)
             print("bert answer:", output[2])
+            print("bert best guess:", best_bert_ans)
             print("transformed answer:", transformed_answer)
-            print("accuracy :", good_res / total_qu)
+            print("accuracy without postprocessing :", good_res_bert_only / total_qu)
+            print("accuracy with postprocessing :", good_res_with_postprocessing / total_qu)
 
 
 bert_with_coqa_test()
