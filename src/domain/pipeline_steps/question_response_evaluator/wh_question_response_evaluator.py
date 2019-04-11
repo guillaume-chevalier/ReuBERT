@@ -1,6 +1,5 @@
 import difflib
 import en_core_web_sm
-import copy
 
 from src.domain.pipeline_steps.question_response_evaluator.question_type_analyser import QuestionTypeFinder, WH_CONST
 from src.domain.pipeline_steps.question_response_evaluator.spacy_constants import SPACY_NER
@@ -27,15 +26,6 @@ class WHQuestionResponseEvaluator:
         extract_ans = self._extract_wh_matching_answer(user_input, type_of_response, bert_answers)
         if extract_ans:
             return extract_ans
-        else:
-            return self._extract_from_uncertain_answers(bert_answers)
-
-    def _extract_from_uncertain_answers(self, bert_answers):
-        best_answer = [0, '']
-        for answer in bert_answers:
-            if answer[0] > best_answer[0] and answer[1] != '':
-                best_answer = copy.deepcopy(answer)
-        return best_answer[1]
 
     def _type_of_expected_response_from_WH_question(self, wh_question):
 
@@ -50,12 +40,12 @@ class WHQuestionResponseEvaluator:
             return self._LOCATION_CONST
 
         if self.question_type_finder.contains_multiple_wh_words(
-            wh_question, {WH_CONST.WHY.value, WH_CONST.WHAT.value, WH_CONST.WHICH.value}
+                wh_question, {WH_CONST.WHY.value, WH_CONST.WHAT.value, WH_CONST.WHICH.value}
         ):
             return self._UNKNOWN_CONST
 
         if self.question_type_finder.contains_multiple_wh_words(
-            wh_question, {WH_CONST.WHOM.value, WH_CONST.WHOSE.value, WH_CONST.WHO.value}
+                wh_question, {WH_CONST.WHOM.value, WH_CONST.WHOSE.value, WH_CONST.WHO.value}
         ):
             return self._PERSON_CONST
 

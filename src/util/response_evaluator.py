@@ -50,8 +50,9 @@ class ResponseEvaluator:
         return stringdist.levenshtein(response, expected_response) / 33 < acceptable_levenshtein_threshold
 
     def is_response_close_enough_using_difflib(self, response, expected_response):
-        closest_match = difflib.get_close_matches(response, [expected_response])
-        if closest_match:
+        acceptable_threshold = 0.8
+        similarity = difflib.SequenceMatcher(None, response, expected_response).ratio()
+        if similarity > acceptable_threshold:
             return True
         else:
             return False

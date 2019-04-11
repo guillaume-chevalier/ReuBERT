@@ -17,16 +17,6 @@ class ORQuestionResponseEvaluator:
         extract_ans = self._extract_or_answer(bert_answers, ors_responses)
         if extract_ans:
             return extract_ans
-        else:
-            return self._extract_from_uncertain_answers(bert_answers)
-
-    def _extract_from_uncertain_answers(self, bert_answers):
-        best_answer = [0, ""]
-        for answer in bert_answers:
-            if answer[0] > best_answer[0]:
-                best_answer[0] = answer[0]
-                best_answer[1] = answer[1]
-        return best_answer[1]
 
     def _determine_type_of_expected_response_from_OR_question(self, or_question):
         tokenized_or_question = self._tokenize(or_question)
