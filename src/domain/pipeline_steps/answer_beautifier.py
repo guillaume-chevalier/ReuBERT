@@ -20,7 +20,7 @@ class AnswerBeautifier:
 
         if yesno_answer:
             # return yesno_answer
-            return "{} : {}".format(yesno_answer, answer)
+            return "{}, {}".format(yesno_answer, answer)
 
         return answer
 
