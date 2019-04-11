@@ -1,7 +1,8 @@
 from src.api.interaction.interaction_resource import InteractionResource
 
 from src.api.interaction.waiting_animation_thread import WaitingAnimationThread
-from src.domain.interaction.interaction_phase import InteractionPhase
+
+from src.domain.interaction.exit_phase import ExitPhase
 
 
 class InteractionResourceImpl(InteractionResource):
@@ -23,7 +24,7 @@ class InteractionResourceImpl(InteractionResource):
     def _process_user_input(self, user_input):
         reubert_output, next_interaction_phase = self._wait_for_output(user_input)
         self.response_factory.create_from(reubert_output, next_interaction_phase).print()
-        if next_interaction_phase == InteractionPhase.EXIT_PHASE:
+        if next_interaction_phase == ExitPhase():
             self.do_continue = False
 
     def _wait_for_output(self, user_input):

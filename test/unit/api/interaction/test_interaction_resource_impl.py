@@ -5,16 +5,19 @@ from mock import MagicMock, patch, call
 from src.api.interaction.interaction_resource_impl import InteractionResourceImpl
 from src.api.response.response_factory import ResponseFactory
 from src.application.interaction.interaction_service import InteractionService
-from src.domain.interaction.interaction_phase import InteractionPhase
+from src.domain.interaction.exit_phase import ExitPhase
+from src.domain.interaction.information_phase import InformationPhase
+from src.domain.interaction.interaction_initialization_phase import InteractionInitializationPhase
+from src.domain.interaction.question_answering_phase import QuestionAnsweringPhase
+from src.domain.interaction.transition_to_question_answering_phase import TransitionToQuestionAnsweringPhase
 
 
 class TestInteractionResourceImpl(unittest.TestCase):
     _SOME_USER_INPUTS = ["input 1", "input 2", "input 3", "input 4"]
-    _SOME_REUBERT_OUTPUT_AT_INTERACTION_INITIALIZATION = ("output 0", InteractionPhase.INTERACTION_INITIALIZATION_PHASE)
+    _SOME_REUBERT_OUTPUT_AT_INTERACTION_INITIALIZATION = ("output 0", InteractionInitializationPhase())
     _SOME_REUBERT_OUTPUTS_WHILE_PROCESSING_INPUT_TEXT = [
-        ("output 1", InteractionPhase.INFORMATION_PHASE),
-        ("output 2", InteractionPhase.TRANSITION_TO_QUESTION_ANSWERING_PHASE),
-        ("output 3", InteractionPhase.QUESTION_ANSWERING_PHASE), ("output 4", InteractionPhase.EXIT_PHASE)
+        ("output 1", InformationPhase()), ("output 2", TransitionToQuestionAnsweringPhase()),
+        ("output 3", QuestionAnsweringPhase()), ("output 4", ExitPhase())
     ]
 
     def setUp(self):
@@ -57,15 +60,15 @@ class TestInteractionResourceImpl(unittest.TestCase):
     ):
         with patch('builtins.input', side_effect=self._SOME_USER_INPUTS):
             response_factory_calls_with_reuBERT_outputs = [
-                call("output 0", InteractionPhase.INTERACTION_INITIALIZATION_PHASE),
+                call("output 0", InteractionInitializationPhase()),
                 call().print(),
-                call("output 1", InteractionPhase.INFORMATION_PHASE),
+                call("output 1", InformationPhase()),
                 call().print(),
-                call("output 2", InteractionPhase.TRANSITION_TO_QUESTION_ANSWERING_PHASE),
+                call("output 2", TransitionToQuestionAnsweringPhase()),
                 call().print(),
-                call("output 3", InteractionPhase.QUESTION_ANSWERING_PHASE),
+                call("output 3", QuestionAnsweringPhase()),
                 call().print(),
-                call("output 4", InteractionPhase.EXIT_PHASE),
+                call("output 4", ExitPhase()),
                 call().print()
             ]
             self.interaction_resource_impl.execute()
