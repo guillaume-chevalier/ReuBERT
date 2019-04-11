@@ -1,14 +1,14 @@
 import os
-import threading
+from threading import Thread, Event
 
 
-class WaitingAnimationThread(threading.Thread):
+class WaitingAnimationThread:
     MESSAGE = ":~$ ReuBERT is reading and understanding text to answer your question. $~:"
 
     def __init__(self):
-        self.stopping_event = threading.Event()
+        self.stopping_event = Event()
         self.sleep_interval = 0.07
-        threading.Thread.__init__(self, name=self.__class__.__name__)
+        self.thread = Thread(target=self.run, daemon=True)
 
     def run(self):
         all_cols, chars, half_cols = self._get_columns_settings()
@@ -16,7 +16,7 @@ class WaitingAnimationThread(threading.Thread):
         while not self.stopping_event.isSet():
             self._print_animation_frame(chars, half_cols, i)
             i += 1
-        self._eraze_animation_on_exit(all_cols)
+        self._erase_animation_on_exit(all_cols)
 
     def _get_columns_settings(self):
         try:
@@ -30,11 +30,6 @@ class WaitingAnimationThread(threading.Thread):
         return all_cols, chars, half_cols
 
     def _get_animation_pattern(self):
-        # You can choose or create a different animation pattern:
-        # chars = "_.~\"|"
-        # chars = "\"`-._,-'"
-        # chars = """|/-.-\\|/-'-\\"""
-        # chars = """|/-\\|/-\\"""
         chars = "_,.-'¯    "
         return chars
 
@@ -46,9 +41,12 @@ class WaitingAnimationThread(threading.Thread):
         print(animated_, end="\r")
         self.stopping_event.wait(self.sleep_interval)
 
-    def _eraze_animation_on_exit(self, all_cols):
+    def _erase_animation_on_exit(self, all_cols):
         print(" " * all_cols, end="\r")
 
-    def join(self, timeout=None):
+    def start(self):
+        self.thread.start()
+
+    def join(self):
         self.stopping_event.set()
-        threading.Thread.join(self, timeout=None)
+        self.thread.join()

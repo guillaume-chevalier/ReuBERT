@@ -11,7 +11,7 @@ class InteractionPhase(Enum):
         if self == InteractionPhase.INFORMATION_PHASE:
             return input_text_processor.process_context_statement(input_text)
         elif self == InteractionPhase.TRANSITION_TO_QUESTION_ANSWERING_PHASE:
-            return "Ok. Ask me your questions."
+            return input_text_processor.process_phase_transition_statement(input_text)
         elif self == InteractionPhase.QUESTION_ANSWERING_PHASE:
             return input_text_processor.process_question(input_text)
         elif self == InteractionPhase.EXIT_PHASE:
