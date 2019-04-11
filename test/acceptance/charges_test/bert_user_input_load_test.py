@@ -5,13 +5,18 @@ import time
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
 from src.infrastructure.pipeline_steps.bert_natural_answer_postprocessor import BertNaturalAnswerPostprocessor
 
+
 def load_json_file_test(json_name):
     with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), json_name), encoding="utf8") as json_data:
         return json.load(json_data)
 
 
-num_words = ['50', '100', '150', '200', '250', '300', '350', '400', '450', '500', '550', '600', '650', '700',
-             '750', '800', '850', '900', '950', '1000']
+num_words = [
+    '50', '100', '150', '200', '250', '300', '350', '400', '450', '500', '550', '600', '650', '700', '750', '800',
+    '850', '900', '950', '1000'
+]
+
+
 def run_load_test():
     mock_test_file = load_json_file_test('load_tests_file_mock.json')
     bert_wrapper = BertModelWrapper()
@@ -41,4 +46,3 @@ def run_load_test():
 
 
 run_load_test()
-

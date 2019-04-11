@@ -29,6 +29,9 @@ import tensorflow as tf
 from src.infrastructure.bert import modeling
 from src.infrastructure.bert import tokenization
 
+if type(tf.contrib) != type(tf):
+    tf.contrib._warning = None
+
 
 class Flags:
 
