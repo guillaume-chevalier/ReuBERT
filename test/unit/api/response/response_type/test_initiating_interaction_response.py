@@ -13,7 +13,7 @@ class TestInitiatingInteractionResponse(unittest.TestCase):
     @patch('builtins.print')
     def test__when__printing__then__prints_reuBERT_output_in_appropriate_response_format(self, print_mock):
         expected_response_format = ResponseTag.GREETING_TAG.__str__() + "\n" \
-                                   + ResponseTag.ENTER_INFORMATION_TAG.__str__() + "\n"
+                                   + ResponseTag.ENTER_INFORMATION_TAG.__str__()
 
         self.initiating_interaction_response.print()
 
