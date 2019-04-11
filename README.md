@@ -9,9 +9,8 @@ You must first setup a **Python 3.6** virtualenv.
 1. Create the "env" virtual environment in the root of the project: `virtualenv env -p python3`.
 1. You may now activate it as needed, and configure the new virtualenv in your IDE: `source env/bin/activate`.
 1. Install requirements: `pip install -r requirements.txt.`
-1. Download Spacy nlp model: `python -m spacy download en_core_web_sm`
 
-### Set up pre-commit hooks
+### Set up pre-commit hooks (only if you intend to develop and push new commits)
 
 1. Ensure that the virtual environment's name is "env". 
 1. Modify your local git configuration to point the correct emplacement of the project hooks
@@ -26,9 +25,15 @@ See the steps 1 and 2 in the cloud directory's [README.md](cloud_scripts/README.
 
 You may skip this step if a member of your team already did this step, as it is compute-intensive and costly.
 
+\# TODO: Google Drive link or other link for the data folder.
+
 ### Download the fine-tuned BERT's weights for local CPU usage of the model
 
 See the steps 3, 4 and 5 in the cloud directory's [README.md](cloud_scripts/README.md). Basically, you need to download the trained BERT model and place it at some place under the `./thales-bert-gcp-bucket` directory here.
+
+### Download Spacy NLP model
+ 
+Run `python -m spacy download en_core_web_sm` in the virtual environment to setup the spacy dependency. 
 
 ### Run tests
 
@@ -42,9 +47,16 @@ You can now run the main, such as by doing `python main.py`, to use the Question
 
 - [BERT](https://github.com/google-research/bert): Apache 2.0
 - [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/): CC-BY-SA 4.0
+- [en_core_web_sm](https://spacy.io/models/en#en_core_web_sm) MIT
 
-### Acceptance tests :
+### Acceptance tests' content :
 
 - [William_Shakespeare](https://en.wikipedia.org/wiki/William_Shakespeare): CC BY-SA 3.0 Unported License
 - [Abraham Lincoln](https://en.wikipedia.org/wiki/Abraham_Lincoln): CC BY-SA 3.0 Unported License
 - [Barack Obama](https://en.wikipedia.org/wiki/Barack_Obama): CC BY-SA 3.0 Unported License
+
+## Authors
+
+- Guillaume Chevalier
+- Taha Racicot
+- Julie Tétrault
