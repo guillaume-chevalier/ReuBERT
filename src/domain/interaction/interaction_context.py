@@ -4,8 +4,11 @@ from src.domain.interaction.interaction_phase import InteractionPhase
 class InteractionContext:
     _INITIAL_INTERACTION_PHASE = InteractionPhase.INFORMATION_PHASE
 
-    SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE = "I am ready to ask questions."
     SWITCHING_TO_EXIT_PHASE_MESSAGE = "I have no more questions to ask."
+    SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE_BASE = "I am ready to ask questions."
+    SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE = "{} Note: you can quit the application " \
+                                                    "at anytime by saying '{}'".format(
+        SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE_BASE, SWITCHING_TO_EXIT_PHASE_MESSAGE)
 
     def __init__(self):
         self.current_interaction_phase = self._INITIAL_INTERACTION_PHASE
