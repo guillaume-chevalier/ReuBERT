@@ -2,7 +2,6 @@ from src.api.interaction.interaction_resource_impl import InteractionResourceImp
 from src.api.response.response_factory import ResponseFactory
 from src.application.input_text.input_text_processor_impl import InputTextProcessorImpl
 from src.application.interaction.interaction_service import InteractionService
-from src.domain.interaction.interaction_context import InteractionContext
 from src.domain.pipeline import Pipeline
 from src.infrastructure.persistence.interaction.in_memory_input_text_repository import InMemoryInputTextRepository
 from src.infrastructure.pipeline_steps.bert_model_wrapper import BertModelWrapper
@@ -25,7 +24,7 @@ class CLIReuBERTApplicativeContext:
         self.input_text_processor = InputTextProcessorImpl(self.input_text_repository, self.pipeline)
 
     def _initialize_application_services(self):
-        self.interaction_service = InteractionService(InteractionContext(), self.input_text_processor)
+        self.interaction_service = InteractionService(self.input_text_processor)
 
     def _initialize_resources(self):
         response_factory = ResponseFactory()

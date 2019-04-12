@@ -4,6 +4,10 @@ from abc import ABC, abstractmethod
 class InputTextProcessor(ABC):
 
     @abstractmethod
+    def process_initialization_statement(self, initialization_statement):
+        pass
+
+    @abstractmethod
     def process_context_statement(self, context_statement):
         pass
 

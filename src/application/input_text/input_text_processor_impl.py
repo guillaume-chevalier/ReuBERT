@@ -1,15 +1,24 @@
 from src.domain.input_text.input_text_processor import InputTextProcessor
+from src.domain.interaction.information_phase import InformationPhase
+from src.domain.interaction.question_answering_phase import QuestionAnsweringPhase
 
 
 class InputTextProcessorImpl(InputTextProcessor):
-
+    INTERACTION_INITIALIZATION_MESSAGE = "Welcome! What would you like to talk about? Note: when you are ready to " \
+                                         "ask questions, just say '{}'".format(
+        InformationPhase.SWITCHING_TO_QUESTION_ANSWERING_PHASE_MESSAGE)
     ASKING_FOR_MORE_INFORMATION_CONTEXT_MESSAGE = "Can you give me more information please?"
-    READY_TO_ANSWER_QUESTIONS_MESSAGE = "Ok. Ask me your questions."
+    READY_TO_ANSWER_QUESTIONS_MESSAGE = "Ok. Ask me your questions. Note: you can quit the application " \
+                                        "at anytime by saying '{}'".format(
+        QuestionAnsweringPhase.SWITCHING_TO_EXIT_PHASE_MESSAGE)
     EXIT_MESSAGE = "See you later!"
 
     def __init__(self, input_text_repository, pipeline):
         self.input_text_repository = input_text_repository
         self.pipeline = pipeline
+
+    def process_initialization_statement(self, initialization_statement):
+        return self.INTERACTION_INITIALIZATION_MESSAGE
 
     def process_context_statement(self, context_statement):
         self.input_text_repository.add_context_statement(context_statement)
