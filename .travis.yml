@@ -6,3 +6,4 @@ install:
   - spacy download en_core_web_sm
 script:
   - pytest --cov=src/ test/unit/
+
