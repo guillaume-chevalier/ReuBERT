@@ -11,7 +11,7 @@ export BUCKET_NAME="../thales-bert/squad_large/"
 export SQUAD_DIR="../thales-bert/squad_dir"
 export OUTPUT_DIR="../thales-bert/output_dir/"
 
-export THRESH=-3  # TODO: adjust this maybe. Typical values are between -1.0 and -5.0.
+export THRESH=-3
 
 # Generate predictions.
 python3 run_squad.py \

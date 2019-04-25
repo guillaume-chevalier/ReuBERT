@@ -4,7 +4,7 @@
 # Note: you must download BERT and SQuAD in the appropriate folders in GCP bucket. 
 
 # Here is a command to create a vm instance with tpu:
-# ctpu up --name=bert --project=bert --zone=us-central1-b #todo : set memmory to 100GB
+# ctpu up --name=bert --project=bert --zone=us-central1-b
 
 git clone https://github.com/google-research/bert.git
 cd bert
@@ -40,7 +40,7 @@ python run_squad.py \
   --version_2_with_negative=True
 
 
-export THRESH=-3  # TODO: adjust this maybe. Typical values are between -1.0 and -5.0.
+export THRESH=-3
 
 python run_squad.py \
   --vocab_file=$BERT_LARGE_DIR/vocab.txt \
@@ -64,7 +64,6 @@ python run_squad.py \
 
 
 # The code below after the exit is dead code. 
-# TODO: cleanup this shell script...
 exit
 
 
@@ -91,7 +90,6 @@ cd ..
 python $SQUAD_DIR/evaluate-v2.0.py $SQUAD_DIR/dev-v2.0.json $SQUAD_DIR/predictions.json --na-prob-file $SQUAD_DIR/null_odds.json
 
 
-# TODO: serve predictions after training: 
 # python run_squad.py \
 #   --vocab_file=$BERT_LARGE_DIR/vocab.txt \
 #   --bert_config_file=$BERT_LARGE_DIR/bert_config.json \
