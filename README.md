@@ -43,6 +43,29 @@ Once install, verify your installation by running tests within the virtualenv us
 
 You can now run the main, such as by doing `python main.py`, to use the Question-Answering chatbot.
 
+### Exemple usage
+
+input text : `"William Shakespeare was an English poet, playwright and actor, widely regarded as the greatest writer in the English 
+language and the world's greatest dramatist. He is often called England's national poet and the \"Bard of Avon\".
+"His extant works, including collaborations, consist of approximately 39 plays, 154 sonnets, two long narrative poems, 
+and a few other verses, some of uncertain authorship. His plays have been translated into every major living language 
+and are performed more often than those of any other playwright.\n Shakespeare was born and raised in Stratford-upon-Avon,
+Warwickshire. At the age of 18, he married Anne Hathaway, with whom he had three children: Susanna and twins Hamnet 
+and Judith. Sometime between 1585 and 1592, he began a successful career in London as an actor, writer, and part-owner 
+of a playing company called the Lord Chamberlain's Men, later known as the King's Men. At age 49 (around 1613), he 
+appears to have retired to Stratford, where he died three years later. Few records of Shakespeare's private life survive;
+this has stimulated considerable speculation about such matters as his physical appearance, his sexuality, his religious
+beliefs, and whether the works attributed to him were written by others. Such theories are often criticised for failing 
+to adequately note that few records survive of most commoners of the period."`
+
+question 1 : `Where do William Shakespeare was born ?`
+
+answer 1 : `Stratford-upon-Avon`
+
+question 2 : `When did William Shakespeare retire ?`
+
+answer 2 : `1613`
+
 ## Licenses
 
 - [BERT](https://github.com/google-research/bert): Apache 2.0
